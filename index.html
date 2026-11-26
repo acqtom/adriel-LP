@@ -51,10 +51,6 @@ fbq('track', 'PageView');
 <link rel="dns-prefetch" href="https://scripts.converteai.net">
 <link rel="dns-prefetch" href="https://images.converteai.net">
 <link rel="dns-prefetch" href="https://license.vturb.com">
-<!-- Typeform connection warm-up (speeds up form load) -->
-<link rel="preconnect" href="https://embed.typeform.com">
-<link rel="preconnect" href="https://form.typeform.com">
-<link rel="dns-prefetch" href="https://api.typeform.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
@@ -90,6 +86,9 @@ fbq('track', 'PageView');
   }
 </style>
 <script src="/assets/track.js" defer></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap">
+<link rel="stylesheet" href="/assets/apply.css">
+<script src="/assets/apply.js" defer></script>
 </head>
 <body>
 <script>
@@ -224,6 +223,20 @@ fbq('track', 'PageView');
       <div class="ph-hero__stat"><span class="ph-hero__stat-num">230+</span><span class="ph-hero__stat-label">Real Estate Transactions</span></div>
       <span class="ph-hero__stat-div"></span>
       <div class="ph-hero__stat"><span class="ph-hero__stat-num">8</span><span class="ph-hero__stat-label">Active Developments, On Track To Net $3M</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION FORM (inline; every "#apply" button scrolls here) -->
+<section class="ph-apply" aria-labelledby="pa-heading">
+  <div class="pa-wrap">
+    <h2 class="pa-heading" id="pa-heading">See If You Qualify For Our <span>A-Z Deal Development Program</span></h2>
+    <div class="pa-note" aria-hidden="true"><b>Apply Here</b>
+      <svg width="90" height="70" viewBox="0 0 90 70" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8c30-6 62 4 74 46"/><path d="M66 46l12 10 6-15"/></svg>
+    </div>
+    <div class="pa-card" id="apply">
+      <p class="pa-eyebrow"><i></i>Apply for the Investor&rsquo;s Blueprint</p>
+      <div id="ph-apply-form" aria-live="polite"><noscript>Please turn on JavaScript to apply.</noscript></div>
     </div>
   </div>
 </section>
@@ -758,45 +771,6 @@ fbq('track', 'PageView');
 
 </div>
 
-<!-- APPLICATION FORM POPUP (Typeform) — same setup as the Paidcoaching page -->
-<link rel="stylesheet" href="https://embed.typeform.com/next/css/widget.css">
-<style>
-  .tf-modal{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(20,18,12,0.6);}
-  .tf-modal.is-open{display:flex;}
-  .tf-modal__panel{position:relative;width:min(1000px,94vw);height:min(760px,90vh);background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.3);}
-  .tf-modal__form{position:absolute;inset:0;}
-  .tf-modal__form > div,.tf-modal__form .tf-v1-widget{position:relative !important;width:100% !important;height:100% !important;max-width:none !important;max-height:none !important;}
-  .tf-modal__form iframe{position:absolute !important;inset:0 !important;width:100% !important;height:100% !important;border:0 !important;border-radius:0 !important;}
-  .tf-modal__close{position:absolute;top:10px;right:10px;z-index:2;width:38px;height:38px;border-radius:50%;border:1px solid #e6e3db;background:#fff;color:#1a1a1a;font:400 18px/1 sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;}
-  @media (max-width:640px){ .tf-modal__panel{width:100vw;height:100vh;height:100dvh;border-radius:0;} }
-  html.tf-lock,html.tf-lock body{overflow:hidden !important;}
-</style>
-<div class="tf-modal" id="apply-modal" aria-hidden="true" role="dialog" aria-label="Book a strategy session">
-  <div class="tf-modal__panel">
-    <button class="tf-modal__close" type="button" aria-label="Close">&#10005;</button>
-    <div class="tf-modal__form" data-tf-widget="tAGtOQ8B" data-tf-inline-on-mobile data-tf-opacity="100" data-tf-medium="snippet" data-tf-transitive-search-params data-tf-iframe-props="title=Investor's Blueprint Strategy Session"></div>
-  </div>
-</div>
-<script src="https://embed.typeform.com/next/embed.js"></script>
-<script>
-  (function(){
-    var m=document.getElementById('apply-modal');
-    var leadSent=false;
 
-    function phLead(){
-      if(leadSent) return;
-      leadSent=true;
-      try{ if(typeof fbq==='function') fbq('track','Lead',{content_name:'Application Form Open'}); }catch(e){}
-    }
-
-    function open(){ phLead(); if(window.phCloseBreakdown) window.phCloseBreakdown(); m.classList.add('is-open'); if(window.phPlaceAtClick) window.phPlaceAtClick(m, m.querySelector('.tf-modal__panel'), 760); m.setAttribute('aria-hidden','false'); document.documentElement.classList.add('tf-lock'); }
-    function close(){ m.classList.remove('is-open'); m.setAttribute('aria-hidden','true'); document.documentElement.classList.remove('tf-lock'); }
-    document.addEventListener('click',function(e){
-      if(e.target.closest('a[href="#apply"]')){ e.preventDefault(); open(); return; }
-      if(e.target.closest('.tf-modal__close') || e.target===m){ close(); }
-    });
-    document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
-  })();
-</script>
 </body>
 </html>

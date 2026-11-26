@@ -257,6 +257,7 @@
             <option value="partial">Started, not submitted</option>
             <option value="booked">Booked</option>
             <option value="notbooked">Submitted, not booked</option>
+            <option value="nocal">Can't afford (no calendar)</option>
           </select>
           <input class="inp" type="search" id="aSearch" placeholder="Search name, email, phone">
           <button class="btn" id="csv">Download CSV</button>
@@ -281,19 +282,22 @@
   /* ================= CONFIG =================
      Form steps and answer columns. These get updated to match the custom form when it's built. */
   var FORM_STEPS = [
-    'High-ticket offer right now?',
-    'Current situation',
-    'Niche and what they do (optional)',
-    'Name, phone and email',
-    'Monthly revenue',
-    'Capital + Submit'
+    'Which situation best describes you?',
+    'Main problems they need help with',
+    'Why guidance right now (optional)',
+    'First name',
+    'Phone number',
+    'Email',
+    'Capital for the project',
+    'Can invest $7K–$12K?'
   ];
   var ANSWER_COLS = [
-    { key: 'revenue', label: 'Revenue' },
-    { key: 'capital', label: 'Capital' },
-    { key: 'high_ticket', label: 'High-ticket offer' },
     { key: 'situation', label: 'Situation', wide: true },
-    { key: 'niche', label: 'Niche' }
+    { key: 'problems', label: 'Main problems', wide: true },
+    { key: 'why_now', label: 'Why now', wide: true },
+    { key: 'capital', label: 'Capital' },
+    { key: 'investment', label: 'Can invest $7K–$12K', wide: true },
+    { key: 'sms_marketing', label: 'Marketing SMS' }
   ];
   var BUTTONS = [
     ['video', 'Under the video'],
@@ -506,8 +510,8 @@
     });
     items.push({
       label: 'Calendar: submitted but didn’t book',
-      reached: sum(function (r) { return r.submitted; }),
-      left: sum(function (r) { return r.submitted && !r.booked; })
+      reached: sum(function (r) { return r.submitted && !r.noCalendar; }),
+      left: sum(function (r) { return r.submitted && !r.noCalendar && !r.booked; })
     });
     $('#dropoff').innerHTML = items.map(function (it) {
       var share = ratio(it.left, it.reached);
@@ -621,6 +625,7 @@
       if (st === 'partial' && l.status === 'submitted') return false;
       if (st === 'booked' && !l.booked) return false;
       if (st === 'notbooked' && (l.booked || l.status !== 'submitted')) return false;
+      if (st === 'nocal' && !/can.t afford/i.test((l.answers || {}).investment || '')) return false;
       if (q && [l.name, l.email, l.phone].join(' ').toLowerCase().indexOf(q) === -1) return false;
       return true;
     });
