@@ -49,7 +49,7 @@
     if (!v) { v = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2); sset('ph_v', v); }
     return v;
   }
-  var S = { i: 0, answers: {}, country: 'US', started: false, end: null };
+  var S = { i: 0, answers: {}, country: 'US', started: false, startedAt: 0, end: null, booked: false };
   try { var saved = JSON.parse(sget('ph_apply') || 'null'); if (saved && saved.answers) S = Object.assign(S, saved); } catch (e) {}
   function persist() { sset('ph_apply', JSON.stringify(S)); }
   var N = QUESTIONS.length;
@@ -62,13 +62,28 @@
     var a = S.answers, answers = {};
     QUESTIONS.forEach(function (q) { if (!q.contact && a[q.key]) answers[q.key] = a[q.key]; });
     var body = { v: visitId(), step: step, done: !!done, noCalendar: !!noCal, answers: answers,
-      utm: (window.phTrack && window.phTrack.utm) || {},
+      utm: (window.phTrack && window.phTrack.utm) || {}, device: device(), seconds: secondsOnForm(),
       contact: { name: a.name || null, email: a.email || null, phone: fullPhone() || null } };
     return post('/api/form', body);
   }
+  function device() {
+    return ((window.matchMedia && matchMedia('(max-width: 760px)').matches) || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) ? 'mobile' : 'desktop';
+  }
+  function secondsOnForm() { return S.startedAt ? Math.round((Date.now() - S.startedAt) / 1000) : null; }
+
+  /* Left the page partway through, or on the calendar without booking -> drop-off alert */
+  function reportLeft() {
+    if (!S.started || S.booked || S.end === 'thanks') return;
+    var body = JSON.stringify({ v: visitId(), left: true, stage: S.end === 'calendar' ? 'calendar' : 'question',
+      step: S.i + 1, seconds: secondsOnForm() });
+    try { if (navigator.sendBeacon && navigator.sendBeacon('/api/form', new Blob([body], { type: 'text/plain' }))) return; } catch (e) {}
+    try { fetch('/api/form', { method: 'POST', body: body, keepalive: true, headers: { 'Content-Type': 'text/plain' } }); } catch (e) {}
+  }
+  addEventListener('pagehide', reportLeft);
+
   function markStarted() {
     if (S.started) return;
-    S.started = true; persist();
+    S.started = true; S.startedAt = Date.now(); persist();
     save(1, false);
     try { if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Application Form Open' }); } catch (e) {}
   }
@@ -251,6 +266,7 @@
   /* Calendly booked -> mark booked, then go to the confirmation page */
   addEventListener('message', function (e) {
     if (e.origin !== 'https://calendly.com' || !e.data || e.data.event !== 'calendly.event_scheduled') return;
+    S.booked = true;
     var body = JSON.stringify({ t: 'booked', v: visitId() });
     try { navigator.sendBeacon('/api/t', new Blob([body], { type: 'text/plain' })); } catch (err) { post('/api/t', JSON.parse(body)); }
     try { sessionStorage.removeItem('ph_apply'); } catch (err) {}

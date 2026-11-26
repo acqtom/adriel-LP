@@ -3,7 +3,7 @@ import { db } from '../lib/db.js';
 import { handle, json } from '../lib/http.js';
 import { metaInsights } from '../lib/meta.js';
 import { resolvePeriod } from '../lib/period.js';
-import { adCounts, channelOptions, funnelStats, vslTrackingStart, QUALIFIED_MIN, TZ } from '../lib/stats.js';
+import { adCounts, channelOptions, funnelStats, vslTrackingStart, QUALIFIED_LABEL, TZ } from '../lib/stats.js';
 
 export default handle(async (req, res) => {
   if (!requireAuth(req, res)) return;
@@ -20,5 +20,5 @@ export default handle(async (req, res) => {
     vslTrackingStart(sql),
   ]);
 
-  json(res, 200, { range, timezone: TZ, qualifiedMin: QUALIFIED_MIN, meta, counts, funnel, channels, vslStart });
+  json(res, 200, { range, timezone: TZ, qualifiedLabel: QUALIFIED_LABEL, meta, counts, funnel, channels, vslStart });
 });

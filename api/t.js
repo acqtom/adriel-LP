@@ -1,6 +1,7 @@
 // Tracking endpoint for the public pages (see /assets/track.js). No login needed.
 import { db } from '../lib/db.js';
 import { handle, json, readBody, str } from '../lib/http.js';
+import { onBooked } from '../lib/alerts.js';
 
 const num = (v, max) => { const x = Number(v); return Number.isFinite(x) ? Math.min(Math.max(x, 0), max) : 0; };
 
@@ -34,10 +35,15 @@ export default handle(async (req, res) => {
       await sql.query(
         `update visits set form_started = true, form_step = greatest(form_step, $2) where id = $1`, [v, Math.round(num(b.step, 50))]);
       break;
-    case 'booked':
+    case 'booked': {
       await sql.query(`update visits set booked = true, booked_at = coalesce(booked_at, now()) where id = $1`, [v]);
-      await sql.query(`update leads set booked = true, updated_at = now() where visit_id = $1`, [v]);
+      // "not booked" makes sure the Slack alert goes out once, even if both the form and
+      // the confirmation page report the booking.
+      const [lead] = await sql.query(
+        `update leads set booked = true, updated_at = now() where visit_id = $1 and not booked returning *`, [v]);
+      if (lead) await onBooked(sql, lead);
       break;
+    }
     default:
       return json(res, 400, { error: 'Unknown event' });
   }

@@ -8,7 +8,7 @@ export default handle(async (req, res) => {
   if (req.method !== 'POST') return json(res, 405, { error: 'POST only' });
   const { action, confirm } = readBody(req);
 
-  if (action === 'slack-test') { await sendTestMessages(); return json(res, 200, { ok: true }); }
+  if (action === 'slack-test') return json(res, 200, { ok: true, ...(await sendTestMessages()) });
   if (action === 'report') { await sendDailyReport(await db()); return json(res, 200, { ok: true }); }
   if (action === 'reset') {
     if (confirm !== 'RESET') return json(res, 400, { error: 'Type RESET to confirm' });

@@ -7,7 +7,7 @@ import { sendDailyReport } from '../../lib/slack.js';
 export default handle(async (req, res) => {
   const secret = process.env.CRON_SECRET;
   if (!secret || req.headers.authorization !== `Bearer ${secret}`) return json(res, 401, { error: 'Unauthorized' });
-  if (!process.env.SLACK_WEBHOOK_URL) return json(res, 200, { skipped: 'Slack not connected' });
+  if (!process.env.SLACK_WEBHOOK_DAILY && !process.env.SLACK_WEBHOOK_URL) return json(res, 200, { skipped: 'Slack not connected' });
   await sendDailyReport(await db());
   json(res, 200, { ok: true });
 });

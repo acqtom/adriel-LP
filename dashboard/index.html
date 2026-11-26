@@ -381,7 +381,17 @@
       .catch(function (e) { toast(e.message, true); })
       .then(function () { btn.disabled = false; });
   }
-  $('#slackTest').addEventListener('click', function () { adminAction(this, { action: 'slack-test' }, 'Test messages sent to Slack'); });
+  $('#slackTest').addEventListener('click', function () {
+    var btn = this; btn.disabled = true;
+    api('/api/admin', { method: 'POST', body: { action: 'slack-test' } })
+      .then(function (r) {
+        var msg = 'Test sent to: ' + r.sent.join(', ');
+        if (r.failed && r.failed.length) msg += '. Not sent: ' + r.failed.join(', ');
+        toast(msg, r.failed && r.failed.length);
+      })
+      .catch(function (e) { toast(e.message, true); })
+      .then(function () { btn.disabled = false; });
+  });
   $('#slackReport').addEventListener('click', function () { adminAction(this, { action: 'report' }, "Yesterday's report sent to Slack"); });
   $('#resetData').addEventListener('click', function () {
     var typed = prompt('This permanently deletes every visit and form answer. Ad numbers from Meta are not affected.\n\nType RESET to confirm.');
@@ -452,7 +462,6 @@
     var ok = m.configured && m.spend != null;
     var spend = ok ? m.spend : null;
     var per = function (n) { return spend != null && n ? spend / n : null; };
-    var qualLabel = '$' + (d.qualifiedMin >= 1000 ? (d.qualifiedMin / 1000).toLocaleString('en-US') + 'k' : d.qualifiedMin) + '+';
 
     /* channel options */
     var sel = $('#fChannel'), cur = F.channel, opts = d.channels.slice();
@@ -468,7 +477,7 @@
       card({ label: 'Ad retention rate', value: pct(ok ? ratio(m.thruplays, m.views3s) : null), sub: 'ThruPlays ÷ 3-second views' }),
       card({ label: 'Cost per lead', value: money(per(c.submitted)), sub: int(c.submitted) + ' form submits' }),
       card({ label: 'Cost per call', value: money(per(c.booked)), sub: int(c.booked) + ' calls booked' }),
-      card({ label: 'Cost per qualified call', value: money(per(c.qualified)), sub: int(c.qualified) + ' booked with ' + qualLabel + ' capital', hi: true })
+      card({ label: 'Cost per qualified call', value: money(per(c.qualified)), sub: int(c.qualified) + ' booked (' + esc(d.qualifiedLabel) + ')', hi: true })
     ].join('');
 
     var note = 'Ad metrics cover every device and source for ' + d.range.from + ' to ' + d.range.to;
