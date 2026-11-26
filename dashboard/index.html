@@ -163,6 +163,7 @@
     <nav class="nav">
       <a href="#dashboard" data-view="dash">Dashboard</a>
       <a href="#answers" data-view="answers">Form answers</a>
+      <a href="#precall" data-view="precall">Pre-call engagement</a>
     </nav>
     <div class="side__foot">
       <label class="side__check"><input type="checkbox" id="noTrack"> Don't count my visits on this browser</label>
@@ -254,6 +255,43 @@
         </div>
 
         <p class="foot">Days start at midnight New York time. Coming back in a new tab counts as a new visit. A visit that's still open can show as having left.</p>
+      </div>
+    </section>
+
+    <!-- ================= PRE-CALL ENGAGEMENT ================= -->
+    <section id="view-precall" hidden>
+      <div class="top">
+        <h1>Pre-call engagement</h1>
+        <div class="filters">
+          <label for="pPeriod">Period</label>
+          <select class="sel" id="pPeriod">
+            <option value="today">Today</option>
+            <option value="yesterday">Yesterday</option>
+            <option value="7d">Last 7 days</option>
+            <option value="30d">Last 30 days</option>
+            <option value="90d">Last 90 days</option>
+            <option value="12m">Last 12 months</option>
+            <option value="custom">Custom…</option>
+          </select>
+          <span class="custom" id="pCustomBox" hidden>
+            <input class="inp" type="date" id="pFrom" aria-label="From">
+            <input class="inp" type="date" id="pTo" aria-label="To">
+            <button class="btn" id="pApply">Apply</button>
+          </span>
+        </div>
+      </div>
+      <div id="precallBody">
+        <p class="note" style="margin:0 2px 14px">The videos on the confirmation page, watched by people after they book. A play is 2+ seconds with the sound on. Engagement is the average share of the video watched by the people who played it.</p>
+        <div class="grid" id="pcCards"></div>
+
+        <div class="panel">
+          <h3>What people are watching the most</h3>
+          <p class="panel__sub" id="pcTopSub">Top videos by plays. The bar shows play rate (share of confirmation page views).</p>
+          <div id="pcTop"></div>
+        </div>
+
+        <div id="pcSections"></div>
+        <p class="foot">Days start at midnight New York time. One page view per browser tab; reloading the page in the same tab counts once.</p>
       </div>
     </section>
 
@@ -412,11 +450,12 @@
 
   /* ================= routing ================= */
   function route() {
-    var view = location.hash === '#answers' ? 'answers' : 'dash';
+    var view = location.hash === '#answers' ? 'answers' : location.hash === '#precall' ? 'precall' : 'dash';
     document.querySelectorAll('.nav a').forEach(function (a) { a.classList.toggle('on', a.dataset.view === view); });
     $('#view-dash').hidden = view !== 'dash';
     $('#view-answers').hidden = view !== 'answers';
-    if (view === 'dash') loadDash(); else loadAnswers();
+    $('#view-precall').hidden = view !== 'precall';
+    if (view === 'dash') loadDash(); else if (view === 'precall') loadPrecall(); else loadAnswers();
   }
   addEventListener('hashchange', route);
 
@@ -439,6 +478,24 @@
     F.period = 'custom'; F.from = a; F.to = b; saveF(); loadDash();
   });
   $('#fDevice').addEventListener('change', function () { F.device = this.value; saveF(); loadDash(); });
+
+  /* pre-call view shares the period */
+  function syncPeriodInputs() {
+    $('#fPeriod').value = $('#pPeriod').value = F.period;
+    $('#fFrom').value = $('#pFrom').value = F.from; $('#fTo').value = $('#pTo').value = F.to;
+    $('#customBox').hidden = $('#pCustomBox').hidden = F.period !== 'custom';
+  }
+  $('#pPeriod').addEventListener('change', function () {
+    var v = this.value;
+    $('#pCustomBox').hidden = v !== 'custom';
+    if (v === 'custom' && !$('#pFrom').value) { $('#pFrom').focus(); return; }
+    F.period = v; saveF(); syncPeriodInputs(); loadPrecall();
+  });
+  $('#pApply').addEventListener('click', function () {
+    var a = $('#pFrom').value, b = $('#pTo').value;
+    if (!a || !b) { toast('Pick both dates', true); return; }
+    F.period = 'custom'; F.from = a; F.to = b; saveF(); syncPeriodInputs(); loadPrecall();
+  });
   $('#fChannel').addEventListener('change', function () { F.channel = this.value; saveF(); loadDash(); });
 
   /* ================= dashboard ================= */
@@ -626,6 +683,69 @@
         '</td><td class="num">' + int(a.leads) + '</td><td class="num">' + int(a.calls) + '</td><td class="num">' + int(a.qualified) +
         '</td><td class="num">' + money(ratio(a.spend, a.calls)) + '</td></tr>';
     }).join('');
+  }
+
+  /* ================= pre-call engagement ================= */
+  var pcSeq = 0;
+  function loadPrecall() {
+    syncPeriodInputs();
+    var seq = ++pcSeq;
+    var qs = new URLSearchParams({ period: F.period });
+    if (F.period === 'custom') { qs.set('from', F.from); qs.set('to', F.to); }
+    $('#precallBody').classList.add('loading');
+    api('/api/precall?' + qs).then(function (d) { if (seq === pcSeq) renderPrecall(d); })
+      .catch(function (e) { if (seq === pcSeq) toast(e.message, true); })
+      .then(function () { if (seq === pcSeq) $('#precallBody').classList.remove('loading'); });
+  }
+  function hm(sec) {
+    sec = Math.round(sec || 0);
+    if (sec < 3600) return mmss(sec);
+    return Math.floor(sec / 3600) + 'h ' + Math.round((sec % 3600) / 60) + 'm';
+  }
+  function renderPrecall(d) {
+    var V = d.views;
+    var secTitle = {}; d.sections.forEach(function (x) { secTitle[x.key] = x.title; });
+    var main = d.videos.filter(function (v) { return v.section === 'main'; })[0];
+    $('#pcCards').innerHTML = [
+      card({ label: 'Confirmation page views', value: int(V), sub: 'One per browser tab' }),
+      card({ label: 'Watched at least one video', value: pct(ratio(d.viewers, V)), sub: int(d.viewers) + ' of ' + int(V) + ' page views', hi: true }),
+      card({ label: 'Videos per viewer', value: d.viewers ? (d.plays / d.viewers).toFixed(1) : '–', sub: 'Among people who watched any' }),
+      card({ label: 'Total watch time', value: d.watchSec ? hm(d.watchSec) : '–', sub: d.viewers ? hm(d.watchSec / d.viewers) + ' per viewer' : 'Across every video' }),
+      card({ label: 'Main video play rate', value: pct(main ? ratio(main.plays, V) : null), sub: main ? int(main.plays) + ' plays · ' + pct(main.engagement) + ' engagement' : '' }),
+      card({ label: 'FAQ plays', value: int(sumPlays(d, 'faq')), sub: countPlayed(d, 'faq') + ' of ' + countAll(d, 'faq') + ' FAQ videos watched' }),
+      card({ label: 'Deal breakdown plays', value: int(sumPlays(d, 'deals')), sub: countPlayed(d, 'deals') + ' of ' + countAll(d, 'deals') + ' videos watched' }),
+      card({ label: 'Average engagement', value: pct(avgEng(d.videos)), sub: 'Across all plays' })
+    ].join('');
+
+    var top = d.videos.filter(function (v) { return v.plays > 0; })
+      .sort(function (a, b) { return b.plays - a.plays || (b.engagement || 0) - (a.engagement || 0); }).slice(0, 8);
+    $('#pcTop').innerHTML = top.length ? top.map(function (v, i) {
+      var rate = ratio(v.plays, V);
+      return '<div class="drop"><div><div class="drop__name">' + (i + 1) + '. ' + esc(v.title) + '</div><div class="drop__reach">' + esc(secTitle[v.section]) +
+        ' · ' + pct(v.engagement) + ' engagement · avg ' + (v.avgSec != null ? mmss(v.avgSec) : '–') + '</div></div>' +
+        '<div class="drop__bar"><span style="width:' + Math.min(100, (rate || 0) * 100).toFixed(1) + '%"></span></div>' +
+        '<div class="drop__num"><b>' + int(v.plays) + '</b> ' + (v.plays === 1 ? 'play' : 'plays') + ' (' + pct(rate) + ')</div></div>';
+    }).join('') : '<div class="empty">No videos played on the confirmation page in this period yet.</div>';
+
+    $('#pcSections').innerHTML = d.sections.map(function (sec) {
+      var rows = d.videos.filter(function (v) { return v.section === sec.key; });
+      return '<div class="panel"><h3>' + esc(sec.title) + '</h3><p class="panel__sub">' + rows.length + ' video' + (rows.length === 1 ? '' : 's') +
+        ' · ' + int(sumPlays(d, sec.key)) + (sumPlays(d, sec.key) === 1 ? ' play' : ' plays') + ' in this period</p><div class="tbl-wrap"><table>' +
+        '<thead><tr><th>Video</th><th class="num">Plays</th><th class="num">Play rate</th><th class="num">Engagement</th><th class="num">Avg watched</th><th class="num">Length</th></tr></thead><tbody>' +
+        rows.map(function (v) {
+          return '<tr><td>' + esc(v.title) + '</td><td class="num">' + int(v.plays) + '</td><td class="num">' + pct(ratio(v.plays, V)) +
+            '</td><td class="num">' + pct(v.engagement) + '</td><td class="num">' + (v.avgSec != null ? mmss(v.avgSec) : '–') +
+            '</td><td class="num">' + (v.dur ? mmss(v.dur) : '–') + '</td></tr>';
+        }).join('') + '</tbody></table></div></div>';
+    }).join('');
+  }
+  function sumPlays(d, sec) { return d.videos.reduce(function (t, v) { return t + (v.section === sec ? v.plays : 0); }, 0); }
+  function countPlayed(d, sec) { return d.videos.filter(function (v) { return v.section === sec && v.plays > 0; }).length; }
+  function countAll(d, sec) { return d.videos.filter(function (v) { return v.section === sec; }).length; }
+  function avgEng(videos) {
+    var w = 0, t = 0;
+    videos.forEach(function (v) { if (v.engagement != null) { w += v.plays; t += v.engagement * v.plays; } });
+    return w ? t / w : null;
   }
 
   /* ================= form answers ================= */

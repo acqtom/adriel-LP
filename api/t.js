@@ -3,6 +3,7 @@ import { db } from '../lib/db.js';
 import { handle, json, readBody, str } from '../lib/http.js';
 import { onBooked } from '../lib/alerts.js';
 import { sweepDropoffs } from '../lib/sweep.js';
+import { VIDEO_IDS } from '../lib/videos.js';
 
 const num = (v, max) => { const x = Number(v); return Number.isFinite(x) ? Math.min(Math.max(x, 0), max) : 0; };
 
@@ -43,6 +44,22 @@ export default handle(async (req, res) => {
       const [lead] = await sql.query(
         `update leads set booked = true, updated_at = now() where visit_id = $1 and not booked returning *`, [v]);
       if (lead) await onBooked(sql, lead);
+      break;
+    }
+    case 'cview': // confirmation page view
+      await sql.query(
+        `insert into precall_views (id, lead_visit, device) values ($1, $2, $3) on conflict (id) do nothing`,
+        [v, str(b.lv, 64), b.dev === 'mobile' ? 'mobile' : 'desktop']);
+      break;
+    case 'cvid': { // seconds watched of one confirmation page video
+      const vid = str(b.vid, 40);
+      if (!vid || !VIDEO_IDS.has(vid)) break;
+      await sql.query(
+        `insert into precall_watch (view_id, video_id, watched, dur) values ($1, $2, $3, $4)
+         on conflict (view_id, video_id) do update set
+           watched = greatest(precall_watch.watched, excluded.watched),
+           dur = greatest(precall_watch.dur, excluded.dur), updated_at = now()`,
+        [v, vid, num(b.s, 36000), num(b.d, 36000)]);
       break;
     }
     default:
