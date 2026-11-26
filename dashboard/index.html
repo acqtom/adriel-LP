@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dashboard — Adriel HSU</title>
+<link rel="icon" href="/assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f5f0; --card:#fffdf9; --line:rgba(30,25,10,0.09); --line2:rgba(30,25,10,0.06);
+    --ink:#1a1a1a; --muted:#6b6458; --soft:#8d8676;
+    --gold:#a88a35; --gold2:#c6a952; --goldbg:#fbf7ea; --goldline:#e9ddb6; --track:#efe8d6;
+    --side:#1c1a15; --side2:#2a2620; --good:#2f8a57; --goodbg:#ecf7f0; --bad:#c2452d; --badbg:#fbeeea;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:13px;line-height:1.4;-webkit-font-smoothing:antialiased}
+  button,input,select{font:inherit;color:inherit}
+  a{color:inherit}
+  [hidden]{display:none!important}
+
+  /* ---------- layout ---------- */
+  .app{display:grid;grid-template-columns:200px 1fr;min-height:100vh}
+  .side{background:var(--side);color:#f3eee2;display:flex;flex-direction:column;padding:18px 10px 14px;position:sticky;top:0;height:100vh}
+  .brand{font-weight:800;font-size:18px;letter-spacing:-0.01em;padding:0 8px 18px}
+  .brand b{color:var(--gold2)}
+  .nav a{display:block;padding:10px 10px;border-radius:7px;text-decoration:none;font-weight:600;margin-bottom:4px;color:#e9e3d4}
+  .nav a:hover{background:var(--side2)}
+  .nav a.on{background:var(--gold2);color:#1a1a1a}
+  .side__foot{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+  .side__check{display:flex;gap:7px;align-items:flex-start;font-size:12px;padding:0 4px 6px;color:#e9e3d4;cursor:pointer}
+  .side__check input{accent-color:var(--gold2);margin:2px 0 0}
+  .side__btn{background:transparent;border:1px solid #4a4438;color:#f3eee2;border-radius:7px;padding:9px 8px;font-weight:600;font-size:12px;cursor:pointer}
+  .side__btn:hover{border-color:var(--gold2)}
+  .side__btn:disabled{opacity:.5;cursor:default}
+  .main{padding:22px 24px 40px;min-width:0}
+
+  /* ---------- header + filters ---------- */
+  .top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+  h1{font-size:26px;font-weight:800;letter-spacing:-0.02em;margin:0}
+  h2{font-size:18px;font-weight:800;letter-spacing:-0.01em;margin:26px 0 12px}
+  .filters{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .filters label{font-size:12px;color:var(--muted);font-weight:500}
+  .sel,.inp{background:#fff;border:1px solid var(--line);border-radius:7px;padding:7px 9px;font-size:12px;min-height:34px}
+  .sel{padding-right:26px}
+  .btn{background:#fff;border:1px solid var(--line);border-radius:7px;padding:7px 12px;font-weight:600;font-size:12px;cursor:pointer;min-height:34px}
+  .btn:hover{border-color:var(--gold)}
+  .btn--gold{background:var(--gold);border-color:var(--gold);color:#fff}
+  .btn--gold:hover{background:#957a2d}
+  .btn--danger{color:var(--bad);border-color:#efc9bf}
+  .btn--danger:hover{border-color:var(--bad)}
+  .custom{display:flex;gap:6px;align-items:center}
+
+  /* ---------- cards ---------- */
+  .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 14px 13px;position:relative;min-height:84px}
+  .card--span2{grid-column:span 2}
+  .card--hi{background:linear-gradient(135deg,#b9993f,#a88a35);border-color:transparent;color:#fff}
+  .card__label{font-size:12px;font-weight:600;margin-bottom:6px}
+  .card__value{font-size:26px;font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:6px}
+  .card--span2 .card__value{font-size:32px}
+  .card__sub{font-size:11.5px;color:var(--muted)}
+  .card--hi .card__sub{color:rgba(255,255,255,.88)}
+  .bench{position:absolute;top:12px;right:12px;display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 8px;border-radius:99px;background:var(--goldbg);border:1px solid var(--goldline);color:var(--muted)}
+  .bench i{width:7px;height:7px;border-radius:50%;background:#c9c1ae}
+  .bench.good{background:var(--goodbg);border-color:#bfe3cc;color:var(--good)} .bench.good i{background:var(--good)}
+  .bench.bad{background:var(--badbg);border-color:#f0cfc6;color:var(--bad)} .bench.bad i{background:var(--bad)}
+  .card--hi .bench{background:#fff}
+  .note{font-size:11.5px;color:var(--muted);margin:10px 2px 0}
+  .note--warn{color:var(--bad)}
+
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 16px;margin-top:12px}
+  .panel h3{font-size:15px;font-weight:800;margin:0 0 3px;letter-spacing:-0.01em}
+  .panel__sub{font-size:11.5px;color:var(--muted);margin:0 0 14px}
+  .empty{text-align:center;color:var(--muted);padding:26px 10px}
+
+  /* drop-off */
+  .drop{display:grid;grid-template-columns:minmax(150px,230px) 1fr 90px;align-items:center;gap:12px;padding:5px 6px;border-radius:7px;cursor:default}
+  .drop:hover{background:var(--goldbg)}
+  .drop__name{font-weight:600;font-size:12px}
+  .drop__reach{font-size:10.5px;color:var(--soft)}
+  .drop__bar{height:12px;background:var(--track);border-radius:4px;overflow:hidden}
+  .drop__bar span{display:block;height:100%;background:var(--gold2);border-radius:4px}
+  .drop__num{font-size:12px;text-align:right;white-space:nowrap}
+  .drop__num b{font-size:13px}
+
+  /* tables */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse}
+  th{font-size:11px;font-weight:600;color:var(--muted);text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px;border-bottom:1px solid var(--line2);vertical-align:top;font-size:12px}
+  tr:last-child td{border-bottom:0}
+  .num{text-align:right;font-variant-numeric:tabular-nums}
+  .pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 9px;border-radius:99px;border:1px solid var(--line);white-space:nowrap;background:#fff}
+  .pill--ok{background:var(--goodbg);border-color:#bfe3cc;color:var(--good)}
+  .pill--warn{background:var(--goldbg);border-color:var(--goldline);color:#8a6f22}
+
+  /* charts */
+  .chart{position:relative;width:100%}
+  .chart svg{display:block;width:100%;height:auto;overflow:visible}
+  .tip{position:fixed;z-index:50;background:var(--side);color:#fff;font-size:11.5px;padding:7px 9px;border-radius:7px;pointer-events:none;max-width:260px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+
+  .foot{font-size:11.5px;color:var(--muted);margin-top:16px}
+  .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--side);color:#fff;padding:10px 16px;border-radius:9px;font-weight:600;z-index:60;box-shadow:0 8px 24px rgba(0,0,0,.2);max-width:calc(100% - 32px)}
+  .toast.err{background:var(--bad)}
+  .loading{opacity:.55;transition:opacity .15s}
+
+  /* login */
+  .login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
+  .login form{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 26px;width:100%;max-width:360px}
+  .login h1{font-size:22px;margin-bottom:4px}
+  .login p{color:var(--muted);margin:0 0 18px}
+  .login .inp{width:100%;font-size:14px;padding:11px 12px;margin-bottom:10px}
+  .login .btn{width:100%;font-size:14px;min-height:42px}
+  .login__err{color:var(--bad);font-size:12px;min-height:16px;margin-top:8px}
+
+  /* answers */
+  .ans-tools{display:flex;gap:8px;flex-wrap:wrap}
+  .ans-tools .inp{width:220px}
+  .ans td{min-width:90px}
+  .ans td.wide{min-width:240px}
+  .count{font-size:11.5px;color:var(--muted);margin:10px 2px}
+
+  @media (max-width:1100px){ .grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media (max-width:760px){
+    .app{grid-template-columns:1fr}
+    .side{position:static;height:auto;padding:12px 16px}
+    .brand{padding:0 0 10px}
+    .nav{display:flex;gap:6px} .nav a{margin:0}
+    .side__foot{margin-top:12px;display:grid;grid-template-columns:1fr 1fr}
+    .side__check{grid-column:1/-1}
+    .main{padding:18px 16px 32px}
+    .grid{grid-template-columns:1fr}
+    .card--span2{grid-column:auto}
+    .drop{grid-template-columns:1fr 70px}
+    .drop__bar{grid-column:1/-1;grid-row:2}
+    .ans-tools .inp{width:100%}
+    .filters{width:100%}
+  }
+</style>
+</head>
+<body>
+
+<div class="login" id="login" hidden>
+  <form id="loginForm">
+    <h1>Dashboard</h1>
+    <p>Enter the password to continue.</p>
+    <input class="inp" type="password" id="pw" autocomplete="current-password" placeholder="Password" required>
+    <button class="btn btn--gold" type="submit">Log in</button>
+    <div class="login__err" id="loginErr"></div>
+  </form>
+</div>
+
+<div class="app" id="app" hidden>
+  <aside class="side">
+    <div class="brand">Adriel <b>HSU</b></div>
+    <nav class="nav">
+      <a href="#dashboard" data-view="dash">Dashboard</a>
+      <a href="#answers" data-view="answers">Form answers</a>
+    </nav>
+    <div class="side__foot">
+      <label class="side__check"><input type="checkbox" id="noTrack"> Don't count my visits on this browser</label>
+      <button class="side__btn" id="slackTest">Send Slack test messages</button>
+      <button class="side__btn" id="slackReport">Send yesterday's report now</button>
+      <button class="side__btn" id="logout">Log out</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <!-- ================= DASHBOARD ================= -->
+    <section id="view-dash">
+      <div class="top">
+        <h1>Dashboard</h1>
+        <div class="filters">
+          <label for="fPeriod">Period</label>
+          <select class="sel" id="fPeriod">
+            <option value="today">Today</option>
+            <option value="yesterday">Yesterday</option>
+            <option value="7d">Last 7 days</option>
+            <option value="30d">Last 30 days</option>
+            <option value="90d">Last 90 days</option>
+            <option value="12m">Last 12 months</option>
+            <option value="custom">Custom…</option>
+          </select>
+          <span class="custom" id="customBox" hidden>
+            <input class="inp" type="date" id="fFrom" aria-label="From">
+            <input class="inp" type="date" id="fTo" aria-label="To">
+            <button class="btn" id="applyCustom">Apply</button>
+          </span>
+          <label for="fDevice">Device</label>
+          <select class="sel" id="fDevice">
+            <option value="">All</option>
+            <option value="mobile">Mobile</option>
+            <option value="desktop">Desktop</option>
+          </select>
+          <label for="fChannel">Ad / source</label>
+          <select class="sel" id="fChannel"><option value="">All</option></select>
+          <button class="btn btn--danger" id="resetData">Reset data</button>
+        </div>
+      </div>
+
+      <div id="dashBody">
+        <h2>Ad metrics</h2>
+        <div class="grid" id="adCards"></div>
+        <p class="note" id="adNote"></p>
+
+        <h2>Funnel metrics</h2>
+        <div class="grid" id="funnelCards"></div>
+        <div class="panel empty" id="noVisits" hidden>No visits recorded for this selection yet.</div>
+
+        <div class="panel">
+          <h3>Where people leave the form</h3>
+          <p class="panel__sub">How many reached each question and went no further.</p>
+          <div id="dropoff"></div>
+        </div>
+
+        <div class="panel">
+          <h3>How much of the VSL gets watched</h3>
+          <p class="panel__sub" id="vslSub">Of everyone who pressed play, the share still watching at each second.</p>
+          <div id="vslChart"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Button clicks</h3>
+          <p class="panel__sub">Visits that clicked each button. One visit can click more than one.</p>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Button</th><th class="num">Visits</th><th class="num">Rate</th></tr></thead>
+            <tbody id="btnRows"></tbody>
+          </table></div>
+        </div>
+
+        <div class="panel">
+          <h3>By ad / source</h3>
+          <p class="panel__sub">From utm_content, else utm_campaign, else utm_source.</p>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Ad / source</th><th class="num">Visits</th><th class="num">Play rate</th><th class="num">Engagement</th><th class="num">Click rate</th><th class="num">Submits</th><th class="num">Booked</th><th class="num">Visit → booked</th></tr></thead>
+            <tbody id="srcRows"></tbody>
+          </table></div>
+        </div>
+
+        <p class="foot">Days start at midnight New York time. Coming back in a new tab counts as a new visit. A visit that's still open can show as having left.</p>
+      </div>
+    </section>
+
+    <!-- ================= FORM ANSWERS ================= -->
+    <section id="view-answers" hidden>
+      <div class="top">
+        <h1>Form answers</h1>
+        <div class="ans-tools">
+          <select class="sel" id="aStatus">
+            <option value="">All</option>
+            <option value="submitted">Submitted</option>
+            <option value="partial">Started, not submitted</option>
+            <option value="booked">Booked</option>
+            <option value="notbooked">Submitted, not booked</option>
+          </select>
+          <input class="inp" type="search" id="aSearch" placeholder="Search name, email, phone">
+          <button class="btn" id="csv">Download CSV</button>
+        </div>
+      </div>
+      <div class="panel" style="padding:4px 6px">
+        <div class="tbl-wrap"><table class="ans">
+          <thead><tr id="ansHead"></tr></thead>
+          <tbody id="ansRows"></tbody>
+        </table></div>
+      </div>
+      <p class="count" id="ansCount"></p>
+    </section>
+  </main>
+</div>
+
+<div class="tip" id="tip" hidden></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function () {
+  /* ================= CONFIG =================
+     Form steps and answer columns. These get updated to match the custom form when it's built. */
+  var FORM_STEPS = [
+    'High-ticket offer right now?',
+    'Current situation',
+    'Niche and what they do (optional)',
+    'Name, phone and email',
+    'Monthly revenue',
+    'Capital + Submit'
+  ];
+  var ANSWER_COLS = [
+    { key: 'revenue', label: 'Revenue' },
+    { key: 'capital', label: 'Capital' },
+    { key: 'high_ticket', label: 'High-ticket offer' },
+    { key: 'situation', label: 'Situation', wide: true },
+    { key: 'niche', label: 'Niche' }
+  ];
+  var BUTTONS = [
+    ['video', 'Under the video'],
+    ['proof', 'Under the proof cards'],
+    ['framework', 'Under the 3-part framework'],
+    ['why', 'Under "Why listen to me"'],
+    ['breakdown', 'Inside a deal breakdown']
+  ];
+  var TZ = 'America/New_York';
+
+  /* ================= helpers ================= */
+  var $ = function (s) { return document.querySelector(s); };
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function ratio(a, b) { return b ? a / b : null; }
+  function pct(x, dp) {
+    if (x == null || !isFinite(x)) return '–';
+    var v = x * 100, d = dp != null ? dp : (v === 0 || v === 100 ? 0 : 1);
+    return v.toFixed(d) + '%';
+  }
+  function money(x) {
+    if (x == null || !isFinite(x)) return '–';
+    return '$' + x.toLocaleString('en-US', { minimumFractionDigits: x && x < 100 ? 2 : 0, maximumFractionDigits: x < 100 ? 2 : 0 });
+  }
+  function int(x) { return (x || 0).toLocaleString('en-US'); }
+  function mmss(s) { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
+  function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
+
+  var toastT;
+  function toast(msg, err) {
+    var t = $('#toast'); t.textContent = msg; t.className = 'toast' + (err ? ' err' : ''); t.hidden = false;
+    clearTimeout(toastT); toastT = setTimeout(function () { t.hidden = true; }, 4000);
+  }
+  var tip = $('#tip');
+  function showTip(html, x, y) {
+    tip.innerHTML = html; tip.hidden = false;
+    var w = tip.offsetWidth, h = tip.offsetHeight;
+    tip.style.left = Math.max(8, Math.min(x + 14, innerWidth - w - 8)) + 'px';
+    tip.style.top = Math.max(8, Math.min(y - h - 10, innerHeight - h - 8)) + 'px';
+  }
+  function hideTip() { tip.hidden = true; }
+
+  function api(path, opts) {
+    opts = opts || {};
+    opts.credentials = 'same-origin';
+    if (opts.body && typeof opts.body !== 'string') { opts.body = JSON.stringify(opts.body); opts.headers = { 'Content-Type': 'application/json' }; }
+    return fetch(path, opts).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (j) {
+        if (r.status === 401 && path !== '/api/auth') { showLogin(); throw new Error('Please log in again'); }
+        if (!r.ok) throw new Error(j.error || ('Request failed (' + r.status + ')'));
+        return j;
+      });
+    });
+  }
+
+  /* ================= auth ================= */
+  function showLogin(msg) { $('#app').hidden = true; $('#login').hidden = false; $('#loginErr').textContent = msg || ''; $('#pw').focus(); }
+  function showApp() { $('#login').hidden = true; $('#app').hidden = false; route(); }
+
+  $('#loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = e.target.querySelector('button'); btn.disabled = true; $('#loginErr').textContent = '';
+    api('/api/auth', { method: 'POST', body: { password: $('#pw').value } })
+      .then(function () { $('#pw').value = ''; showApp(); })
+      .catch(function (err) { $('#loginErr').textContent = err.message; })
+      .then(function () { btn.disabled = false; });
+  });
+  $('#logout').addEventListener('click', function () {
+    api('/api/auth', { method: 'DELETE' }).then(function () { showLogin(); });
+  });
+
+  /* ================= sidebar actions ================= */
+  var noTrack = $('#noTrack');
+  noTrack.checked = ls('ph_no_track') === '1';
+  noTrack.addEventListener('change', function () {
+    ls('ph_no_track', noTrack.checked ? '1' : null);
+    toast(noTrack.checked ? "Your visits on this browser won't be counted" : 'Your visits on this browser will be counted');
+  });
+  function adminAction(btn, body, okMsg) {
+    btn.disabled = true;
+    return api('/api/admin', { method: 'POST', body: body })
+      .then(function () { toast(okMsg); })
+      .catch(function (e) { toast(e.message, true); })
+      .then(function () { btn.disabled = false; });
+  }
+  $('#slackTest').addEventListener('click', function () { adminAction(this, { action: 'slack-test' }, 'Test messages sent to Slack'); });
+  $('#slackReport').addEventListener('click', function () { adminAction(this, { action: 'report' }, "Yesterday's report sent to Slack"); });
+  $('#resetData').addEventListener('click', function () {
+    var typed = prompt('This permanently deletes every visit and form answer. Ad numbers from Meta are not affected.\n\nType RESET to confirm.');
+    if (typed !== 'RESET') { if (typed !== null) toast('Nothing deleted', true); return; }
+    adminAction(this, { action: 'reset', confirm: 'RESET' }, 'All visit and form data deleted').then(loadDash);
+  });
+
+  /* ================= routing ================= */
+  function route() {
+    var view = location.hash === '#answers' ? 'answers' : 'dash';
+    document.querySelectorAll('.nav a').forEach(function (a) { a.classList.toggle('on', a.dataset.view === view); });
+    $('#view-dash').hidden = view !== 'dash';
+    $('#view-answers').hidden = view !== 'answers';
+    if (view === 'dash') loadDash(); else loadAnswers();
+  }
+  addEventListener('hashchange', route);
+
+  /* ================= filters ================= */
+  var saved = {}; try { saved = JSON.parse(ls('ph_dash_filters') || '{}') || {}; } catch (e) {}
+  var F = { period: saved.period || '7d', from: saved.from || '', to: saved.to || '', device: saved.device || '', channel: saved.channel || '' };
+  $('#fPeriod').value = F.period; $('#fDevice').value = F.device; $('#fFrom').value = F.from; $('#fTo').value = F.to;
+  $('#customBox').hidden = F.period !== 'custom';
+  function saveF() { ls('ph_dash_filters', JSON.stringify(F)); }
+
+  $('#fPeriod').addEventListener('change', function () {
+    var v = this.value;
+    $('#customBox').hidden = v !== 'custom';
+    if (v === 'custom') { if (!$('#fFrom').value) { $('#fFrom').focus(); return; } }
+    F.period = v; saveF(); loadDash();
+  });
+  $('#applyCustom').addEventListener('click', function () {
+    var a = $('#fFrom').value, b = $('#fTo').value;
+    if (!a || !b) { toast('Pick both dates', true); return; }
+    F.period = 'custom'; F.from = a; F.to = b; saveF(); loadDash();
+  });
+  $('#fDevice').addEventListener('change', function () { F.device = this.value; saveF(); loadDash(); });
+  $('#fChannel').addEventListener('change', function () { F.channel = this.value; saveF(); loadDash(); });
+
+  /* ================= dashboard ================= */
+  var loadSeq = 0;
+  function loadDash() {
+    var seq = ++loadSeq;
+    var qs = new URLSearchParams({ period: F.period, device: F.device, channel: F.channel });
+    if (F.period === 'custom') { qs.set('from', F.from); qs.set('to', F.to); }
+    $('#dashBody').classList.add('loading');
+    api('/api/dashboard?' + qs).then(function (d) {
+      if (seq !== loadSeq) return;
+      renderDash(d);
+    }).catch(function (e) {
+      if (seq === loadSeq) toast(e.message, true);
+    }).then(function () { if (seq === loadSeq) $('#dashBody').classList.remove('loading'); });
+  }
+
+  function benchTag(text, value, target) {
+    var cls = value == null ? '' : (value >= target ? ' good' : ' bad');
+    return '<span class="bench' + cls + '" title="Benchmark"><i></i>' + text + '</span>';
+  }
+  function card(o) {
+    return '<div class="card' + (o.hi ? ' card--hi' : '') + (o.span ? ' card--span2' : '') + '">' +
+      (o.bench || '') +
+      '<div class="card__label">' + o.label + '</div>' +
+      '<div class="card__value">' + o.value + '</div>' +
+      '<div class="card__sub">' + o.sub + '</div></div>';
+  }
+
+  function renderDash(d) {
+    var m = d.meta || {}, c = d.counts, s = d.funnel.summary;
+    var ok = m.configured && m.spend != null;
+    var spend = ok ? m.spend : null;
+    var per = function (n) { return spend != null && n ? spend / n : null; };
+    var qualLabel = '$' + (d.qualifiedMin >= 1000 ? (d.qualifiedMin / 1000).toLocaleString('en-US') + 'k' : d.qualifiedMin) + '+';
+
+    /* channel options */
+    var sel = $('#fChannel'), cur = F.channel, opts = d.channels.slice();
+    if (cur && opts.indexOf(cur) === -1) opts.unshift(cur);
+    sel.innerHTML = '<option value="">All</option>' + opts.map(function (o) { return '<option>' + esc(o) + '</option>'; }).join('');
+    sel.value = cur;
+
+    $('#adCards').innerHTML = [
+      card({ label: 'Ad spend', value: ok ? money(spend) : '–', sub: ok ? int(m.impressions) + ' impressions' : 'Meta not connected' }),
+      card({ label: 'Cost per click', value: money(ok ? per(m.linkClicks) : null), sub: int(m.linkClicks) + ' link clicks' }),
+      card({ label: 'Ad CTR', value: pct(ok ? ratio(m.linkClicks, m.impressions) : null, 2), sub: 'Link clicks ÷ impressions' }),
+      card({ label: 'Ad hook rate', value: pct(ok ? ratio(m.views3s, m.impressions) : null), sub: '3-second views ÷ impressions' }),
+      card({ label: 'Ad retention rate', value: pct(ok ? ratio(m.thruplays, m.views3s) : null), sub: 'ThruPlays ÷ 3-second views' }),
+      card({ label: 'Cost per lead', value: money(per(c.submitted)), sub: int(c.submitted) + ' form submits' }),
+      card({ label: 'Cost per call', value: money(per(c.booked)), sub: int(c.booked) + ' calls booked' }),
+      card({ label: 'Cost per qualified call', value: money(per(c.qualified)), sub: int(c.qualified) + ' booked with ' + qualLabel + ' capital', hi: true })
+    ].join('');
+
+    var note = 'Ad metrics cover every device and source for ' + d.range.from + ' to ' + d.range.to;
+    if (m.timezone) note += " (Meta uses the ad account's time zone, " + esc(m.timezone) + ')';
+    note += '. The device and ad filters above apply to funnel metrics only. Meta numbers refresh every 10 minutes.';
+    var warn = '';
+    if (!m.configured) warn = 'Meta is not connected yet: add META_ACCESS_TOKEN and META_AD_ACCOUNT_ID in Vercel, then redeploy.';
+    else if (m.error) warn = 'Meta error' + (m.stale ? ' (showing the last good numbers)' : '') + ': ' + esc(m.error);
+    $('#adNote').innerHTML = note + (warn ? '<br><span class="note--warn">' + warn + '</span>' : '');
+
+    var vb = ratio(s.booked, s.visits), play = ratio(s.plays, s.visits), sb = ratio(s.booked, s.submitted);
+    $('#funnelCards').innerHTML = [
+      card({ label: 'Page visit → booked call', value: pct(vb, vb ? 2 : null), sub: int(s.booked) + ' of ' + int(s.visits) + ' visits booked a call', hi: true, span: true, bench: benchTag('3–5%', vb, 0.03) }),
+      card({ label: 'Page visits', value: int(s.visits), sub: 'One per browser visit' }),
+      card({ label: 'VSL play rate', value: pct(play), sub: int(s.plays) + ' of ' + int(s.visits) + ' pressed play', bench: benchTag('50%', play, 0.5) }),
+      card({ label: 'VSL engagement', value: pct(s.engagement), sub: 'Average share watched by players', bench: benchTag('50%', s.engagement, 0.5) }),
+      card({ label: 'Button click rate', value: pct(ratio(s.clickers, s.visits)), sub: int(s.clickers) + ' of ' + int(s.visits) + ' clicked a button' }),
+      card({ label: 'Form completion', value: pct(ratio(s.submitted, s.formStarted)), sub: int(s.submitted) + ' of ' + int(s.formStarted) + ' who started it' }),
+      card({ label: 'Calls booked', value: int(s.booked), sub: pct(sb) + ' of submits booked', bench: benchTag('84%', sb, 0.84) })
+    ].join('');
+    $('#noVisits').hidden = s.visits > 0;
+
+    renderDropoff(d.funnel.steps);
+    renderVsl(d.funnel.vsl, s.plays, d.vslStart);
+    renderButtons(d.funnel.buttons, s.visits);
+    renderSources(d.funnel.bySource);
+  }
+
+  function renderDropoff(rows) {
+    var N = FORM_STEPS.length;
+    var sum = function (fn) { return rows.reduce(function (a, r) { return a + (fn(r) ? r.n : 0); }, 0); };
+    var items = FORM_STEPS.map(function (label, i) {
+      var step = i + 1;
+      var reached = sum(function (r) { return r.submitted || r.step >= step; });
+      var left = step < N ? sum(function (r) { return !r.submitted && r.step === step; })
+                          : sum(function (r) { return !r.submitted && r.step >= step; });
+      return { label: step + '. ' + label, reached: reached, left: left };
+    });
+    items.push({
+      label: 'Calendar: submitted but didn’t book',
+      reached: sum(function (r) { return r.submitted; }),
+      left: sum(function (r) { return r.submitted && !r.booked; })
+    });
+    $('#dropoff').innerHTML = items.map(function (it) {
+      var share = ratio(it.left, it.reached);
+      var tipText = esc(it.label) + ':<br>' + int(it.reached) + ' reached it, ' + int(it.left) + ' left here (' + pct(share) + ')';
+      return '<div class="drop" data-tip="' + esc(tipText) + '">' +
+        '<div><div class="drop__name">' + esc(it.label) + '</div><div class="drop__reach">' + int(it.reached) + ' reached it</div></div>' +
+        '<div class="drop__bar"><span style="width:' + ((share || 0) * 100).toFixed(1) + '%"></span></div>' +
+        '<div class="drop__num"><b>' + int(it.left) + '</b> left (' + pct(share) + ')</div></div>';
+    }).join('');
+  }
+  $('#dropoff').addEventListener('mousemove', function (e) {
+    var row = e.target.closest('.drop'); if (row) showTip(row.dataset.tip, e.clientX, e.clientY); else hideTip();
+  });
+  $('#dropoff').addEventListener('mouseleave', hideTip);
+
+  function renderVsl(v, plays, started) {
+    var box = $('#vslChart');
+    var total = v.watched.reduce(function (a, r) { return a + r[1]; }, 0);
+    var startTxt = started ? ' It started on ' + new Date(started).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: TZ }) + '.' : ' It starts with the first play.';
+    if (!total) {
+      $('#vslSub').textContent = 'Of everyone who pressed play, the share still watching at each second.';
+      box.innerHTML = '<div class="empty">No plays with second-by-second tracking in this period yet.' + startTxt + '</div>';
+      return;
+    }
+    var maxWatched = v.watched[v.watched.length - 1][0];
+    var len = Math.max(1, Math.round(v.duration || 0), maxWatched);
+    /* still[t] = visits that watched at least t seconds */
+    var counts = new Array(len + 2).fill(0);
+    var sumSec = 0;
+    v.watched.forEach(function (r) { counts[Math.min(r[0], len)] += r[1]; sumSec += r[0] * r[1]; });
+    var still = new Array(len + 1), run = 0;
+    for (var t = len; t >= 0; t--) { run += counts[t]; still[t] = run; }
+    $('#vslSub').textContent = 'Of the ' + int(total) + ' visit' + (total === 1 ? '' : 's') + ' that pressed play, the share still watching at each second.' +
+      (v.duration ? ' Video length ' + mmss(v.duration) + '.' : '') + ' Average watched: ' + mmss(sumSec / total) + '.';
+
+    var W = 1000, H = 260, L = 48, R = 12, T = 10, B = 30, pw = W - L - R, ph = H - T - B;
+    var x = function (s) { return L + (s / len) * pw; }, y = function (f) { return T + (1 - f) * ph; };
+    var step = Math.max(1, Math.ceil(len / 800)), pts = [];
+    for (var s = 0; s <= len; s += step) pts.push([s, still[s] / total]);
+    if (pts[pts.length - 1][0] !== len) pts.push([len, still[len] / total]);
+    var line = pts.map(function (p, i) { return (i ? 'L' : 'M') + x(p[0]).toFixed(1) + ' ' + y(p[1]).toFixed(1); }).join(' ');
+    var area = line + ' L' + x(len).toFixed(1) + ' ' + y(0) + ' L' + x(0) + ' ' + y(0) + ' Z';
+    var grid = [0, .25, .5, .75, 1].map(function (f) {
+      return '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(f) + '" y2="' + y(f) + '" stroke="#ece4d2"/>' +
+        '<text x="' + (L - 8) + '" y="' + (y(f) + 4) + '" text-anchor="end" font-size="12" fill="#6b6458">' + (f * 100) + '%</text>';
+    }).join('');
+    var tickEvery = [10, 15, 30, 60, 120, 300, 600, 900, 1800].find(function (n) { return len / n <= 9; }) || 3600;
+    var ticks = '';
+    for (var k = 0; k <= len; k += tickEvery) ticks += '<text x="' + x(k) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="12" fill="#6b6458">' + mmss(k) + '</text>';
+    box.innerHTML = '<div class="chart"><svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Share of viewers still watching over time">' + grid + ticks +
+      '<path d="' + area + '" fill="rgba(198,169,82,0.16)"/><path d="' + line + '" fill="none" stroke="#a88a35" stroke-width="2"/>' +
+      '<line id="vslCursor" y1="' + T + '" y2="' + (T + ph) + '" stroke="#1a1a1a" stroke-dasharray="3 3" visibility="hidden"/>' +
+      '<rect x="' + L + '" y="' + T + '" width="' + pw + '" height="' + ph + '" fill="transparent" id="vslHit"/></svg></div>';
+    var svg = box.querySelector('svg'), cur = box.querySelector('#vslCursor');
+    box.querySelector('#vslHit').addEventListener('mousemove', function (e) {
+      var r = svg.getBoundingClientRect(), sx = (e.clientX - r.left) / r.width * W;
+      var sec = Math.max(0, Math.min(len, Math.round((sx - L) / pw * len)));
+      cur.setAttribute('x1', x(sec)); cur.setAttribute('x2', x(sec)); cur.setAttribute('visibility', 'visible');
+      showTip('<b>' + mmss(sec) + '</b><br>' + pct(still[sec] / total) + ' still watching (' + int(still[sec]) + ' of ' + int(total) + ')', e.clientX, e.clientY);
+    });
+    box.querySelector('#vslHit').addEventListener('mouseleave', function () { cur.setAttribute('visibility', 'hidden'); hideTip(); });
+  }
+
+  function renderButtons(counts, visits) {
+    var rows = BUTTONS.slice();
+    Object.keys(counts).forEach(function (k) { if (!rows.some(function (r) { return r[0] === k; })) rows.push([k, k === 'other' ? 'Other' : k]); });
+    $('#btnRows').innerHTML = rows.map(function (r) {
+      var n = counts[r[0]] || 0;
+      return '<tr><td>' + esc(r[1]) + '</td><td class="num">' + int(n) + '</td><td class="num">' + pct(ratio(n, visits)) + '</td></tr>';
+    }).join('');
+  }
+
+  function renderSources(rows) {
+    if (!rows.length) { $('#srcRows').innerHTML = '<tr><td colspan="8" class="empty">No visits recorded for this selection yet.</td></tr>'; return; }
+    $('#srcRows').innerHTML = rows.map(function (r) {
+      return '<tr><td>' + esc(r.channel) + '</td><td class="num">' + int(r.visits) + '</td><td class="num">' + pct(ratio(r.plays, r.visits)) +
+        '</td><td class="num">' + pct(r.engagement) + '</td><td class="num">' + pct(ratio(r.clickers, r.visits)) + '</td><td class="num">' + int(r.submitted) +
+        '</td><td class="num">' + int(r.booked) + '</td><td class="num">' + pct(ratio(r.booked, r.visits), 2) + '</td></tr>';
+    }).join('');
+  }
+
+  /* ================= form answers ================= */
+  var LEADS = [];
+  var COLS = [
+    { label: 'Last activity', get: function (l) { return fmtTime(l.updated_at); } },
+    { label: 'Status', html: function (l) { return l.status === 'submitted' ? '<span class="pill pill--ok">Submitted</span>' : '<span class="pill pill--warn">Started</span>'; }, get: function (l) { return l.status === 'submitted' ? 'Submitted' : 'Started'; } },
+    { label: 'Name', get: function (l) { return l.name; } },
+    { label: 'Email', html: function (l) { return l.email ? '<a href="mailto:' + esc(l.email) + '">' + esc(l.email) + '</a>' : ''; }, get: function (l) { return l.email; } },
+    { label: 'Phone', html: function (l) { return l.phone ? '<a href="tel:' + esc(l.phone) + '">' + esc(l.phone) + '</a>' : ''; }, get: function (l) { return l.phone; } },
+    { label: 'Booked', html: function (l) { return l.booked ? '<span class="pill pill--ok">✓ Booked</span>' : '<span class="pill">Not booked</span>'; }, get: function (l) { return l.booked ? 'Booked' : 'Not booked'; } }
+  ].concat(ANSWER_COLS.map(function (c) {
+    return { label: c.label, wide: c.wide, get: function (l) { return (l.answers || {})[c.key]; } };
+  })).concat([
+    { label: 'SMS consent', get: function (l) { return l.sms_consent == null ? '' : (l.sms_consent ? 'Yes' : 'No'); } },
+    { label: 'Source', get: function (l) { return l.source; } },
+    { label: 'Campaign', get: function (l) { return l.campaign; } },
+    { label: 'Ad', get: function (l) { return l.ad; } }
+  ]);
+  function fmtTime(t) {
+    if (!t) return '';
+    var d = new Date(t);
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: TZ }) + ', ' +
+      d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: TZ });
+  }
+  $('#ansHead').innerHTML = COLS.map(function (c) { return '<th>' + esc(c.label) + '</th>'; }).join('') + '<th></th>';
+
+  function filtered() {
+    var st = $('#aStatus').value, q = $('#aSearch').value.trim().toLowerCase();
+    return LEADS.filter(function (l) {
+      if (st === 'submitted' && l.status !== 'submitted') return false;
+      if (st === 'partial' && l.status === 'submitted') return false;
+      if (st === 'booked' && !l.booked) return false;
+      if (st === 'notbooked' && (l.booked || l.status !== 'submitted')) return false;
+      if (q && [l.name, l.email, l.phone].join(' ').toLowerCase().indexOf(q) === -1) return false;
+      return true;
+    });
+  }
+  function renderAnswers() {
+    var rows = filtered();
+    $('#ansRows').innerHTML = rows.length ? rows.map(function (l) {
+      return '<tr>' + COLS.map(function (c) {
+        return '<td' + (c.wide ? ' class="wide"' : '') + '>' + (c.html ? c.html(l) : esc(c.get(l))) + '</td>';
+      }).join('') + '<td><button class="btn" data-del="' + l.id + '">Delete</button></td></tr>';
+    }).join('') : '<tr><td colspan="' + (COLS.length + 1) + '" class="empty">No form answers yet.</td></tr>';
+    $('#ansCount').textContent = rows.length + ' of ' + LEADS.length + ' shown.';
+  }
+  function loadAnswers() {
+    api('/api/leads').then(function (d) { LEADS = d.leads || []; renderAnswers(); }).catch(function (e) { toast(e.message, true); });
+  }
+  $('#aStatus').addEventListener('change', renderAnswers);
+  $('#aSearch').addEventListener('input', renderAnswers);
+  $('#ansRows').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-del]'); if (!b) return;
+    var lead = LEADS.find(function (l) { return String(l.id) === b.dataset.del; });
+    if (!confirm('Delete the answers from ' + ((lead && (lead.name || lead.email)) || 'this person') + '? This can’t be undone.')) return;
+    b.disabled = true;
+    api('/api/leads?id=' + encodeURIComponent(b.dataset.del), { method: 'DELETE' })
+      .then(function () { LEADS = LEADS.filter(function (l) { return l !== lead; }); renderAnswers(); toast('Deleted'); })
+      .catch(function (err) { b.disabled = false; toast(err.message, true); });
+  });
+  $('#csv').addEventListener('click', function () {
+    var rows = filtered();
+    var cell = function (v) { v = v == null ? '' : String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+    var out = [COLS.map(function (c) { return cell(c.label); }).join(',')]
+      .concat(rows.map(function (l) { return COLS.map(function (c) { return cell(c.get(l)); }).join(','); })).join('\n');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([out], { type: 'text/csv' }));
+    a.download = 'form-answers-' + new Date().toISOString().slice(0, 10) + '.csv';
+    a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  });
+
+  /* ================= boot ================= */
+  api('/api/auth').then(function (a) {
+    if (a.authed) showApp();
+    else showLogin(a.configured ? '' : 'No password set yet. Add DASHBOARD_PASSWORD in Vercel, then redeploy.');
+  }).catch(function (e) { showLogin(e.message); });
+})();
+</script>
+</body>
+</html>
