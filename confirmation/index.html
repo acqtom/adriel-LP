@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adriel HSU</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Making Real Estate Investing Education Available For Everyone">
+<link rel="icon" href="/assets/img/favicon.png">
+<link rel="canonical" href="https://www.propertyhsu.com/confirmation">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.propertyhsu.com/confirmation">
+<meta property="og:title" content="Adriel HSU">
+<meta property="og:description" content="Making Real Estate Investing Education Available For Everyone">
+<meta property="og:image" content="https://www.propertyhsu.com/assets/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Adriel HSU">
+<meta name="twitter:description" content="Making Real Estate Investing Education Available For Everyone">
+<meta name="twitter:image" content="https://www.propertyhsu.com/assets/img/og-image.png">
+<style>
+  html, body { margin: 0; padding: 0; }
+  body { display: flex; justify-content: center; align-items: center; }
+  :root { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  * { box-sizing: border-box; -webkit-font-smoothing: inherit; }
+  h1, h2, h3, h4, h5, h6, p, figure { margin: 0; }
+  body, input, textarea, select, button { font-size: 12px; font-family: sans-serif; }
+</style>
+<script src="https://go.propertyhsu.com/api/js/latest.js" defer></script>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1388792106478057');
+fbq('track', 'PageView');
+
+/* Booked call: fire "Schedule" once per visit */
+(function () {
+  var KEY = "schedule_fired";
+  try { if (sessionStorage.getItem(KEY) === "1") return; } catch (e) {}
+  if (window.__scheduleFired) return;
+  fbq("track", "Schedule");
+  window.__scheduleFired = true;
+  try { sessionStorage.setItem(KEY, "1"); } catch (e) {}
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1388792106478057&ev=PageView&noscript=1"></noscript>
+</head>
+<body>
+<!-- CONFIRMATION PAGE — one embed. VSL auto-loads; FAQ = header question + title over thumbnail, load on tap. Width: Fill. Height: Fit. -->
+<div class="ph-conf-root">
+<style>
+  .ph-conf-root { display:block; width:100%; overflow-x:hidden; box-sizing:border-box; }
+  .ph-conf-root, .ph-conf-root *, .ph-conf-root *::before, .ph-conf-root *::after { box-sizing:border-box; }
+  .ph-conf-root > section, .ph-conf-root > footer { display:block !important; width:100% !important; float:none !important; clear:both !important; }
+  .cf-faq { background:#f7f5f0; font-family:'DM Sans',sans-serif; color:#1a1a1a; -webkit-font-smoothing:antialiased; padding:40px 24px; }
+  .cf-faq__inner { max-width:1000px; margin:0 auto; }
+  .cf-faq__label { font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:800; font-size:clamp(21px,3vw,30px); text-align:center; margin:0 0 34px; }
+  .cf-faq__label b { color:#a88a35; }
+  .cf-faq__grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .cf-faq__card { background:#ffffff; border:1px solid rgba(30,25,10,0.088); border-radius:18px; padding:18px; }
+  /* header question (small) */
+  .cf-faq__head { display:flex; align-items:center; gap:10px; margin-bottom:14px; min-height:52px; }
+  .cf-faq__ic { width:34px; height:34px; border-radius:9px; background:rgba(198,169,82,0.9); color:#1a1a1a; display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
+  .cf-faq__hq { font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:700; font-size:16px; line-height:1.25; }
+  /* thumbnail with big title overlaid + play button */
+  .cf-faq__thumb { position:relative; aspect-ratio:16/9; border-radius:12px; overflow:hidden; cursor:pointer; background:#000; }
+  .cf-faq__title { display:none; }
+  .cf-faq__play { display:none; }
+  .cf-faq__play svg { margin-left:3px; }
+  .cf-faq__thumb:hover .cf-faq__play { transform:translate(-50%,-50%) scale(1.08); }
+  .cf-foot { background:#f7f5f0; font-family:'DM Sans',sans-serif; color:#1a1a1a; padding:40px 24px; border-top:1px solid rgba(30,25,10,0.077); }
+  .cf-foot__inner { max-width:1000px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .cf-foot__logo { display:inline-flex; align-items:center; gap:9px; font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:700; font-size:19px; }
+  .cf-foot__mark { display:inline-flex; gap:3px; }
+  .cf-foot__mark span { display:block; width:8px; height:19px; background:#a88a35; transform:skewX(-18deg); border-radius:1px; }
+  .cf-foot__links { display:flex; gap:26px; } .cf-foot__links a { color:#6f6f6f; text-decoration:none; font-size:14px; font-weight:500; }
+  @media (max-width:720px){ .cf-faq__grid { grid-template-columns:1fr; } .cf-faq__head { min-height:0; } }
+  @media (max-width:600px){ .cf-foot__inner { flex-direction:column; align-items:flex-start; } }
+</style>
+<script>
+  function cfLoadFaq(el, playerId){
+    el.style.cursor='default';
+    el.innerHTML='<vturb-smartplayer id="vid-'+playerId+'" style="display:block;margin:0 auto;width:100%;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background:#000;"></div></vturb-smartplayer>';
+    el.style.background='#000';
+    var s=document.createElement("script"); s.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/"+playerId+"/v4/player.js"; s.async=true; document.head.appendChild(s);
+  }
+  function cfToggleCost(btn){
+    var panel = document.getElementById(btn.getAttribute('aria-controls'));
+    if(!panel) return;
+    var open = panel.hasAttribute('hidden');
+    if(open){ panel.removeAttribute('hidden'); } else { panel.setAttribute('hidden',''); }
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    var lbl = btn.querySelector('.cf-cb__btn-label');
+    if(!btn.getAttribute('data-label')){ btn.setAttribute('data-label', lbl.textContent.trim()); }
+    var base = btn.getAttribute('data-label');
+    lbl.textContent = open ? 'Hide ' + base.charAt(0).toLowerCase() + base.slice(1) : base;
+  }
+  function cfLoadYouTube(el, videoId){
+    el.style.cursor='default';
+    el.innerHTML='<iframe style="display:block;margin:0 auto;width:100%;height:100%;border:none;border-radius:20px;" src="https://www.youtube.com/embed/'+videoId+'?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    el.style.background='#000';
+  }
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+  .cf-top * { margin:0; padding:0; box-sizing:border-box; }
+  .cf-top { background:#f7f5f0; font-family:'DM Sans',sans-serif; color:#1a1a1a; -webkit-font-smoothing:antialiased; position:relative; overflow:hidden; padding:54px 24px 40px; }
+  .cf-top__glow { position:absolute; top:-4%; left:50%; transform:translateX(-50%); width:900px; height:460px; background:radial-gradient(ellipse at center, rgba(198,169,82,0.1), transparent 62%); pointer-events:none; }
+  .cf-top__inner { position:relative; max-width:860px; margin:0 auto; text-align:center; }
+
+  .cf-badge { display:inline-flex; align-items:center; gap:12px; border:1px solid rgba(30,25,10,0.132); background:linear-gradient(180deg, rgba(30,25,10,0.066), rgba(30,25,10,0.022)); border-radius:14px; padding:10px 18px 10px 12px; margin-bottom:30px; box-shadow:0 8px 30px rgba(30,25,10,0.08); }
+  .cf-badge__check { flex:0 0 auto; width:26px; height:26px; border-radius:50%; background:#1f8a4c; display:flex; align-items:center; justify-content:center; }
+  .cf-badge__cal { flex:0 0 auto; display:flex; align-items:center; padding-left:6px; margin-left:2px; border-left:1px solid rgba(30,25,10,0.132); }
+  .cf-badge__txt { text-align:left; line-height:1.15; }
+  .cf-badge__t1 { display:block; font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:800; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#a88a35; }
+  .cf-badge__t2 { display:block; font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:700; font-size:15px; color:#1a1a1a; }
+  .cf-badge__t3 { display:block; font-size:11px; color:#6f6f6f; margin-top:3px; }
+
+  .cf-h { font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:800; font-size:clamp(28px,4.8vw,50px); line-height:1.35; letter-spacing:-0.02em; margin-bottom:34px; text-wrap:balance; }
+  .cf-h span.u { text-decoration:underline; text-decoration-thickness:3px; text-underline-offset:6px; text-decoration-color:rgba(26,26,26,0.9); }
+
+  .cf-step { font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:800; font-size:clamp(21px,3vw,30px); margin:0 0 24px; text-wrap:balance; }
+  .cf-step b { color:#a88a35; }
+
+  .cf-vsl { max-width:760px; margin:0 auto 64px; border-radius:16px; overflow:hidden; border:1px solid rgba(30,25,10,0.11); background:#000; box-shadow:0 20px 60px rgba(30,25,10,0.09); line-height:0; }
+  .cf-vsl vturb-smartplayer { display:block; width:100%; }
+
+  /* step 2 */
+  .cf-cal { max-width:820px; margin:0 auto; }
+  .cf-cal__img { display:block; width:100%; height:auto; border-radius:14px; border:1px solid rgba(30,25,10,0.11); margin-bottom:22px; box-shadow:0 20px 60px rgba(30,25,10,0.08); }
+  .cf-ph { width:100%; aspect-ratio:16/10; border-radius:14px; border:2px dashed rgba(198,169,82,0.45);
+    background:repeating-linear-gradient(45deg, rgba(198,169,82,0.05) 0 14px, transparent 14px 28px), #f7f5f0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:#a88a35; font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; text-align:center; padding:20px; margin-bottom:22px; }
+  .cf-important { display:inline-block; text-align:left; border:1px solid rgba(200,55,45,0.5); background:rgba(200,55,45,0.06); border-radius:12px; padding:16px 20px; margin-bottom:18px; }
+  .cf-important__tag { font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:800; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:#c8372d; margin-bottom:6px; }
+  .cf-important__txt { font-size:16px; font-weight:600; color:#1a1a1a; }
+  .cf-important__txt u { text-underline-offset:3px; }
+  .cf-warn { font-size:15px; line-height:1.6; color:#4a4a4a; max-width:660px; margin:0 auto; }
+
+  @media (max-width:600px){ .cf-vsl { margin-bottom:44px; } }
+
+  /* featured videos section */
+  .cf-featured { background:#f7f5f0; font-family:'DM Sans',sans-serif; color:#1a1a1a; padding:60px 24px; }
+  .cf-featured__inner { max-width:1000px; margin:0 auto; }
+  .cf-featured__label { font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:800; font-size:clamp(24px,3.5vw,32px); text-align:center; margin:0 0 40px; }
+  .cf-featured__label b { color:#a88a35; }
+  .cf-featured__label--mid { margin:64px 0 36px; }
+  .cf-featured__grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+  .cf-featured__grid--one { grid-template-columns:1fr; max-width:760px; margin:0 auto; }
+  .cf-featured__card { display:flex; flex-direction:column; gap:0; background:#ffffff; border:1px solid rgba(30,25,10,0.088); border-radius:18px; padding:18px; }
+  .cf-featured__head { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .cf-featured__ic { width:34px; height:34px; border-radius:9px; background:rgba(198,169,82,0.9); color:#1a1a1a; display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
+  .cf-featured__title { font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:700; font-size:16px; line-height:1.25; color:#1a1a1a; }
+  .cf-featured__video-box { border-radius:12px; overflow:hidden; border:1px solid rgba(198,169,82,0.3); box-shadow:0 20px 60px rgba(30,25,10,0.08); background:#000; line-height:0; }
+  .cf-featured__video-box vturb-smartplayer { display:block; width:100%; }
+
+  /* empty video placeholder — delete the .cf-slot div when a real embed is pasted in */
+  .cf-slot { width:100%; height:100%; border-radius:12px;
+    background:repeating-linear-gradient(45deg, rgba(198,169,82,0.05) 0 14px, transparent 14px 28px), #f7f5f0;
+    display:flex; align-items:center; justify-content:center;
+    color:rgba(198,169,82,0.75); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:600;
+    letter-spacing:0.08em; text-transform:uppercase; text-align:center; padding:16px; }
+
+  /* step 4 — text + video rows */
+  .cf-rows { margin-top:56px; display:flex; flex-direction:column; gap:22px; }
+  .cf-rows--tight { margin-top:0; }
+  .cf-row { display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center;
+    background:#ffffff; border:1px solid rgba(30,25,10,0.088); border-radius:18px; padding:26px; }
+  .cf-row__ic { width:38px; height:38px; border-radius:10px; background:rgba(198,169,82,0.9); color:#1a1a1a;
+    display:flex; align-items:center; justify-content:center; margin-bottom:14px; }
+  .cf-row__title { font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:700; font-size:clamp(17px,2vw,20px); line-height:1.3; color:#1a1a1a; margin:0 0 10px; }
+  .cf-row__head { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:0 0 10px; }
+  .cf-row__head .cf-row__title { margin:0; }
+  .cf-row__badge { font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:800; font-size:10.5px; letter-spacing:0.12em; text-transform:uppercase;
+    color:#a88a35; background:rgba(198,169,82,0.12); border:1px solid rgba(198,169,82,0.45);
+    border-radius:999px; padding:5px 11px; white-space:nowrap; }
+  .cf-row__desc { font-size:15px; line-height:1.65; color:#4a4a4a; margin:0; }
+  .cf-row__deal { font-size:15px; line-height:1.6; color:#4a4a4a; margin:0 0 8px; }
+  .cf-row__profit { font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:800; font-size:clamp(16px,2vw,19px); color:#a88a35; margin:0; letter-spacing:-0.01em; }
+
+  /* highlighted "cash to get in" callout */
+  .cf-row__down { display:flex; flex-wrap:wrap; align-items:baseline; gap:10px;
+    margin:14px 0 4px; padding:13px 16px; border-radius:12px;
+    background:linear-gradient(180deg, rgba(31,138,76,0.15), rgba(31,138,76,0.05));
+    border:1px solid rgba(31,138,76,0.55); box-shadow:0 6px 24px rgba(31,138,76,0.08); }
+  .cf-row__down-lbl { font-family:'DM Sans',sans-serif; font-weight:800; font-size:11px;
+    letter-spacing:0.12em; text-transform:uppercase; color:#1f8a4c; width:100%; }
+  .cf-row__down-val { font-family:'DM Sans',sans-serif; font-weight:800;
+    font-size:clamp(18px,2.3vw,23px); color:#1a1a1a; letter-spacing:-0.01em; }
+  .cf-row__down-val b { color:#1f8a4c; }
+  .cf-row__down-sub { flex-basis:100%; font-size:13px; line-height:1.55; color:#4a4a4a; }
+
+  /* cost breakdown button + panel */
+  .cf-row__video img { display:block; width:100%; height:100%; object-fit:cover; }
+
+  .cf-cb__btn { display:inline-flex; align-items:center; gap:8px; margin-top:16px;
+    background:rgba(198,169,82,0.08); border:1px solid rgba(198,169,82,0.55); color:#a88a35;
+    font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:700; font-size:13px; letter-spacing:0.04em; text-transform:uppercase;
+    padding:10px 18px; border-radius:10px; cursor:pointer; transition:background .2s ease, border-color .2s ease; }
+  .cf-cb__btn:hover { background:rgba(198,169,82,0.16); border-color:#a88a35; }
+  .cf-cb__btn:focus-visible { outline:2px solid #a88a35; outline-offset:3px; }
+  .cf-cb__btn svg { transition:transform .25s ease; }
+  .cf-cb__btn[aria-expanded="true"] svg { transform:rotate(180deg); }
+
+  .cf-cb { grid-column:1 / -1; margin-top:26px; padding-top:26px; border-top:1px solid rgba(30,25,10,0.088);
+    animation:cfCbIn .25s ease; }
+  .cf-cb[hidden] { display:none; }
+  @keyframes cfCbIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:none; } }
+  .cf-cb__lede { font-size:15px; line-height:1.65; color:#4a4a4a; margin:0 0 22px; max-width:70ch; }
+  .cf-cb__lede strong { color:#1a1a1a; font-weight:700; }
+  .cf-cb__group { margin-bottom:22px; }
+  .cf-cb__gt { font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:800; font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:rgba(198,169,82,0.85); margin:0 0 10px; }
+  .cf-cb__line { display:flex; align-items:baseline; gap:12px; padding:7px 0; border-bottom:1px dashed rgba(30,25,10,0.077); }
+  .cf-cb__line:last-child { border-bottom:none; }
+  .cf-cb__l { flex:1 1 auto; font-size:15px; color:#2a2a2a; }
+  .cf-cb__l small { display:block; font-size:13px; color:#6f6f6f; margin-top:2px; }
+  .cf-cb__v { flex:0 0 auto; font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:700; font-size:15px; color:#1a1a1a; font-variant-numeric:tabular-nums; }
+  .cf-cb__totals { background:#f7f5f0; border:1px solid rgba(198,169,82,0.28); border-radius:14px; padding:18px 20px; }
+  .cf-cb__trow { display:flex; align-items:baseline; gap:12px; padding:8px 0; }
+  .cf-cb__trow + .cf-cb__trow { border-top:1px solid rgba(30,25,10,0.077); }
+  .cf-cb__tl { flex:1 1 auto; font-size:15px; color:#4a4a4a; }
+  .cf-cb__tv { flex:0 0 auto; font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:700; font-size:16px; color:#1a1a1a; font-variant-numeric:tabular-nums; }
+  .cf-cb__trow--net .cf-cb__tl { font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:800; font-size:16px; color:#1a1a1a; text-transform:uppercase; letter-spacing:0.06em; }
+  .cf-cb__trow--net .cf-cb__tv { font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:800; font-size:clamp(20px,2.4vw,25px); color:#a88a35; }
+  .cf-cb__trow--down { border-top:1px solid rgba(31,138,76,0.35) !important; border-bottom:1px solid rgba(31,138,76,0.35); }
+  .cf-cb__trow--down .cf-cb__tl { font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:800; font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:#1f8a4c; }
+  .cf-cb__trow--down .cf-cb__tv { color:#1f8a4c; font-size:clamp(17px,2.2vw,20px); }
+  .cf-cb__note { font-size:14px; line-height:1.6; color:#6f6f6f; margin:16px 0 0; font-style:italic; }
+  @media (max-width:820px){ .cf-cb { margin-top:20px; padding-top:20px; } }
+  .cf-row__video { border-radius:12px; overflow:hidden; border:1px solid rgba(198,169,82,0.3);
+    box-shadow:0 20px 60px rgba(30,25,10,0.08); aspect-ratio:16/9; background:#000; }
+
+  /* portrait (9:16 reel) — player left as the vendor embed; it reserves more height than the video
+     needs, so the wrapper is locked to 9:16 and the player is vertically centered with the extra
+     top/bottom padding cropped off. Placeholder poster hidden. */
+  .cf-row__video--portrait { aspect-ratio:auto; border:none; box-shadow:none; background:transparent;
+    overflow:visible; display:flex; justify-content:center; align-items:flex-start; padding:0; }
+  .cf-row__portrait-frame { position:relative; width:300px; max-width:100%; margin:0 auto;
+    aspect-ratio:9/16; overflow:hidden; display:flex; align-items:center; justify-content:center;
+    border-radius:16px; border:1px solid rgba(198,169,82,0.3); box-shadow:0 20px 60px rgba(30,25,10,0.08); background:#000; }
+  .cf-row__portrait-frame vturb-smartplayer { flex:0 0 auto; width:100% !important; max-width:100% !important; margin:0 !important; }
+  .cf-row__portrait-frame .vturb-player-placeholder { display:none !important; }
+
+  @media (max-width:820px){
+    .cf-row { grid-template-columns:1fr; gap:20px; padding:20px; }
+  }
+  @media (max-width:720px){ .cf-featured__grid { grid-template-columns:1fr; gap:24px; } .cf-featured__title { font-size:14px; } }
+
+  /* section 5 - team */
+  .cf-team { background:#f7f5f0; font-family:'DM Sans',sans-serif; color:#1a1a1a; padding:60px 24px; }
+  .cf-team__inner { max-width:900px; margin:0 auto; }
+  .cf-team__container { background:#ffffff; border:1px solid rgba(198,169,82,0.25); border-radius:24px; padding:50px 40px; }
+  .cf-team__title { font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:800; font-size:clamp(26px,4vw,36px); text-align:center; margin:0 0 50px; line-height:1.3; }
+  .cf-team__content { display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; }
+  .cf-team__photo { position:relative; width:100%; aspect-ratio:3/4; border-radius:16px; overflow:hidden; border:2px solid rgba(198,169,82,0.3); background:linear-gradient(135deg, rgba(198,169,82,0.1) 0%, rgba(198,169,82,0.05) 100%); display:flex; align-items:center; justify-content:center; }
+  .cf-team__photo img { width:100%; height:100%; object-fit:cover; }
+  .cf-team__photo-placeholder { color:#a88a35; font-size:14px; text-align:center; font-weight:600; }
+  .cf-team__bio { display:flex; flex-direction:column; gap:20px; }
+  .cf-team__role { font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:800; font-size:18px; color:#a88a35; text-transform:uppercase; letter-spacing:0.1em; }
+  .cf-team__name { font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:800; font-size:clamp(24px,3vw,32px); color:#1a1a1a; line-height:1.2; }
+  .cf-team__desc { font-size:16px; line-height:1.7; color:#4a4a4a; }
+  .cf-team__desc strong { color:#a88a35; font-weight:700; }
+  @media (max-width:820px){ .cf-team__content { grid-template-columns:1fr; gap:30px; } .cf-team__container { padding:40px 24px; } }
+
+  /* SMS Button Styles */
+  .cf-sms-btn { background:linear-gradient(135deg, rgba(198,169,82,0.15) 0%, rgba(198,169,82,0.05) 100%); border:2px solid #a88a35; color:#a88a35; font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-weight:700; font-size:18px; padding:16px 48px; border-radius:12px; cursor:pointer; transition:all 0.3s ease; width:100%; max-width:400px; }
+  .cf-sms-btn:hover { background:linear-gradient(135deg, rgba(198,169,82,0.25) 0%, rgba(198,169,82,0.1) 100%); box-shadow:0 15px 40px rgba(198,169,82,0.2); }
+  .cf-sms-description { font-size:14px; color:#6f6f6f; margin-top:16px; line-height:1.5; }
+</style>
+
+<section class="cf-top">
+  <div class="cf-top__glow"></div>
+  <div class="cf-top__inner">
+
+    <div class="cf-hero-row">
+    <div class="cf-badge">
+      <span class="cf-badge__check">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4 4L19 7"/></svg>
+      </span>
+      <span class="cf-badge__txt">
+        <span class="cf-badge__t1">Confirmed</span>
+        <span class="cf-badge__t2">Your Call Is Scheduled</span>
+        <span class="cf-badge__t3">Reply To The Text / Email To Confirm</span>
+      </span>
+      <span class="cf-badge__cal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a88a35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+    </div>
+    <div class="cf-rate">
+      <div class="cf-rate__txt">
+        <span class="cf-rate__stars">⭐⭐⭐⭐⭐ <b>4.9</b></span>
+        <span class="cf-rate__sub">Rated by our investors</span>
+      </div>
+    </div>
+    </div>
+
+    <!-- RATING — 4.9 stars -->
+    <style>
+      .cf-hero-row { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:14px 22px; margin:0 auto 30px; }
+      .cf-hero-row .cf-badge { margin-bottom:0 !important; }
+      .cf-rate { display:flex; align-items:center; }
+      .cf-rate__txt { text-align:left; line-height:1.2; }
+      .cf-rate__stars { display:flex; align-items:center; gap:6px; font-size:15px; letter-spacing:1px; }
+      .cf-rate__stars b { font-family:'DM Sans',sans-serif; font-weight:800; font-size:16px; color:#1a1a1a; letter-spacing:0; }
+      .cf-rate__sub { display:block; font-size:12.5px; color:#6f6f6f; margin-top:3px; }
+    </style>
+
+    <h1 class="cf-h"><span class="u">You're About To Get A Phone Call Or Text From A <span style="color:#a88a35;">+818 Number</span>. If You Do Not Pick Up, We May Cancel Your Call</span></h1>
+
+    <!-- STEP 1 -->
+    <div class="cf-step"><b>Step 1:</b> Watch This Video First. The Rest Of This Page Explains What We Do So You Are Prepared For Our Strategy Session</div>
+    <div class="cf-vsl">
+      <vturb-smartplayer id="vid-6a3f3149641d860e23c334c5" style="display: block; margin: 0 auto; width: 100%;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 56.25% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer>
+      <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6a3f3149641d860e23c334c5/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
+    </div>
+
+    <!-- SOCIAL PROOF — YouTube + Instagram (sits under the main video) -->
+    <style>
+      .cf-social { max-width:760px; margin:0 auto 64px; text-align:left; }
+      .cf-vsl { margin-bottom:22px !important; }
+      .cf-social__intro { text-align:center; font-size:15px; line-height:1.6; color:#6f6f6f; margin:16px auto 0; max-width:44rem; }
+      .cf-social__intro b { color:#1a1a1a; font-weight:700; }
+      .cf-social__grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+      .cf-soc { display:flex; flex-direction:column; gap:14px; text-decoration:none; color:#1a1a1a;
+        background:#ffffff; border:1px solid #e6e3db; border-radius:16px; padding:16px 18px;
+        box-shadow:0 14px 40px rgba(30,25,10,0.06); transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+      .cf-soc:hover { transform:translateY(-3px); border-color:#e9ddb6; box-shadow:0 20px 50px rgba(30,25,10,0.10); }
+      .cf-soc__top { display:flex; align-items:center; gap:14px; }
+      .cf-soc__pfp { position:relative; flex:0 0 auto; width:60px; height:60px; border-radius:50%; padding:2px;
+        background:linear-gradient(135deg,#e2c877,#a88a35); }
+      .cf-soc__pfp img { display:block; width:100%; height:100%; border-radius:50%; object-fit:cover; border:2px solid #ffffff; }
+      .cf-soc__plat { position:absolute; right:-5px; bottom:-3px; width:24px; height:24px; border-radius:50%;
+        background:#1a1a1a; border:2px solid #ffffff; display:flex; align-items:center; justify-content:center; color:#ffffff; }
+      .cf-soc__id { min-width:0; }
+      .cf-soc__name { display:flex; align-items:center; gap:6px; font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+        font-weight:800; font-size:17px; letter-spacing:-0.02em; line-height:1.2; }
+      .cf-soc__handle { font-size:13px; color:#6f6f6f; margin-top:2px; }
+      .cf-soc__handle b { color:#a88a35; font-weight:700; }
+      .cf-soc__bio { font-size:12.5px; line-height:1.45; color:#4a4a4a; margin-top:4px; }
+      .cf-soc__stats { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+      .cf-soc__stat { display:flex; align-items:baseline; gap:7px; background:#f7f5f0; border:1px solid #ece8de; border-radius:10px; padding:8px 12px; }
+      .cf-soc__stat b { display:block; font-family:'DM Sans',sans-serif; font-weight:800; font-size:17px;
+        letter-spacing:-0.02em; color:#1a1a1a; line-height:1.1; font-variant-numeric:tabular-nums; }
+      .cf-soc__stat span { display:block; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#6f6f6f; }
+      @media (max-width:720px){
+        .cf-social__grid { grid-template-columns:1fr; gap:16px; }
+        .cf-soc { padding:14px 16px; }
+        .cf-soc__pfp { width:54px; height:54px; }
+      }
+    </style>
+    <div class="cf-social">
+      <div class="cf-social__grid">
+
+        <!-- YOUTUBE -->
+        <a class="cf-soc" href="https://www.youtube.com/@adrielhsu" target="_blank" rel="noopener">
+          <div class="cf-soc__top">
+            <div class="cf-soc__pfp">
+              <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwQDAwQEBAQFBQQFBwsHBwYGBw4KCggLEA4RERAOEA8SFBoWEhMYEw8QFh8XGBsbHR0dERYgIh8cIhocHRz/2wBDAQUFBQcGBw0HBw0cEhASHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBz/wAARCADwAPADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD4dooooAKKKKACilVS7BVBLEgAAZJJ6CvqX4Mfsg6l4kFrrXjkTabpMm2SHTkOLi4X/b/55qfT7x9q58RiqWHjz1HYunTlUdonhHw/+GHir4n6p/Z/hnSZrx1/1s5+SCEeryHgfqa+wPh/+xjoPhyFbzxZc/25qajP2aPKWsZ+nV/x49q+r/CnhHSfC+iwaXoun2+n6fCPlggTaufU+p9zk1Znswu/kV8/jswrVYWpe6n9/wB520KUIS97U800TwpbaZCltaWkdvbR8JFEu1FHoAOldrpulBcfL0q9bWa5zxWrbW4WvEoYfnl7x3VsTpZElrapGOFpLkAI3bFX0UKtY+tXkFhayz3MyQxIMs8jYA/OvWnTUIWicEZOUtTlLubzLogDoeteF/FH9ojRvBWoTaXYLHe6lGMybn2on41h/FX45zJfXGn6JcJBCcoZh8xkHqPT618o69r9pbXcxdUnd2LSNMu5n/E11ZfkV37XFr0X+ZdfH2XJR+89N8V/FbWPHEX2i5ukWyXkRwNkL+XWvL9V1TyVSZHLA5w6nBNcq/iGO2vAbFTBAykPBnKnPpWO+rPmRMkxO2duc7TX0lNQpR5KSsvI86TlN80ndnRnWXL/AGqG6uohnDESHg16H4I+LfifwtKi219JJDndsmbcG/E14zaXQCzI+WEnUfyrR0/VXht4wwyVkK59qmahUXLUV0OMpRd46M/Qj4V/HjSvHZTSNQxZ61t4Vj8kv+6fX2r02W3A4zkfyr81tD1Z7LUllhcrNC3mRSA4KH2NfeHwo8e/8Jt4agluV238UY8wA/e96+YzXLoUF7Sl8PbsevhMS6nuy3O90q2RpSvbNVfGngTw940082ev6Va6hAPu+avzx+6t1U+4qfT7hBM2OKtXc7MpVc8185CTg7xdmeg48zs9j5J+Jf7Fl3bxPqPgG9N3Hjd/ZV62JB7RyfxfRuT618paxo2oeH9Rn07VbK4sr+AlZILhCjqR7H+Y4r9c7Sd9kS4PSuf+JHwm8LfFnTGs/EOnB7hE2wX8I23Fue21/T2OR7V9HgM5mvcrarv1/wCCeViMEr3hofk9RXrfxj+AHiL4SXUtxIDqHh1n2xalEuAvoJF/gPv09+1eSV9JSqwqx54O6PNnCUHaSCiiitCQooooAKKKKACrukaRf6/qVrpul2k15qF04jht4V3O7HsBTtF0W/8AEWrWelaXay3eoXkgihgiGWdj2r9If2d/gFpvwn077XeLFeeK7lMXN3jKwA9Yovb1bv8ASuDHY+GEir6yey/robUaLqa9Ecv8Bv2XbD4dwW2veKIoNQ8UsA6RkB4bH2Xsz+rdPSvpyKDfJGTzmn+QHHPalt22SqPSvk6tSpWqc9V3bPRSUY8sTdggAQj2rMvgI91asTfLn1FYWq7jvwa7cVaNJWOeirz1Kkd0qZGe9Wk1ELWNb27yHr3rTjsDsya8mlOo1eJ2TjBblz7d5pHzYA5zXzB+0B8WNMvpn8PrcOsVu5+0SK+Axx92voS7uI9Mtbq4nOIYo2Zj7AGvzd+JWsQeIdf1TUraMLbXMzPGrf3fU/lXv5HD21R1aivy/mcOKtGPLHqcn421lZJHazzECNqs3JA9q8+Ww1TUm2xwyzuT1wea9q+FPwwvfiFqT3+oKy6Tbt8pH/LQ+3tX0ZpHwx07T5dtrZxgLxnaM17mIxDjLRXM6FDmV27I+HLf4ceKbrBTTX29Rmmv8OfEcJYS6ZJ7EV+hj+F0tYwRGg9gOlZd5p1si7fLBPqRWCxM+x0PCw6M/Pa48N6pYSFbi2lRsdNprLIngJDBgQc8197ap4SsL87pYI2PutcTrnwo0LUQwFoiMe6qK2p13LdGM8PbZnynaayYplJxkgAkV9A/ADxxeaV4x0+zjn3WV83lvu/g4JrjvG3wPn0xWu9OVnjUZK1yvga8uNE1qzu7cH7RayjzElb8Dx+NXVpKtTlTtuZQk6c1I/T2zg3M+0ZBOQa1LWyznzKw/hprVh4l8PQz2tyJnjUJMM5KvjkGutSBt7EA+9fGxwvsq3LJHuOrzRujRgsYyqbeuK00skQZ9qht7d9qEDHFX5PlXHtXoxpxjq1Y4Zzd7XPPvFNlb6hZ3VpPDHPBKpV4pFDK49CD1r4L+NnwAbw+8+u+FYHk03Ja409eWt/Vk9U9uor791lceYw46159dWJuC+V7muR46WGqqdP5roztWGjWhyzPy+or6f8Ajv8AATyYrnxP4ZtsFcyXthEvbvJGP5r+Ir5gr6vDYmGJhzw/4Y8StRlRlyyCiiiugxCnxRPNIkcaM8jsFVVGSxJwAB3JPFMr7B/Yx+B8Wr3i/EPxBarJY2zFdJgkGRJKDhpiO4Xovvk9qwxOIjh6bqTLhBzdkewfsy/s6w/C3RE8R6/Ckni/UogSrc/YImGfLX/aP8R/D1r3vTQGlkx61fuJA0fXJrP035GkOepr43EV3Wrqcj1KUeWm0jXSPrQloRIDSQSAyYJ4rTi2lgSa6KdONTQxlJxJY4SijPSsvUofve9bu5dnWsu8AZjkiu3GU0qVkY0pPmuZ1jbhV6VphAI+lRQAKnanmdQMZrhpRjCKuaTbkzzf43agNE+GfiG8RtrrEFB+rAf1r84JY21e6SBR8knGe55r79/agSaX4MeITHu3KE6f7618l/CLwQmv6tYiVidhD4749a93KrRoSkur/r8zCqm5pH0T8KfDUWieELW3VNuAD0712LW6KGbZj6VetYYNLt4rdSFjQYYtXEeI/ib4f8OztHdX0ewHkjoK6pJy2NY+6b05WWJ8IQB3NcTqK7HbPrVGP46+DdRjMdtqUbFsgcYzWXc+J4tRYtbsHQnjFYyg09TohJNF13JZ8dDWdM6ox45q1LqMNtaB5FwTWQ19FdH90V5960o7kVjSRLe7iKyKCGGCCK+Xviz4Ui8M+L4ri3TZFeN19+tfTNsHSQAgkd68r+O+kS36WN2qfJbkkkduK9G6aTPPmd9+xtrkg1LXdM3vIsn+lMzc4YkDFfZECjac8V8S/sVl313WpCuCItvH+8K+1YEMrEg5A6187j3bGOx6GH1oq5vRuqonPanSMhz9KzGVwi4J4qKSZ1bGT0rCvVstUCp3Zl6nbrPuRepaqR0FFjOVGTWpbYlf/a3da22tgVGR2ryHS9q2zrdZ07JHlupaSYpVwvGa+Pv2nP2em8Iq/jjw7BjQrlx9vtkHFnI38YHZGP5H2xX3nqlkGdeOM1duNCs9V0efT763jubK5jaKaGQZV0IwQa0y+rUw1e8duqFipRq00nufi/0or1f9oH4P3Pwd8dTaeis+h326fTZzzmPPMZP95M4Ptg968or7WnONSKnHZniSi4uzO4+Evw6ufih430/QYdyWrHzbycDPkwL94/U9B9a/UfR7a00HSrTTNPgW3sbSJYYYlGAqqMAf56mvBf2UPhj/AMIb4ATXLyDbq/iELOdw+aO3H+rX2z94+5r3/wArI5HFfDZ1j5V8Q4Qfux0+fVntYOgoQvLdll75io5pIboop55qt5I96PKx0ryPaSWp1ckdi9HflWzmr6auVH3qwDGfWmkPVwxNSOxMqMJHS/23gcuKrS6uXb71YDK9NCvVTx1WXUFhoI6FdVIGN1Ib/efvVghXpXEixsR1AJFSsTNj9hA4T4jeNF8RWGu+FrAQT3CQ5mjfORz1/SvNP2c9NIm1IzRgNakxEns2a6aJtN8EDV9S1Zw15qdwSO7BDgAfnXQ/CzRl0r+3pkXEd5eGVCR/CRX3WAShDl62RxY2lGMlKG39XOh12CG5RreQKRJ1ycV5J4y8I+EYbR1uDAZPvEFxkGvW9fsY7lWaWLcAPUj+VfPfxB+G2maxJPILcxu45bzn/wAa1ctbMxitLo4G70fw1JMy20cTp6qeldVovhqWxtJLi3BFuFyDXFaJ8LDYXsQt7mcIWx5ec7vzr6Ys9Ji0vwwsEkWWKYORWcr3smarRXaPn3X9YvXtpbdGYORgV523hTxldM09pqk8I6gA8V6N4vsnOq7IMpk8VzOoaf4zhCG1u7V1yflkcjA7dBW8OaDsmYztNXYzw7rfjfwvexHUS1/bLgN34r1XxtaHxD4KuLyJWXanmbT1rjPB8niVJn/tO3sriIjGI2LH8OK9LlLyeA9SRkKMI2AVhg9OK7Izcl7xxyjZmL+xGVeLxNO6fvPOMe8ema+ybScBcV8P/s361L4Au7LQJ1eSXXZzK+APkJzX2RbTOuMnNfK5nXdLFc3c9ehQfsY3VjrbdllUZI4qG5jTecEZxVbTpcocmrM7JnIrF4hVIamXK4ysZtmBFKcnBzW8Z12jkVzVxJ5Uu4etT/bSVWuWOIULo0qUnOzJ79S8g9c1dgkAjA3dKyXud7AmnLdgVEa8Yy5gdNtJHnXx/wDhZb/FnwPd6UAq6pDmewlwMpMBwufRvun6g9q/LG9s7jTry4s7uJobq3kaKWNhgo6nBH51+x004frXwZ+2Z8Ml0LxTa+M9Ph22Otny7sKOEulH3v8AgajP1Fe1lGPXtHQb329TmxVF8qn2PrqHxPbwxJHHsWNAFVV4AHpU6+KYf7w/Ovnr/hIrlVByajHiy43BcmvjXQmup9J7KDPo5fE0J/jX86UeJYP7wP4189J4puMdT+dI3i24TuaTpVA9hA+h/wDhJID3H50v/CR2x7j86+dv+Ewn9TQnjOVjgMc0exqC9hA+iTr9uBnI/OnLrts38Q/OvnseK7phyTipF8Xzx9SafsqiD2MT6EXWYCfvD86mOqwMjfMOlfPA8byL1cg09fH0in75496FGoncHh0zqdW0iL+2/wC2NURZ7MSCNA5/1Zz6fjXrNvHHBDGUARWUHArzbR/GOl6xaQxSyQiQnLJJj71ehLIJbGMp0AzmvvcPUjKHNB7pHj4qMrpSRJqBTyGLdMV4/wCK72CJm3OFUda7jxDrBgtZADyBXz3qVxfeJ/EAsYNxhR8yN2ArR1VLQzhCyueleBrdtQuTexWhkgTgOwrtfEU/l2qxsFDEevSvPrvTdY03w+1hpGotZuRkShA2PwNcRr3i3WLDSxY3d295fqOZtm3cPoOlEXyu45JMm8VxohM5j8wKeqc4rOsbO01qIB5D9VNed6T4w10ahOtxbB4GyAGbpWnpWsz2V4VcbQ5J2joK6ZtPU5oaaHpVrolrpcsbQOzMD1Jrc8STrB4T1J0UuxQEhevUVzOk6mLqVcnnHSug1C5Fto12ShkVl2AAZznj+taKVloZTjeRh/CrSLXX/FejahGMNpjY69q+qPOjQ534Hp6V4D+z74YlsZtReUY2HbnPAOc4r1/XpGtot6NkAZJFfIZvJSr2fQ9ulrFJbI620v0RDh6lN+CPvD868Sl8fLZyFWbpT0+IkTEfvP1rzV7SKsW6CbuexzyrLg5GRT0AK9a8mi8exsQBJ+ta1t42jZfv1lKck7tD9g7aHom33phQ+priE8ZRnpIBVhfFqEf6wVl7Vdg9hI6/YfWuK+K/gKL4jeANa8POFM9zFvtnb+CdTuRs9hkDPtU//CVxf36VfFcRP36qGI9nJTjutRPDykmmeE/2RKYD+5OfpXLmKRb5omgbOeOK+pI/C0MsYzGAfTFUn8A2RmaYwKW9cVu5t9DojVijwBdNmMQIibH0qjc2sgkVBC24jrivpL/hDISMLEMfSlfwNaOQ3kLke1DqPsP20T5qXTJ2wqwsxPoK0LTwrOT50ilR6Yr6Ij8JWVsPlgXce+Kzp/DivIdsfy+mKhVnfYr2qZ4ZfQraxlSmDj0rHQBhwGJr6Cm8B294p3RjcfUUkfw7s40CiBCfpVOt5AqiR87XETLltpFZyZdyCT+FfTb/AA7tXUq8CEfSqY+FliHJECj8Kh1l2H7WPc+d/sspdTFuDDptr6S+GV9PfeE7dLvd50B8sljyafY/Dqytn3+QD9Rmt0aSuk2x8pdqk5IFehlmJarqNtHocmNcZ07Loc/r1msqSA89a8bstSi8LPrl69s83lybtqLliMdhXtWqnMbc/MRXEWeiRyXszygBWOSPWvoYtKR562OC034l6n40sZrnStOkNpEdrgghl/DFcF4t1rxFYSN5ulThpQSreSW4/Kvc9V8PWem21w1gDaNMMt5J2jPqR3ryzXfGmprP5FxdxzeUpRSY+grvhyy+E3hCbj7qX5HlNv428mRTe27KpOHLJt/Wtq6ure9EF1YSB1/lVK/0KHxTC8NzMdjuWHljaetXdP8ADsWiNDBFuMS9cmtqqSicFRWntqdh4fMqMrnKnNekPpl1e2UEVvC0h+8TnA/OuF0gCWeGKNeC2MV7zZQvZaZDEAAwQZOK87FYp4eCaV2yqNNVJ67Eng6N/D+jtHNtW4mfzGANTapqxlt2jJ4xWVIsj85Of51TntZim0knIr5atCVaq6k3qz14NRjZHlXi2GSa6doWI57GuYW8u7c4lLCvTdT0GUzZ29aoX/hd54tvljp1rqUVZXEpHFJrFwhG2Qn8a0YPEF2q/fb86qXHhG9tpSVyVpBod4BjJ/Kl7FSH7Sxe/wCEtu4ZAu88+pq8PFt2F++elc3L4dv3lUgE881otodyoAIPT0rN4eNy1WLreNrpCFLNk+9aMPiq6MYJJrjLvw5qTTxFAdua6600C5W3UN97HpS+rQD2rPrq11O3KD5l6VKNRtmJG5TXzfB8TOih+T2rrvD2t3WpsJXYonvXE6s0S8Ktz2mKeNjkYxTrm5hjTtXCNryWUHMmT9a5zU/HkcMbZcfnQ67tZIzWEu73O+udRiLEbwKmt762cgZFfPV18Sla5YLINoPStTTPHfnOArksegFQlJas6HQ0sfQiS2xUHip0e3fgAV5rpWp3Vyis52qexro4dUjt0BZuauNd9Uc06FtmdZ5UIHaq7GEHtXJXnihEPyuBWJdeMli6yL+dEq66IUcNLuelIYM9ar6vFFLZOFIJrzJPHEW7/W8fWtvQfEa6xcywq+4BN2M+9bYKs3XhG3UVbDOMXK+xiaoGSTnoKoeSJSPLHzE4rodegB3Vwd9qUmlyCRDkA9DX0q3OTpoXNfsHWIxmQYIrxHXvCizTySb+Sa7rxD41Qwtub58YHNeaXvjKBQ4aQFvTNdVOOpEp6WK9hobafIdpBHUVZu7XcQ7cEdq5yPxhunxn5c9PWtSHUH1BwR8sfcV1W0OVu7PSfhhoP9sa1BuH7tPmNe2XFvwwxgqea4n4HWqNcXDY6RjFel3dv87nHPevnMzqP26j0SO/CpclznlttzdKtrpwdOlaUNpnnHNNvt0MeRxXmupZ6nWlc5vUNMSOUE4NEelwuOcVzPiHxObO7CO4A96zrfxnGG4kz+NdkFzRJaaO2Ph+3lbDKCDSHwVC3zKgrHtPFccpHzjP1rp9M8QxyIMuDWbUqbuV8SM1vCsMZ2lAD9KB4Xi9FNdgjQXyZBAcjrWDqC3Fg5OMp7VtTqRqGMlKJmP4UiYrhF49qvJ4cjAUFRis8eIwHwSQfQmtCHW94yeBWkoW3JUmzyrRPh6Y5Enuydy9vSuwuZk0y3CwtgKO1dxf6fE6vgYPavKvGyXGno7KpKgdq+ehU5nZns35ivq/ioxwN8/OPWvMdT8R3V9KyIxx0rTtdKvvEUieWj7WPORxXpHhv4W2VqFuLobpRyQa3UoQHdI8s8O+DtR1yfcVZIieWPWvbPDfgW10hFZvncDqetbtnYwWeVhh4HoKsyPLsLbSMVnUquRm5NjjcLbKVXjFYGp+IDGGBb9aivprmQsFU+lcdqunX87Ec81Ct1ZUYkup+KGOVVjmsNr66uTkuav2vhW6nYNIv51tReFJSuI0+celac8EVocwWuFX7x4616L8Horh9W1C4lz5SwbB9ciq1r4FuZMFurdu9en+F/D8PhzSTAoHnyHfIR616OWw9rVU0tI9TixlVRpuPVlbVlJYsehrh9f0j7WrBRj3r0C6+YtWXOqHAKgmvaktTzos+ZvG+g3MLPwSntXjGpwtBMy5f6GvsnxVp0UsMh2KeK8B8S6VCty2UABPat6NRvQipBWueaaXp000isqng969E0a0YEK3XjIqCwtliK7RwK2rDm5rtSOU96+DDCK7uEHGYwMV6VcOC8leL/D3VP7K1CCY5K9GHtXrU13HcIZYnVkbn5TzXgZvRlGoqvRnbg5Jpx6o0rDDE1FqsQeFvaq+lSMEfdkgnvT9Qu12nOQcYr56q3c9CKPmP4wXEtjfw7CRmvPrfWZ1YfMa9M+MtjPquoW0VtE0r55IFeWX2i6hpij7RA6r64r0aE/cWupbimdLbeI5okB3Gun0HxqY9odjXm1suUBANPlGwh1bBFeg6TnDU5ebleh9K6F4tW5CbWxXYx6gt4u1gGyMV8teF9duEuAg5wete8+G9VAjjMhGSK8+WGcdUb86Zoan4UWZjPDkEc4FcrqN7Pp58uQFQOM16VFqcZQDisjXNKt9WiZWwM9DTjipQfLPYh0r6o6i5/fAhFPHSsS/0FNTXE6A+1ddDGgTAA4FKEQBsj5q+djzLU6vaWOQsPCcFgoMaqiryOKtSIGO3oenHetqUs+RjAqkbcGZW7itHUGnck02yVFO4jNWZdJMxwijHemw27rIWJ4rbslbyXHXPSph7zszOpLl1RiHQIjHgIu+ufuPDzfbd20bAea6zV9RstEt2nv72K2RRnMrAV4r4l+PNrJff2d4dhN3dDO+d+I0HqCOtenhMoxeOko4eDfn0+85qmYU6CbqSPRdVbTNDsWub6WOCBBli3f6V5pqXxn0XTEZ7K3aRyP3ZccH9a8Bv/Hmr+MdZ1aa/wBQe5jtWEcadFXnBOO9Z6XyXk0tsOVRQQfSvusu4PwtGN8W+eXzS/4J4mJzqtN2o+6vxPsr4e+O7Pxrpazw7I7yM7Zoh2P+Fd3K4EBc96+D/B/jS98Da5DfWpJUNiaP+GRa+zvC/izTfGGjQX9hKrIyjfGT8yN3BFa4zALC/wAJe4+3QWHxPtV7z1LMx+Ut1rLvHVcEjn3q7eEpL7egrI1RWx5h6V5Ujvizn9dmTynVgOlfP/iSRzqTgj93nivZvEV4GQha8i1xC9yW2HirpKzCb0sZ8AATNWdPRhMW7UlvFvwCMZq9CDE4GOld6ON6HU6RdvEV9Kx/iT4/n8MWtl9iumS9Z9wIP3B9KhvNbt9EspLu5cJEg3Yz1NfPOu6/d+KNYubucsUf7g/uJ2GK9DBUPaSvJaI5MTU5Vo9T37Q/2j/ENpZb3tbe9jV/n8w4bb7Ad6+gPhn8QdC+KOl/arOcR3KnbLbScPG3pivgMyiGBYEkO3GRiovCeq3Gna/cLDcTRLcjAMTFfm9eKzzPhvCYtJwXs5d0tPuFhczr0k1J8yP07uPA1pLiVo0aTrnGa5HxP4DtL21kiMKDg84rwT4XftLavpBfStZYX0acRGRsEY7Z717lofxq8M+KswvI1le9Atx8oY+x718bjeHcfg25xjzxXVa/huexhs0p1LKTs33PHk8M2NpeTW0sQwrd6v8A/CD6Ze48uAfrU+qxy3fiS5C/6oNnI711FsywWyrGPmA5q1X9xHW4amBaeBtN04blQB/atRbWKALtOMU+7vSoPGWrldV8QG24bIqYtsHod1bXESooeU5rXhkSQKRISPSvF28UblyJOlW9O8azrPHGpJJOBXPWw/PqawnY+mZH2ZxwKia7WOIHPNSSR5Riawr0t5ZC5P0r5eUnc6oRUtzYFys8an1qBAzPgDNVNNBKR5p+r6va+HNOuNSvX2QwqTx1Y+gFaUqc60406au3sKco0ouUnoh194j0zw9btPqd5FCMcIx+ZvoO9eZeLPj8LG02aDaM5nyBPKNuz3xXj3xC8RXfipb6/uFJCqXRB/yzI6AfhzXF2XiBrjTlW8JIYBYwB941+p5VwlhsNGM8V78+3Rf5nyWLzWpVbVPRfibWua5quuNc3urahJMXzn5/lPoAvSqHhrMGl6jccKURiCeuMGuZ1S6ltrqKK6YrFHyg9c81s2k+/wAM6pIvyiRSM59jX1sUoq0VZI8pu+rOQ8G3Rlm1mXdyfm9jV/w1M815M7c72OfSud8FyYkv4gc5RvwwK2vCd8ot5EI/eB8VnHZFPqbZVBdyI4wAOPrXQeFfGep+ANXS+tJC8J4khLfJIvp7H3rmZ5MagXYngZBxwak89JzsmAkA7dKUoRmnGS0BNp3R9m+EfHel+PLCO7snC3OMyQMfmT8K6DVIwbJuRjHFfCtlq+oeH7uO90i5eCaNsgq3B+o7ivePCHx5t9et00/WytpfAYEv8D+5PQV89jMscPepao9XD4xS92ejN7UbKWeRlA4zWJP4d88/MmT9K9BiNvPCtxGyuh6MDwau29pHIN21a8zksehe6PI5PCcqtnY3sQOlVb3Shp8DTz/KqDJJ7V7B4gutP0nTHuruWOCBB8zsQK+ZPiD8RW8SCSz03MWnpkEngye/sK9DB4edV6bdzixFWNLV7nCeNtcl8QXTW8OWgU/KAeD71zcFq0SlVOC3XirksscFv8hO48b8UscqkEkfMB17Zr6KnSjTioxPHlNyd2V0hOfmGcDAqlawvDqMMqfK27jitaW6MdoGAXJ71RgLyXMDtgMDxWk9UKO5ZukzfS7QVdSCCOO1dFbau0qJ5pxKmAWBwfrXP6nP9j1i3Vx8kq4z71owfe2MgJatFJ7kNdz0TRPiNd6YVVwZoRx83JP416P4a+JmlazdJaXUL20snCt/CD7mvn+BGDHBwEOMnpVmFpElEhkwwP6VxYnLMLik+eCu+q3Omji61D4Jadj6/j0iGcAphsgEMDnNc/4m8EpdwOeQ+M8dqyfg38QYZ9mk6rKN+dsMrd/9mvoC60uAW7M0YYYzk18fjMDLBScJL08z26OJWIXMj5JTwNdJKylm2g966PR/CCw3duS2W3c5r0TxCLaN5ChC49BXLWupot5EocZ3V5XxpnofDue+B1aF3z2rOYxqhbg5rCsNUNzEfLkDxuMhgeCPWr5crEBjca+b+prqdkZ9jVSW3t7RpWAVUG4k9q+cviN4+bXbtoQHFpGxWNOze9el/E3xAdN8PpZRErPcj5ucHbXzVrd1P55VyoB+ZT2NfoPCWUU6FP67UXvPSPku585nGLcp+wi9FuQG988y2bZUXCnGT3rjDO+mXf2WRf8AVtuQk1sag8jqssSksgyDWR4jK6hp0eoRDEsX3wB0r7Nu54iRJquoHULSW4ktx5UIxu9TUzXIg8I7WBUzKSEzz0qno1xBqOntbTNmIMHCjqcVmXepNqN7qJBAtbCEqi49Qf8ACk5JIdrmZ4JYG7viBhmRh7dKveHiYriUN03HmszwIryT3Eh6mNjjt0rU0MhriYHruPI7VENkOW5v3z7poDuIAGKCEXaoySy8N6GpLlDOkTqBuXtTI1IUl2Ax3FVYRAjSrCwIGSMYz0qNDHNHM8mAy9Bjg1OuxQxOSTVSRFDe7fwg0gOj8OfEPX/DCr5F0ZbfILRSjcMDsPSvX9M+P1oNLL3GmPHe7SVj38N757V8/wCSGwVHHQEVG6kRAu+evHt6Vz1cLSqu8lqb069SmrRZ0Hjb4hav40u83kuLcMSIYzhFHbI7muTnuA8Ljn5iEGKlWJUQkArSPACynAIAyAO+a2hGMFaK0MZNyd2VPJzIkRYiKMcZ5GakjHlQlSDknBz6VYTKp5eBgHOcVO0ayNwPm7+1aElCe3VlWNCSuMn2p0KLHcjaPlz3FaPlBnbA/dH5SMVGyncMIMA8UgW5V8XJxbzcbkII4q7HK0nkSlR86dqi8Sh5dLt58ZVTyPQ1SS5ki0tJ1wGRh1oTBm+MqkfBKu2CKGuP9PZUAKoBnNVTdt5qSSNujERfAGB0qvpk8fkz6heP5cMhODnk/SrixNHRaffTxzho22FWypB6Ed6+vfhT8Q18WeGDp95IDqVogXJPLr0B+tfFEOrG82/Y7cR26nHmP1Neg/DnxM+g63bXSyE/PtfB4IPFc2YYWOLoOHVao1w1Z0aifTqeqeLdWkTUJ4FbkORWHYI51GBmJ5arGsxreeILuVWyjPuFZXizXk8H+H7vVmA82Bf3Kn+KQ8KPzr4GNJp8q3PpnP3eZk37OPj7+3vCZ0q5mzqOkAREMeXhP3G/D7v4V9LeH41uQjOQfavzK+HvjOfwJ4ps9Wi3NAp8u5iBx5kR+8P61+j3g26TVdFj1OyuVktJoPNikU/eUrkVy5tgXSq88NpDwWI56fK90eUfGHWY7nxNPGeEtx5anrXhmrXO5mSZeCcxSnoPau88a3xuNSupWJy8pLHvXn19OspZZI3YenY1+kYen7ChCkuiR8xUlzzlPuyl9pd0JVs4HIXvWQt6tpd7pMNZXPyOh/hbtRdJNaO09mxK/wDPFvT2rn7zUftTOoTy5P44ff1rRyRNh8cv9l6vPABiN1JQ565rLac2/h3VXJPmzTKpJPUZPFM1S5WeCGRcma2YAg9Sp61Uupt+mW8QUATzE+/WsZS0NIo6vwZAsdrczAEKsRGD9KZ4fOXnk7E9B2q9Z4sNBv5PugIqj8ag0NPLtIzjLucitombNpd4GOWLDp3pUBKCMcZ9e1Ks0r5yMjH6Ux2YN97nsKsQkoXIViT6iq0jKhyFGM4xT5s8uxO7oQKrvMPKI7Y/OkBDdTM0edxX27VZtP3iBSu8Y71m3kgjQEjG6tGxjLWzFSRntUtjQ94yRtyc9PpQqhTtOMgYFXPs/lCNnPJGc+9MkQeYjFfmbrTQrEDMkaBQuGI61LAFOCoBwOo609441cjGSAOKeU2AArw54207gPQleg4xzVckMcMMEHipSUjHt7daguJFIDjGB29aYrEO5Lu0urM9XUkD0Ncnb3oFlcW8oZSj7dpPNdDLeLHdJLGux15Ge9clrv8Ao+seeoJjnYOT9OtYzlY0irnR3ty5tEQHhwq5HBCH7xqnawPr1wqqStlb/Iqt0OP4vxxVeWT7TaxyTv5UC8H1x6fjUkMN3eRqiBray6CNOGce9TGbbBrQ25dS02zK28bm5deNkX3R9a19G1CRjG7xRx4OQFU5FYdnYC1jAgghijHO9hya0rOaVWGZCQe4rqg31MZJHvehKb+xhuwc/LtY+9eG/Hjxb/aOsxaDbvm308759p4aYjp/wEcfjXoenfEC08F/D3Vric779SFsomPLyt0P0GCfwx3r5huLiW7nlnncyTSsXdz1Zick18tUwvJjKkmtE9Pmewq/NQiupHX0x+zJ8Y/7FhuPBOrzhLS4DNp0rn7khHMRPoeo98+tfM9KjtG6upKspDAjqCOhqq1GNaPLMiE3B3R9V+Jm/eN8zZZzwen0ribyV8sNrDH3R7VR8M+Nx4o06O0vZMarbfeb/nsuPvfX1q1fzNHJt3Nkjg4r6KFSM48yPOcXF2MK7kI42fMTgewrnNUjhu0f92I54x8pHU/SuhvZLhGLJIZc9iAPyrmrqVbh8XDPBIOyjmokkNXOZuZWAYk4kAwR61cCNNDpMYzgOf6VV1eMQsQW3LjhjTdKmLmxXcThm/pXM3aVmara53Otv5egwW2w77iXaR9DVyxQ2qRx5GFXj696zL0HUtasLHHyxoJP0rfAVZnO1QI/lwe9dUXczaHo4ZAA20g9/SgoX5bkg4XFHnIvDKOtMkmXGVzkn8qu5FhkzNtKHFZczMsgUA49RVq7mQswx8pPr3rNuLgtKATgDgYoYEeuy7JoOPlIre05gLRj0yOPauU1x/3lv+8yFrd0u4YwGPGVOMkdqhldDaiDvDjO8AdaeU+ZMj5QOn9ackhQDYCowBwOtQyOx46n27U0AMpZuRgY5NBYOAA2BnG01C0jfdBwPWoWbBOew4B71VxMkdipJy1ULqUNydxcdvWnzSMM5BAxxiqjXADgM4G6i4rGfejcu8lg3UVzmtTm4sFLNl0fb9K272Yk5zkA5BFc8I3udQEEa5Z5A/5Vz13poaUzs9C01rqyglZA+wfKH+6PrWwghjcReeXnJ/1cPNVYrMeSIpboxrt+ZRxupUlZF+y6PGEjXl5m5Y1pBW0FLUs31vFC6/aXmZmHEBxgVGrRxxeYbfy4kHJbsBSwacttumKyXFw/IZz0PtXH+INcmvGa2EuYgfnx0J9KqpWVKPMyYwc3ZFbxBrT6zeBvu28Q2xIOw7n6msmiivFnJzk5S3Z2pJKyCiiipGSW9xLazJNC5SVDlWHUGvUNF8TRa9a7ZNkV7Gvzr/e9xXldPileGRZI3KOpyGHUVtRrOk/IicFJHqM6oQQ02OelZer/AGRUzNcQ7cZ4PzVFoviT+0tkNw8cVyOmVGH+nvVnUd8qlW8skA8eUK9WMozjzROVpxdmcZP9muGbZfuB2VkFZlnMsWqQoc7VccngnJrau7Us2XVQo9FxWFgQamhAwuc881zVYOLTRrB3O90iU3WpXtyGwsa7EPeuhiiAs1lOWYD5sc81zGjTqIpEXHzHPHU5rp9Pif7NIrEhR39a3h3M5CllK5ZcZGearzEBjj5T1FSThUUDflcc5qq6eYw3OMgdqu4rFScs24EjBOcCs5piX3cHJxViRkTdJvyBVNGDpnGN36UrisQ6+yxyQgKAGGfpWpoMjPbkLtGe+ayfEnBt/XbV/Qnk+yFgwAz0xUt6lHWQjcgMkgIGO/Smz3KQvtUEk96W3w8PKdOT71RurgfaVUrt461VwCebJfjCHsaptKSeTj696WWTc5B5BPWqtw371UJwM0XENmkYD5Qd3c54qnO7MWwcEHg9zViRmkULt5bjPSqs6bNrKeF4bvRcCpLKsqMM/OP4TxWRpLsNcUnk4wM8YqzcAhDIvG3Oa0/AnhpvFfjK3sUm8kzrv3gZ24rkq1FGzlsjaEG9jqoUluHBYnKY528GrgBtkIaRVD9gK+idG/Z/0Cx0yS51nU2kt403yyyHylRR3J7Cvn34peOvDFt5nh7wBaMmmoSs+qSuXkuD3Eefup79T9KmOYUn8CbKlhpr4tDi/EmvptNlZyFsf6yVTx9BXI0UVy1Kkqjuy4xUVZBRRRWZQUUUUAFFFFAAODmvSPAnjnQ7dhYeLtOe5smwqXtucSw/7w/iH5Ee9eb0U02tmFl1PpfUvhZ4O1Gx/tHQrtp7eUZSZJi659Mdj7Hmvn/xtoUvh7V0gYh15Kv0zSaF4l1Tw3OZdNu3h3ffj6o4916Gn+MvEcnit7W4a3ENzGCJAhyre4q1WqbN3BxjvYt+FGM5Oxdrk/Wu4uLoWdsycbupwc1w3hy5WzjXLANitW6uZnISPG9zzk16cHaJyvclmvWufnYjaeMVoQgLZNJjOOOeKzLeJ2miD7dq9RWzcAG0SKMcOcDmqQmc1P8Au7J1A5YYzUdou+JAqcqeeetJfPtjZBnKnmn6Sm/DYIGeMHrT6klTxOTvg2nnGKt6QTHbIx43HH+RVXxSpSePIwfTrU9mRDZRHPzMwAH1pdSuh2FrhrRuWyenNYly7NduuG4xzW7CWWw+VAWxXMSSy/bWJb2IoYjSaJn2oApPUnvVa9CW5TJB3c5NPyWZQMhs881U1ti6qCn3D2NFwIWkIYKHy3XNQpMIgWkwVbjGetQQuPl6l84zmq2sNiNUyFb2qJT5VcpRvoWru3LIzIMxsPSrvwq8T2HhPxSdV1Au0FvEwCxrlmOeFHvXNwapdQxPGHGGGORnAqnXBiKkaisjop3g7npvxO+N2v8AxIzYs5sfD6NmOwibh/eQ/wAZ9untXmVFFc8YqKsi23J3YUUUUxBRRRQB/9k=" alt="Adriel Hsu on YouTube">
+              <span class="cf-soc__plat" aria-label="YouTube"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg></span>
+            </div>
+            <div class="cf-soc__id">
+              <div class="cf-soc__name">Adriel Hsu</div>
+              <div class="cf-soc__handle"><b>YouTube</b> &middot; @adrielhsu</div>
+              <div class="cf-soc__bio">Real estate, travel hacking and personal finance</div>
+            </div>
+          </div>
+          <div class="cf-soc__stats">
+            <div class="cf-soc__stat"><b>41.4K</b><span>Subscribers</span></div>
+            <div class="cf-soc__stat"><b>419</b><span>Videos</span></div>
+          </div>
+        </a>
+
+        <!-- INSTAGRAM -->
+        <a class="cf-soc" href="https://www.instagram.com/adrielhsu/" target="_blank" rel="noopener">
+          <div class="cf-soc__top">
+            <div class="cf-soc__pfp">
+              <img src="data:image/jpeg;base64,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" alt="Adriel Hsu on Instagram">
+              <span class="cf-soc__plat" aria-label="Instagram"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></span>
+            </div>
+            <div class="cf-soc__id">
+              <div class="cf-soc__name">adrielhsu <svg width="15" height="15" viewBox="0 0 24 24" aria-label="Verified"><circle cx="12" cy="12" r="11" fill="#a88a35"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="cf-soc__handle"><b>Instagram</b> &middot; Verified</div>
+              <div class="cf-soc__bio">Houston custom homebuilder, real estate developer and investor</div>
+            </div>
+          </div>
+          <div class="cf-soc__stats">
+            <div class="cf-soc__stat"><b>49.7K</b><span>Followers</span></div>
+            <div class="cf-soc__stat"><b>259</b><span>Posts</span></div>
+          </div>
+        </a>
+
+      </div>
+      <p class="cf-social__intro"><b>91,000+ investors</b> follow my builds on YouTube and Instagram.</p>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="cf-step"><b>Step 2:</b> Confirm Your Strategy Call Via Email So We Know You Plan To Show Up</div>
+    <div class="cf-cal">
+      <img class="cf-cal__img" src="/assets/img/add-to-calendar.png" alt="Add the strategy session to your calendar">
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ STEP 3 — Q&A VIDEOS ============ -->
+<section class="cf-faq"><div class="cf-faq__inner">
+  <div class="cf-faq__label"><b>Step 3:</b> Get Your Questions Answered Before The Call</div>
+  <div class="cf-faq__grid">
+
+      <!-- 1. What Is The Investor's Blueprint? -->
+      <div class="cf-faq__card">
+        <div class="cf-faq__head"><span class="cf-faq__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3 3 6v15l6-3 6 3 6-3V3l-6 3z"/><path d="M9 3v15M15 6v15"/></svg></span><span class="cf-faq__hq">What Is The Investor's Blueprint?</span></div>
+        <div class="cf-faq__thumb">
+          <vturb-smartplayer id="vid-6aa30c94804e51b2252ab6a6" style="display:block;margin:0 auto;width:100%;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background:#000;"></div></vturb-smartplayer>
+        </div>
+      </div>
+
+      <!-- 2. Our Process -->
+      <div class="cf-faq__card">
+        <div class="cf-faq__head"><span class="cf-faq__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></span><span class="cf-faq__hq">Our Process</span></div>
+        <div class="cf-faq__thumb">
+          <vturb-smartplayer id="vid-6a6081cdc7784ebc62d3db2f" style="display:block;margin:0 auto;width:100%;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background:#000;"></div></vturb-smartplayer>
+        </div>
+      </div>
+
+      <!-- 3. Who Is Adriel And What Kind Of Deals Have You Done? -->
+      <div class="cf-faq__card">
+        <div class="cf-faq__head"><span class="cf-faq__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span><span class="cf-faq__hq">Who Is Adriel And What Kind Of Deals Have You Done?</span></div>
+        <div class="cf-faq__thumb">
+          <vturb-smartplayer id="vid-6a3f30efaa3aacde342ae2bd" style="display:block;margin:0 auto;width:100%;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background:#000;"></div></vturb-smartplayer>
+        </div>
+      </div>
+
+      <!-- 4. How Am I Different From Every Other Mentor? -->
+      <div class="cf-faq__card">
+        <div class="cf-faq__head"><span class="cf-faq__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg></span><span class="cf-faq__hq">How Am I Different From Every Other Mentor?</span></div>
+        <div class="cf-faq__thumb">
+          <vturb-smartplayer id="vid-6a3f2f6f641d860e23c3340d" style="display:block;margin:0 auto;width:100%;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background:#000;"></div></vturb-smartplayer>
+        </div>
+      </div>
+
+      <!-- 5. Will You Help Me Find Deals? -->
+      <div class="cf-faq__card">
+        <div class="cf-faq__head"><span class="cf-faq__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><span class="cf-faq__hq">Will You Help Me Find Deals?</span></div>
+        <div class="cf-faq__thumb">
+          <vturb-smartplayer id="vid-6a3f30a0641d860e23c33473" style="display:block;margin:0 auto;width:100%;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background:#000;"></div></vturb-smartplayer>
+        </div>
+      </div>
+
+      <!-- 6. Will You Help Me Avoid Getting Burned By Contractors? -->
+      <div class="cf-faq__card">
+        <div class="cf-faq__head"><span class="cf-faq__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6.5a4 4 0 0 0-5.5 5.2L3 18.2 5.8 21l6.5-6.5A4 4 0 0 0 17.5 9l-2.4 2.4-2-2L15.5 7z"/></svg></span><span class="cf-faq__hq">Will You Help Me Avoid Getting Burned By Contractors?</span></div>
+        <div class="cf-faq__thumb">
+          <vturb-smartplayer id="vid-6a3f315d8db7a188639129cc" style="display:block;margin:0 auto;width:100%;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background:#000;"></div></vturb-smartplayer>
+        </div>
+      </div>
+
+      <!-- 7. Does It Work For Beginners With No Development Experience? -->
+      <div class="cf-faq__card">
+        <div class="cf-faq__head"><span class="cf-faq__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.7 3 6 3s6-2 6-3v-5"/></svg></span><span class="cf-faq__hq">Does It Work For Beginners With No Development Experience?</span></div>
+        <div class="cf-faq__thumb">
+          <vturb-smartplayer id="vid-6a3f30768cf599a36e42fe75" style="display:block;margin:0 auto;width:100%;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background:#000;"></div></vturb-smartplayer>
+        </div>
+      </div>
+
+      <!-- 8. Can I Learn From YouTube? -->
+      <div class="cf-faq__card">
+        <div class="cf-faq__head"><span class="cf-faq__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3z"/></svg></span><span class="cf-faq__hq">Can I Learn From YouTube?</span></div>
+        <div class="cf-faq__thumb">
+          <vturb-smartplayer id="vid-6aa31224682565b6dba4420f" style="display:block;margin:0 auto;width:100%;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background:#000;"></div></vturb-smartplayer>
+        </div>
+      </div>
+
+      <!-- 9. Do You Offer Refunds? -->
+      <div class="cf-faq__card">
+        <div class="cf-faq__head"><span class="cf-faq__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span><span class="cf-faq__hq">Do You Offer Refunds?</span></div>
+        <div class="cf-faq__thumb">
+          <vturb-smartplayer id="vid-6aa3103facd68fca651ac3bf" style="display:block;margin:0 auto;width:100%;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background:#000;"></div></vturb-smartplayer>
+        </div>
+      </div>
+
+      <!-- 11. How Much Capital Do I Need? -->
+      <div class="cf-faq__card">
+        <div class="cf-faq__head"><span class="cf-faq__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 12h.01M18 12h.01"/></svg></span><span class="cf-faq__hq">How Much Capital Do I Need?</span></div>
+        <div class="cf-faq__thumb">
+          <vturb-smartplayer id="vid-6aa31381682565b6dba443a2" style="display:block;margin:0 auto;width:100%;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background:#000;"></div></vturb-smartplayer>
+        </div>
+      </div>
+
+      <!-- 12. What Can I Expect? -->
+      <div class="cf-faq__card">
+        <div class="cf-faq__head"><span class="cf-faq__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span><span class="cf-faq__hq">What Can I Expect?</span></div>
+        <div class="cf-faq__thumb">
+          <vturb-smartplayer id="vid-6aa30c0032f15819ee1ef091" style="display:block;margin:0 auto;width:100%;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background:#000;"></div></vturb-smartplayer>
+        </div>
+      </div>
+
+      <!-- 13. Who Is This For? -->
+      <div class="cf-faq__card">
+        <div class="cf-faq__head"><span class="cf-faq__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span><span class="cf-faq__hq">Who Is This For?</span></div>
+        <div class="cf-faq__thumb">
+          <vturb-smartplayer id="vid-6aa30dd7434c2f17aeac594b" style="display:block;margin:0 auto;width:100%;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background:#000;"></div></vturb-smartplayer>
+        </div>
+      </div>
+
+      <!-- 14. Who Is This Mentorship NOT For? -->
+      <div class="cf-faq__card">
+        <div class="cf-faq__head"><span class="cf-faq__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></span><span class="cf-faq__hq">Who Is This Mentorship NOT For?</span></div>
+        <div class="cf-faq__thumb">
+          <vturb-smartplayer id="vid-6aa30f7b32f15819ee1ef371" style="display:block;margin:0 auto;width:100%;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background:#000;"></div></vturb-smartplayer>
+        </div>
+      </div>
+
+      <!-- 15. Will I Talk To Adriel Directly? -->
+      <div class="cf-faq__card">
+        <div class="cf-faq__head"><span class="cf-faq__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></svg></span><span class="cf-faq__hq">Will I Talk To Adriel Directly?</span></div>
+        <div class="cf-faq__thumb">
+          <vturb-smartplayer id="vid-6aa30e73c54492aa953da0e5" style="display:block;margin:0 auto;width:100%;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background:#000;"></div></vturb-smartplayer>
+        </div>
+      </div>
+
+      <!-- 15. How Much Money Will I Save If I Join? -->
+      <div class="cf-faq__card">
+        <div class="cf-faq__head"><span class="cf-faq__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22l-9-9V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><span class="cf-faq__hq">How Much Money Will I Save If I Join?</span></div>
+        <div class="cf-faq__thumb">
+          <vturb-smartplayer id="vid-6aa3620271296a55130e8fda" style="display:block;margin:0 auto;width:100%;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background:#000;"></div></vturb-smartplayer>
+        </div>
+      </div>
+
+      <!-- 16. What Price Per Sq Ft Can You Build At? -->
+      <div class="cf-faq__card">
+        <div class="cf-faq__head"><span class="cf-faq__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span><span class="cf-faq__hq">What Price Per Sq Ft Can You Build At?</span></div>
+        <div class="cf-faq__thumb">
+          <vturb-smartplayer id="vid-6aa364593c93a6112424376c" style="display:block;margin:0 auto;width:100%;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background:#000;"></div></vturb-smartplayer>
+        </div>
+      </div>
+
+  </div>
+</div></section>
+
+<!-- ============ STEP 4 — DEAL BREAKDOWNS ============ -->
+<section class="cf-featured">
+  <div class="cf-featured__inner">
+
+    <div class="cf-featured__label"><b>Step 4:</b> Learn About Our Six-Figure Profit Development Deals</div>
+
+    <div class="cf-rows cf-rows--tight">
+
+      <!-- ROW 0 — STUDENT DUPLEX -->
+      <div class="cf-row">
+        <div class="cf-row__text">
+          <span class="cf-row__ic">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V10l4-3v14"/><path d="M13 21V7l6-4v18"/><path d="M8 13h.01M8 17h.01M16 9h.01M16 13h.01M16 17h.01"/></svg>
+          </span>
+          <div class="cf-row__head">
+            <h3 class="cf-row__title">Student Duplex</h3>
+            <span class="cf-row__badge">Student Success Story</span>
+          </div>
+          <p class="cf-row__deal">New-build duplex — first project ever</p>
+          <p class="cf-row__profit">~$100,000 projected profit</p>
+
+          <button class="cf-cb__btn" type="button" aria-expanded="false" aria-controls="cf-cb-duplex" onclick="cfToggleCost(this)">
+            <span class="cf-cb__btn-label">Deal breakdown</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="cf-row__video cf-row__video--portrait">
+          <div class="cf-row__portrait-frame">
+            <vturb-smartplayer id="vid-6aa992ed3f807c490701db8d" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 177.77777777777777% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer>
+            <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6aa992ed3f807c490701db8d/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
+          </div>
+        </div>
+        <div class="cf-cb" id="cf-cb-duplex" hidden>
+          <p class="cf-cb__lede">My student's <strong>very first project</strong> — a ground-up new build duplex. He'd never built anything before. I walked him through the entire process step by step and gave him access to <strong>all my subcontractors and suppliers</strong> for the best pricing. He's all in at $360,000 on a duplex that can easily sell for around $470,000.</p>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">Land and soft costs</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Land purchase</span><span class="cf-cb__v">$90,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Plans and permits<small>Architectural and structural plans plus city permit fees</small></span><span class="cf-cb__v">$17,000</span></div>
+          </div>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">Vertical construction</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Ground-up build<small>Foundation through finishes, both units</small></span><span class="cf-cb__v">$245,000</span></div>
+          </div>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">Holding and financing</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Holding costs<small>Loan interest and carrying costs through the build</small></span><span class="cf-cb__v">$7,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Contingency<small>Small buffer for miscellaneous items, bringing it to his all-in figure</small></span><span class="cf-cb__v">$1,000</span></div>
+          </div>
+          <div class="cf-row__down" style="margin:0 0 18px;"><span class="cf-row__down-lbl">Cash to get in</span><span class="cf-row__down-val"><b>15% down</b> — $54,000</span></div>
+          <div class="cf-cb__totals">
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Total all in</span><span class="cf-cb__tv">$360,000</span></div>
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Sale price (est.)</span><span class="cf-cb__tv">$470,000</span></div>
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Commissions and closing costs</span><span class="cf-cb__tv">~$10,000</span></div>
+            <div class="cf-cb__trow cf-cb__trow--net"><span class="cf-cb__tl">Net profit</span><span class="cf-cb__tv">~$100,000</span></div>
+          </div>
+          <p class="cf-cb__note">He's choosing to keep this one as a rental to build long-term wealth — so instead of cashing out, that profit stays in as equity and cash flow.</p>
+        </div>
+      </div>
+
+      <!-- ROW 1 -->
+      <div class="cf-row">
+        <div class="cf-row__text">
+          <span class="cf-row__ic">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 7h2M14 7h2M8 12h2M14 12h2M8 17h2M14 17h2"/></svg>
+          </span>
+          <h3 class="cf-row__title">3502 Noah</h3>
+          <p class="cf-row__deal">Five-home ground-up development</p>
+          <p class="cf-row__profit">$320,000 net profit</p>
+          
+          <button class="cf-cb__btn" type="button" aria-expanded="false" aria-controls="cf-cb-noah" onclick="cfToggleCost(this)">
+            <span class="cf-cb__btn-label">Cost breakdown</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="cf-row__video">
+          <iframe style="width:100%;height:100%;border:none;" src="https://www.youtube.com/embed/ITQNG3Hh2qw?rel=0&amp;start=1" title="3502 Noah deal breakdown" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="cf-cb" id="cf-cb-noah" hidden>
+          <p class="cf-cb__lede">Five homes on one lot. I found this <strong>10,000 sq ft corner lot off-market</strong>, direct to the seller, while marketing the probate list — the heir lived out of state and wanted a fast cash close. Two two-story homes at 1,750 sq ft and three three-story homes at 2,000 sq ft, built from the ground up.</p>
+          <p class="cf-cb__lede">I didn't use my own money for the down payment. I raised <strong>$300,000 from a private investor</strong> in exchange for 50% equity, and the bank funded the remaining 80% at 1% origination, Wall Street Journal prime plus half a point, on a 12-month interest-only construction loan.</p>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">Land and soft costs</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Land purchase<small>10,000 sq ft corner lot — roughly $40,000 of land per home</small></span><span class="cf-cb__v">$200,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Soft costs<small>Re-plat into five lots, architectural and structural plans, surveys, soil report, impact fees, renderings, City of Houston permit fees, and demolition of the existing structure — about $14,000 per home</small></span><span class="cf-cb__v">$70,000</span></div>
+          </div>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">Vertical construction</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Phase 1 — Site prep and foundation<small>Clearing and grading, water and sewer taps, underground plumbing and electrical, forms, rebar, and pouring the slab. Roughly one month.</small></span><span class="cf-cb__v">$150,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Phase 2 — Framing and cornice<small>The most expensive phase. Lumber alone was just over $100,000. Ends when the roof goes on and the homes are dried in.</small></span><span class="cf-cb__v">$380,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Phase 3 — MEPs<small>Plumber first, then HVAC, then electrical — in that order, so each trade has the room it needs.</small></span><span class="cf-cb__v">$130,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Phase 4 — Insulation and drywall<small>Two and a half weeks.</small></span><span class="cf-cb__v">$70,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Phase 5 — Tile, cabinetry, and trim<small>Interior trades running alongside exterior paint prep.</small></span><span class="cf-cb__v">$227,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Phase 6 — Finishes<small>Plumbing and light fixtures, mirrors, handrails, garage doors, fencing, appliances, and flooring. Three and a half weeks.</small></span><span class="cf-cb__v">$185,000</span></div>
+          </div>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">Holding and financing</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Holding costs and loan interest<small>Twelve months of interest-only payments plus carrying costs</small></span><span class="cf-cb__v">$100,000</span></div>
+          </div>
+          <div class="cf-row__down" style="margin:0 0 18px;"><span class="cf-row__down-lbl">Cash to get in</span><span class="cf-row__down-val"><b>15% down</b> — $230,850</span></div>
+          <div class="cf-cb__totals">
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Total all in</span><span class="cf-cb__tv">$1,539,000</span></div>
+            
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Budgeted at</span><span class="cf-cb__tv">$1,500,000</span></div>
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Total sales price, five homes</span><span class="cf-cb__tv">$1,940,000</span></div>
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Commissions, closing costs, concessions</span><span class="cf-cb__tv">$81,000</span></div>
+            <div class="cf-cb__trow cf-cb__trow--net"><span class="cf-cb__tl">Net profit</span><span class="cf-cb__tv">$320,000</span></div>
+          </div>
+          <p class="cf-cb__note">Came in $39,000 over budget — a 2.6% overrun on a project most people would carry a 5 to 7% contingency for.</p>
+        </div>
+      </div>
+
+      <!-- ROW 2 -->
+      <div class="cf-row">
+        <div class="cf-row__text">
+          <span class="cf-row__ic">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><rect x="4" y="7" width="7" height="14"/><rect x="13" y="3" width="7" height="18"/><path d="M6.5 11h2M6.5 15h2M15.5 7h2M15.5 11h2M15.5 15h2"/></svg>
+          </span>
+          <div class="cf-row__head">
+            <h3 class="cf-row__title">Saphira Apartments</h3>
+            <span class="cf-row__badge">Student Success Story</span>
+          </div>
+          <p class="cf-row__deal">Multi-family renovation</p>
+          <p class="cf-row__profit">$350,000 tax free, plus $1.3M in equity</p>
+          
+          <button class="cf-cb__btn" type="button" aria-expanded="false" aria-controls="cf-cb-saphira" onclick="cfToggleCost(this)">
+            <span class="cf-cb__btn-label">Deal breakdown</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="cf-row__video">
+          <iframe style="width:100%;height:100%;border:none;" src="https://www.youtube.com/embed/_su9t7D6aJA?rel=0&amp;start=32" title="Saphira Apartments deal breakdown" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="cf-cb" id="cf-cb-saphira" hidden>
+          <p class="cf-cb__lede">A student found this <strong>20-unit multifamily off-market</strong> using the strategies in the program, then brought it to me to partner on. It was his first multifamily deal, and the lenders needed someone with more experience and funds to guarantee the loan — <strong>lending on multifamily works very differently to single family,</strong> and it's one of the things I cover.</p>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">The deal</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Purchase price</span><span class="cf-cb__v">$875,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Renovation<small>17 units fully renovated, plus one extra studio unit added</small></span><span class="cf-cb__v">$675,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Appraised value</span><span class="cf-cb__v">$3,300,000</span></div>
+          </div>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">The outcome</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Cash-out refinance<small>Tax free, after closing costs, lender fees, and paying back the purchase and rehab</small></span><span class="cf-cb__v">~$350,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Equity remaining</span><span class="cf-cb__v">$1,300,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Annual cash flow</span><span class="cf-cb__v">~$70,000</span></div>
+          </div>
+          <div class="cf-row__down" style="margin:0 0 18px;"><span class="cf-row__down-lbl">Cash to get in</span><span class="cf-row__down-val"><b>15% down</b> — $232,500</span></div>
+          <div class="cf-cb__totals">
+            
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Walked away with</span><span class="cf-cb__tv">~$350,000 tax free</span></div>
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Still holds</span><span class="cf-cb__tv">$1,300,000 equity</span></div>
+            <div class="cf-cb__trow cf-cb__trow--net"><span class="cf-cb__tl">One deal, one millionaire</span><span class="cf-cb__tv">You can be next</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 3 -->
+      <div class="cf-row">
+        <div class="cf-row__text">
+          <span class="cf-row__ic">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M5 20V9l7-5 7 5v11"/><path d="M12 4v16"/></svg>
+          </span>
+          <h3 class="cf-row__title">2011 Greg</h3>
+          <p class="cf-row__deal">Land subdivide and sell</p>
+          <p class="cf-row__profit">$173,850 net profit</p>
+          
+          <button class="cf-cb__btn" type="button" aria-expanded="false" aria-controls="cf-cb-greg" onclick="cfToggleCost(this)">
+            <span class="cf-cb__btn-label">Cost breakdown</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="cf-row__video">
+          <iframe style="width:100%;height:100%;border:none;" src="https://www.youtube.com/embed/izMLta5AVXc?rel=0" title="2011 Greg deal breakdown" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="cf-cb" id="cf-cb-greg" hidden>
+          <p class="cf-cb__lede">I bought this piece of land for <strong>$85,000</strong> and sold it for <strong>$355,000</strong> with every permit approved and the project ready to build — <strong>without building anything.</strong> Here is every dollar that went into it.</p>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">Acquisition</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Land purchase</span><span class="cf-cb__v">$85,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Closing costs</span><span class="cf-cb__v">$1,325</span></div>
+          </div>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">Surveys and reports</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Existing condition survey</span><span class="cf-cb__v">$1,850</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Re-plat<small>Subdividing the land into smaller lots</small></span><span class="cf-cb__v">$7,815</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Soil report</span><span class="cf-cb__v">$1,300</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Topo survey<small>Topography for the civil engineer's drainage design</small></span><span class="cf-cb__v">$750</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Elevation certificates<small>Flood zone compliance</small></span><span class="cf-cb__v">$2,600</span></div>
+          </div>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">Design and engineering</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Preliminary civil plans</span><span class="cf-cb__v">$4,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Civil engineering plans</span><span class="cf-cb__v">$12,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Architectural and structural plans</span><span class="cf-cb__v">$16,932</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Renderings</span><span class="cf-cb__v">$950</span></div>
+          </div>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">City fees and site work</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Impact fees<small>Paid to the city for the water and sewer demand the project creates</small></span><span class="cf-cb__v">$18,783</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Sewer decommissioning<small>The existing sewers were outdated</small></span><span class="cf-cb__v">$3,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Land clearing</span><span class="cf-cb__v">$4,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">City permit fees</span><span class="cf-cb__v">$17,655</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Property taxes</span><span class="cf-cb__v">$1,822</span></div>
+          </div>
+          <div class="cf-row__down" style="margin:0 0 18px;"><span class="cf-row__down-lbl">Cash to get in</span><span class="cf-row__down-val"><b>15% down</b> — ~$27,000</span></div>
+          <div class="cf-cb__totals">
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Total all in</span><span class="cf-cb__tv">~$180,000</span></div>
+            
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Sale price</span><span class="cf-cb__tv">$355,000</span></div>
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Sales closing costs</span><span class="cf-cb__tv">$995</span></div>
+            <div class="cf-cb__trow cf-cb__trow--net"><span class="cf-cb__tl">Net profit</span><span class="cf-cb__tv">$173,850</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 4 -->
+      <div class="cf-row">
+        <div class="cf-row__text">
+          <span class="cf-row__ic">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M10 21v-6h4v6"/></svg>
+          </span>
+          <h3 class="cf-row__title">3411 Yellowstone</h3>
+          <p class="cf-row__deal">Land subdivide and sell</p>
+          <p class="cf-row__profit">$112,648 net profit</p>
+          
+          <button class="cf-cb__btn" type="button" aria-expanded="false" aria-controls="cf-cb-yellowstone" onclick="cfToggleCost(this)">
+            <span class="cf-cb__btn-label">Cost breakdown</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="cf-row__video">
+          <iframe style="width:100%;height:100%;border:none;" src="https://www.youtube.com/embed/f7VKz68vqi0?rel=0" title="3411 Yellowstone deal breakdown" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="cf-cb" id="cf-cb-yellowstone" hidden>
+          <p class="cf-cb__lede">I closed on this land for <strong>$200,000</strong> and sold it for <strong>$375,000</strong> with every permit approved and the project ready to build — <strong>without building anything.</strong> Here is every dollar that went into it.</p>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">Acquisition</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Land purchase</span><span class="cf-cb__v">$200,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Closing costs</span><span class="cf-cb__v">$2,597</span></div>
+          </div>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">Surveys and reports</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Existing condition survey</span><span class="cf-cb__v">$2,545</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Re-plat<small>Subdividing the land into smaller lots</small></span><span class="cf-cb__v">$7,484</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Soil report</span><span class="cf-cb__v">$1,352</span></div>
+          </div>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">Design and engineering</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Civil engineering plans</span><span class="cf-cb__v">$10,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Architectural and structural plans</span><span class="cf-cb__v">$9,910</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Renderings</span><span class="cf-cb__v">$950</span></div>
+          </div>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">City fees and site work</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Impact fees<small>Paid to the city for the water and sewer demand the project creates</small></span><span class="cf-cb__v">$15,413</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">City permit fees</span><span class="cf-cb__v">$6,294</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Property taxes</span><span class="cf-cb__v">$2,393</span></div>
+          </div>
+          <div class="cf-row__down" style="margin:0 0 18px;"><span class="cf-row__down-lbl">Cash to get in</span><span class="cf-row__down-val"><b>15% down</b> — ~$38,841</span></div>
+          <div class="cf-cb__totals">
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Total all in</span><span class="cf-cb__tv">$258,938</span></div>
+            
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Sale price</span><span class="cf-cb__tv">$375,000</span></div>
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Sales closing costs</span><span class="cf-cb__tv">$3,414</span></div>
+            <div class="cf-cb__trow cf-cb__trow--net"><span class="cf-cb__tl">Net profit</span><span class="cf-cb__tv">$112,648</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 4b — FOUR-HOME LOT, SHOVEL-READY -->
+      <div class="cf-row">
+        <div class="cf-row__text">
+          <span class="cf-row__ic">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 3v18M3 12h18"/></svg>
+          </span>
+          <h3 class="cf-row__title">Four-Home Lot</h3>
+          <p class="cf-row__deal">8,240 sq ft lot taken to shovel-ready for four homes</p>
+          <p class="cf-row__profit">$256,000 all in, $64,000 per home</p>
+
+          <button class="cf-cb__btn" type="button" aria-expanded="false" aria-controls="cf-cb-fourlot" onclick="cfToggleCost(this)">
+            <span class="cf-cb__btn-label">Cost breakdown</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="cf-row__video cf-row__video--portrait">
+          <div class="cf-row__portrait-frame">
+            <vturb-smartplayer id="vid-6af8bf5ea49ed5c866e250aa" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 177.77777777777777% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer>
+            <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6af8bf5ea49ed5c866e250aa/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
+          </div>
+        </div>
+        <div class="cf-cb" id="cf-cb-fourlot" hidden>
+          <p class="cf-cb__lede">I paid <strong>$256,000 to get this lot shovel-ready</strong> to build four homes. That's every soft cost from buying the land to having permits in hand, which works out to <strong>$64,000 per home</strong> before any vertical construction starts.</p>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">Acquisition</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Land purchase<small>8,240 sq ft lot</small></span><span class="cf-cb__v">$200,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Closing costs</span><span class="cf-cb__v">$2,600</span></div>
+          </div>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">Surveys and reports</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Survey</span><span class="cf-cb__v">$2,500</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Re-plat<small>Subdividing the land into four individual lots</small></span><span class="cf-cb__v">$7,500</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Soil report<small>A geotechnical engineer takes samples, which decides the foundation design</small></span><span class="cf-cb__v">$1,300</span></div>
+          </div>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">Design and engineering</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Architectural and structural plans<small>Custom plans for all four homes</small></span><span class="cf-cb__v">~$10,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Civil engineering<small>Needed for the shared driveway</small></span><span class="cf-cb__v">$10,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Renderings<small>Used for pre-sales</small></span><span class="cf-cb__v">$950</span></div>
+          </div>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">City fees</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Impact fees<small>City of Houston fees to connect all four homes to city sewer and water</small></span><span class="cf-cb__v">~$15,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">City permit fees</span><span class="cf-cb__v">$6,300</span></div>
+          </div>
+          <div class="cf-row__down" style="margin:0 0 18px;"><span class="cf-row__down-lbl">Cash to get in</span><span class="cf-row__down-val"><b>15% down</b> — ~$38,400</span></div>
+          <div class="cf-cb__totals">
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Total all in, shovel-ready</span><span class="cf-cb__tv">$256,000</span></div>
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Homes it's ready to build</span><span class="cf-cb__tv">4</span></div>
+            <div class="cf-cb__trow cf-cb__trow--net"><span class="cf-cb__tl">Cost per home</span><span class="cf-cb__tv">$64,000</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 5 — MONTGOMERY LUXURY SPECS -->
+      <div class="cf-row">
+        <div class="cf-row__text">
+          <span class="cf-row__ic">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 21h20"/><path d="M4 21V11l6-5 6 5v10"/><path d="M8 21v-5h4v5"/><path d="M19 21v-6"/><path d="M17 15a2 2 0 1 1 4 0c0 1.5-2 2-2 2s-2-.5-2-2z"/></svg>
+          </span>
+          <div class="cf-row__head">
+            <h3 class="cf-row__title">Montgomery Luxury Specs</h3>
+            <span class="cf-row__badge">Currently Building</span>
+          </div>
+          <p class="cf-row__deal">Two luxury custom spec homes on 1.5-acre lots</p>
+          <p class="cf-row__profit">~$965,000 projected profit</p>
+
+          <button class="cf-cb__btn" type="button" aria-expanded="false" aria-controls="cf-cb-montgomery" onclick="cfToggleCost(this)">
+            <span class="cf-cb__btn-label">Cost breakdown</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="cf-row__video">
+          <iframe style="width:100%;height:100%;border:none;" src="https://www.youtube.com/embed/8VpDFEcKOKw?rel=0" title="Montgomery luxury spec homes breakdown" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="cf-cb" id="cf-cb-montgomery" hidden>
+          <p class="cf-cb__lede">I bought <strong>three 1.5-acre lots for $300,000 each</strong> in a brand-new subdivision in Montgomery County, an hour northwest of Houston. It sits inside the same 24/7 security gates as a neighborhood with a Tiger Woods-designed golf course, where lots have been selling for around <strong>$860,000 an acre. I paid $200,000 an acre</strong> by buying in before the roads were paved and the utilities were run.</p>
+          <p class="cf-cb__lede">Once the roads and utilities are in, the developer is raising prices to $300,000 an acre. That's <strong>50% equity on the land</strong> before I build anything. I'm building two of the lots first, each in a different style, and the design that sells faster gets copied onto the third lot.</p>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">Home 1 — Contemporary French transitional</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Land purchase<small>1.5-acre lot</small></span><span class="cf-cb__v">$300,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Soft costs</span><span class="cf-cb__v">$70,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Land clearing and dirt pad</span><span class="cf-cb__v">$50,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Vertical construction<small>5,642 sq ft living, 1.5 stories, curved staircase. $177 per sq ft.</small></span><span class="cf-cb__v">$1,000,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Bank loan costs</span><span class="cf-cb__v">$80,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l"><strong>All in</strong></span><span class="cf-cb__v">$1,500,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Projected sale price<small>Kept conservative. It appraised at $2.2M.</small></span><span class="cf-cb__v">$2,100,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Sales closing costs</span><span class="cf-cb__v">$130,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l"><strong>Projected profit</strong></span><span class="cf-cb__v">~$470,000</span></div>
+          </div>
+          <div class="cf-cb__group">
+            <p class="cf-cb__gt">Home 2 — Organic modern</p>
+          <div class="cf-cb__line"><span class="cf-cb__l">Land purchase<small>1.5-acre lot</small></span><span class="cf-cb__v">$300,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Soft costs</span><span class="cf-cb__v">$70,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Land clearing and dirt pad</span><span class="cf-cb__v">$50,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Vertical construction<small>About 6,000 sq ft, single story with vaulted ceilings. $187 per sq ft, higher because of a bigger foundation and roof and about $40,000 more in windows and doors.</small></span><span class="cf-cb__v">$1,120,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Bank loan costs</span><span class="cf-cb__v">$80,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l"><strong>All in</strong></span><span class="cf-cb__v">$1,620,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Projected sale price</span><span class="cf-cb__v">$2,250,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l">Sales closing costs</span><span class="cf-cb__v">$135,000</span></div>
+          <div class="cf-cb__line"><span class="cf-cb__l"><strong>Projected profit</strong></span><span class="cf-cb__v">~$495,000</span></div>
+          </div>
+          <div class="cf-row__down" style="margin:0 0 18px;"><span class="cf-row__down-lbl">Cash to get in</span><span class="cf-row__down-val"><b>15% down</b> — $468,000</span></div>
+          <div class="cf-cb__totals">
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Total all in, both homes</span><span class="cf-cb__tv">$3,120,000</span></div>
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Projected sales, both homes</span><span class="cf-cb__tv">$4,350,000</span></div>
+            <div class="cf-cb__trow"><span class="cf-cb__tl">Sales closing costs</span><span class="cf-cb__tv">$265,000</span></div>
+            <div class="cf-cb__trow cf-cb__trow--net"><span class="cf-cb__tl">Projected net profit</span><span class="cf-cb__tv">~$965,000</span></div>
+          </div>
+          <p class="cf-cb__note">Both homes are five bedrooms plus an office, five full baths and two half baths, with an oversized four-car garage, a 48-inch range, a scullery with a second set of appliances, and an outdoor kitchen. 1.5-acre lots also qualify for a private water well. Numbers are projections while the build is underway, and the third lot is still to come.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script type="text/javascript">
+  var s1=document.createElement("script");
+  s1.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6aa30c94804e51b2252ab6a6/v4/player.js";
+  s1.async=true;
+  document.head.appendChild(s1);
+  
+  var s2=document.createElement("script");
+  s2.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6a6081cdc7784ebc62d3db2f/v4/player.js";
+  s2.async=true;
+  document.head.appendChild(s2);
+  
+  var s3=document.createElement("script");
+  s3.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6a3f30efaa3aacde342ae2bd/v4/player.js";
+  s3.async=true;
+  document.head.appendChild(s3);
+  
+  var s4=document.createElement("script");
+  s4.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6a3f2f6f641d860e23c3340d/v4/player.js";
+  s4.async=true;
+  document.head.appendChild(s4);
+  
+  var s5=document.createElement("script");
+  s5.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6a3f30a0641d860e23c33473/v4/player.js";
+  s5.async=true;
+  document.head.appendChild(s5);
+  
+  var s6=document.createElement("script");
+  s6.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6a3f315d8db7a188639129cc/v4/player.js";
+  s6.async=true;
+  document.head.appendChild(s6);
+  
+  var s7=document.createElement("script");
+  s7.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6a3f30768cf599a36e42fe75/v4/player.js";
+  s7.async=true;
+  document.head.appendChild(s7);
+
+  var s8=document.createElement("script");
+  s8.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6aa31224682565b6dba4420f/v4/player.js";
+  s8.async=true;
+  document.head.appendChild(s8);
+
+  var s9=document.createElement("script");
+  s9.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6aa3103facd68fca651ac3bf/v4/player.js";
+  s9.async=true;
+  document.head.appendChild(s9);
+
+  var s11=document.createElement("script");
+  s11.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6aa31381682565b6dba443a2/v4/player.js";
+  s11.async=true;
+  document.head.appendChild(s11);
+
+  var s12=document.createElement("script");
+  s12.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6aa30c0032f15819ee1ef091/v4/player.js";
+  s12.async=true;
+  document.head.appendChild(s12);
+
+  var s13=document.createElement("script");
+  s13.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6aa30dd7434c2f17aeac594b/v4/player.js";
+  s13.async=true;
+  document.head.appendChild(s13);
+
+  var s14=document.createElement("script");
+  s14.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6aa30f7b32f15819ee1ef371/v4/player.js";
+  s14.async=true;
+  document.head.appendChild(s14);
+
+  var s15=document.createElement("script");
+  s15.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6aa30e73c54492aa953da0e5/v4/player.js";
+  s15.async=true;
+  document.head.appendChild(s15);
+
+  var s17=document.createElement("script");
+  s17.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6aa3620271296a55130e8fda/v4/player.js";
+  s17.async=true;
+  document.head.appendChild(s17);
+
+  var s18=document.createElement("script");
+  s18.src="https://scripts.converteai.net/3b9d5e0c-cdfa-409b-9c8d-b0d07c3dcb14/players/6aa364593c93a6112424376c/v4/player.js";
+  s18.async=true;
+  document.head.appendChild(s18);
+
+</script>
+
+<!-- ============ STEP 5 — MORE ABOUT THE PROGRAM (moved from landing page) ============ -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+  @media (max-width:640px){ .ph-com,.ph-fw,.ph-pain,.ph-types,.ph-ds,.ph-sqft,.ph-vs{ overflow-x:clip !important; } }
+</style>
+
+<!-- WHAT SIZE DEAL -->
+<style>
+  .ph-ds{--bg:#f7f5f0;--surface:#ffffff;--text:#1a1a1a;--muted:#6f6f6f;--accent:#a88a35;--green:#1f8a4c;--border:rgba(30,25,10,0.088);all:initial;display:block;box-sizing:border-box;font-family:'DM Sans',-apple-system,sans-serif;background:#f7f5f0;color:#1a1a1a;-webkit-font-smoothing:antialiased;position:relative;overflow:hidden;}
+  .ph-ds *,.ph-ds *::before,.ph-ds *::after{box-sizing:border-box;}
+  .ph-ds::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:1000px;height:760px;max-width:130%;
+    background:radial-gradient(ellipse at center,rgba(198,169,82,0.08),transparent 60%);pointer-events:none;}
+  .ph-ds__inner{position:relative;max-width:1000px;margin:0 auto;padding:clamp(54px,6.8vw,94px) clamp(20px,5vw,48px);text-align:center;}
+  .ph-ds__inner h2{font-family:'DM Sans',sans-serif;font-weight:800;font-size:clamp(30px,4.6vw,48px);
+    line-height:1.1;letter-spacing:-0.02em;margin:0 auto 16px;max-width:24ch;}
+  .ph-ds__inner h2 em{font-style:normal;color:var(--accent);}
+  .ph-ds__sub{font-size:clamp(15px,1.9vw,18px);line-height:1.6;color:var(--muted);margin:0 auto clamp(30px,4vw,42px);max-width:44rem;}
+  .ph-ds__sub b{color:var(--muted);font-weight:600;}
+  .ph-ds__card{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--border);
+    border-radius:20px;padding:clamp(8px,1.6vw,18px) clamp(18px,2.4vw,30px);}
+  .ph-ds__card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(198,169,82,0.6),transparent);}
+  .ph-ds__row{display:grid;grid-template-columns:auto 1fr 1fr;align-items:center;gap:clamp(14px,3vw,34px);
+    padding:clamp(20px,2.8vw,28px) 0;border-bottom:1px solid var(--border);text-align:left;}
+  .ph-ds__row:last-child{border-bottom:0;}
+  .ph-ds__cap{display:inline-flex;align-items:baseline;gap:6px;
+    padding:9px 18px;border-radius:100px;border:1px solid rgba(198,169,82,0.45);background:rgba(198,169,82,0.09);
+    white-space:nowrap;}
+  .ph-ds__cap b{font-family:'DM Sans',sans-serif;font-size:clamp(17px,2.1vw,22px);font-weight:800;
+    letter-spacing:-0.02em;color:var(--accent);}
+  .ph-ds__cap span{font-size:clamp(11px,1.3vw,12.5px);font-weight:600;color:rgba(198,169,82,0.75);
+    text-transform:uppercase;letter-spacing:0.05em;}
+  .ph-ds__cell small{display:block;font-size:10.5px;font-weight:700;letter-spacing:0.08em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+  .ph-ds__cell b{font-family:'DM Sans',sans-serif;font-size:clamp(17px,2.2vw,24px);font-weight:800;
+    letter-spacing:-0.025em;color:var(--text);white-space:nowrap;}
+  .ph-ds__cell.profit b{color:var(--green);}
+  .ph-ds__fine{margin:clamp(18px,2.4vw,24px) auto 0;max-width:40rem;text-align:center;
+    font-size:12.5px;line-height:1.55;color:var(--muted);}
+  .ph-ds__fine b{color:#1a1a1a;font-weight:700;}
+  @media (max-width:760px){
+    .ph-ds__row{grid-template-columns:1fr 1fr;gap:14px 16px;}
+    .ph-ds__cap{grid-column:1 / span 2;justify-self:start;}
+  }
+  @media (max-width:420px){
+    .ph-ds__cell b{font-size:16px;white-space:normal;}
+  }
+</style>
+<section class="ph-ds"><div class="ph-ds__inner">
+  <h2>What <em>Size Deal</em> Can You Actually Get Into With Investor's Blueprint?</h2>
+  <p class="ph-ds__sub">Student deals typically require <b>15 to 20% of the all-in cost</b>, and the rest gets financed. I typically hit a <b>20% profit margin</b> on my builds, and with me by your side, you'd be doing exactly what I'd do if this were my own build.</p>
+  <div class="ph-ds__card">
+    <div class="ph-ds__row">
+      <span class="ph-ds__cap"><b>$100K</b><span>ready</span></span>
+      <div class="ph-ds__cell"><small>Project You Can Target</small><b>$500K &ndash; $650K</b></div>
+      <div class="ph-ds__cell profit"><small>Target Profit</small><b>$100K &ndash; $130K</b></div>
+    </div>
+    <div class="ph-ds__row">
+      <span class="ph-ds__cap"><b>$200K</b><span>ready</span></span>
+      <div class="ph-ds__cell"><small>Project You Can Target</small><b>$1M &ndash; $1.3M</b></div>
+      <div class="ph-ds__cell profit"><small>Target Profit</small><b>$200K &ndash; $260K</b></div>
+    </div>
+    <div class="ph-ds__row">
+      <span class="ph-ds__cap"><b>$300K+</b><span>ready</span></span>
+      <div class="ph-ds__cell"><small>Project You Can Target</small><b>$1.5M &ndash; $2M</b></div>
+      <div class="ph-ds__cell profit"><small>Target Profit</small><b>$300K+</b></div>
+    </div>
+  </div>
+  <p class="ph-ds__fine"><b>Disclaimer:</b> I haven't gotten to know you yet, or how well you can stick to a step by step system, and that influences the numbers more than anything else. Please treat this as a projection rather than a promise.</p>
+</div></section>
+
+<!-- PER SQ FT SAVINGS -->
+<style>
+  .ph-sqft{--ph-bg:#f7f5f0;--ph-surface:#ffffff;--ph-text:#1a1a1a;--ph-muted:#6f6f6f;--ph-accent:#a88a35;--ph-green:#1f8a4c;--ph-red:#c8372d;--ph-border:rgba(30,25,10,0.088);
+    all:initial;display:block;box-sizing:border-box;position:relative;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--ph-bg);color:var(--ph-text);
+    padding:clamp(54px,6.8vw,94px) clamp(20px,5vw,48px);-webkit-font-smoothing:antialiased;}
+  .ph-sqft *,.ph-sqft *::before,.ph-sqft *::after{box-sizing:border-box;}
+  .ph-sqft::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1000px;height:760px;max-width:130%;
+    background:radial-gradient(ellipse at center,rgba(31,138,76,0.06),transparent 60%);pointer-events:none;z-index:0;}
+  .ph-sqft__inner{position:relative;z-index:1;max-width:1000px;margin:0 auto;}
+  .ph-sqft__head{text-align:center;max-width:740px;margin:0 auto clamp(36px,4.5vw,52px);}
+  .ph-sqft__title{font-family:'DM Sans',sans-serif;font-weight:800;font-size:clamp(30px,4.6vw,48px);line-height:1.1;letter-spacing:-0.02em;margin:0 0 16px;text-wrap:balance;}
+  .ph-sqft__title em{font-style:normal;color:var(--ph-accent);}
+  .ph-sqft__sub{font-size:clamp(15px,1.9vw,18px);line-height:1.6;color:var(--ph-muted);margin:0;}
+  .ph-sqft__card{position:relative;overflow:hidden;background:var(--ph-surface);border:1px solid var(--ph-border);
+    border-radius:20px;padding:clamp(8px,1.6vw,18px) clamp(18px,2.4vw,30px);}
+  .ph-sqft__card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(198,169,82,0.6),transparent);}
+  .ph-sqft__row{padding:clamp(20px,2.8vw,28px) 0;border-bottom:1px solid var(--ph-border);}
+  .ph-sqft__row:last-of-type{border-bottom:0;}
+  .ph-sqft__rowhead{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:16px;padding-left:2px;}
+  .ph-sqft__rowname{font-family:'DM Sans',sans-serif;font-size:clamp(17px,2.1vw,21px);font-weight:700;
+    letter-spacing:-0.01em;color:var(--ph-text);}
+  .ph-sqft__rowsqft{font-size:clamp(13px,1.6vw,14.5px);color:var(--ph-muted);font-weight:400;}
+  .ph-sqft__cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+  .ph-sqft__cell{border:1px solid var(--ph-border);border-radius:14px;padding:16px 18px;background:var(--ph-bg);}
+  .ph-sqft__label{display:block;font-size:10.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:11px;}
+  .ph-sqft__rate{font-family:'DM Sans',sans-serif;font-weight:800;font-size:clamp(18px,2.3vw,23px);line-height:1;letter-spacing:-0.01em;color:var(--ph-text);white-space:nowrap;}
+  .ph-sqft__rate span{font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:500;color:var(--ph-muted);letter-spacing:0;}
+  .ph-sqft__build{display:block;font-size:12px;color:var(--ph-muted);margin-top:9px;}
+  .ph-sqft__cell--own{border-color:rgba(200,55,45,0.4);}
+  .ph-sqft__cell--own .ph-sqft__label{color:var(--ph-red);}
+  .ph-sqft__cell--bp{border-color:rgba(31,138,76,0.45);}
+  .ph-sqft__cell--bp .ph-sqft__label{color:var(--ph-green);}
+  .ph-sqft__cell--save{border:1px solid rgba(31,138,76,0.5);padding:16px 20px;
+    background:linear-gradient(160deg,rgba(31,138,76,0.13),rgba(31,138,76,0.03) 60%,transparent),var(--ph-bg);
+    box-shadow:0 0 34px rgba(31,138,76,0.16);display:flex;flex-direction:column;justify-content:center;}
+  .ph-sqft__cell--save .ph-sqft__label{color:var(--ph-green);}
+  .ph-sqft__cell--save .ph-sqft__rate{font-size:clamp(21px,2.9vw,29px);color:#1f8a4c;}
+  .ph-sqft__disc{max-width:760px;margin:clamp(30px,4vw,40px) auto 0;text-align:center;font-size:13px;line-height:1.6;color:var(--ph-muted);}
+  .ph-sqft__disc strong{color:#1a1a1a;font-weight:600;}
+  @media (max-width:720px){ .ph-sqft{padding-top:34px;padding-bottom:34px;} .ph-sqft__cols{grid-template-columns:1fr;gap:10px;} .ph-sqft__rate{white-space:normal;} }
+</style>
+<section class="ph-sqft"><div class="ph-sqft__inner">
+  <div class="ph-sqft__head">
+    <h2 class="ph-sqft__title">My Students Build For <em>$10&ndash;$80</em> Less Per Square Foot</h2>
+    <p class="ph-sqft__sub">You build at my rates, not new-customer rates.</p>
+  </div>
+  <div class="ph-sqft__card">
+  <div class="ph-sqft__row">
+    <div class="ph-sqft__rowhead"><span class="ph-sqft__rowname">Average Duplex</span><span class="ph-sqft__rowsqft">&middot; 3,600 sq ft</span></div>
+    <div class="ph-sqft__cols">
+      <div class="ph-sqft__cell ph-sqft__cell--own"><span class="ph-sqft__label">On Your Own</span><div class="ph-sqft__rate">$125&ndash;$135 <span>/ sq ft</span></div><span class="ph-sqft__build">$450K&ndash;$486K to build</span></div>
+      <div class="ph-sqft__cell ph-sqft__cell--bp"><span class="ph-sqft__label">With Investor's Blueprint</span><div class="ph-sqft__rate">$100&ndash;$110 <span>/ sq ft</span></div><span class="ph-sqft__build">$360K&ndash;$396K to build</span></div>
+      <div class="ph-sqft__cell ph-sqft__cell--save"><span class="ph-sqft__label">You Save</span><div class="ph-sqft__rate">$54K&ndash;$126K</div></div>
+    </div>
+  </div>
+  <div class="ph-sqft__row">
+    <div class="ph-sqft__rowhead"><span class="ph-sqft__rowname">Average 5-Home Project</span><span class="ph-sqft__rowsqft">&middot; 10,000 sq ft</span></div>
+    <div class="ph-sqft__cols">
+      <div class="ph-sqft__cell ph-sqft__cell--own"><span class="ph-sqft__label">On Your Own</span><div class="ph-sqft__rate">$145&ndash;$155 <span>/ sq ft</span></div><span class="ph-sqft__build">$1.45M&ndash;$1.55M to build</span></div>
+      <div class="ph-sqft__cell ph-sqft__cell--bp"><span class="ph-sqft__label">With Investor's Blueprint</span><div class="ph-sqft__rate">$115&ndash;$130 <span>/ sq ft</span></div><span class="ph-sqft__build">$1.15M&ndash;$1.3M to build</span></div>
+      <div class="ph-sqft__cell ph-sqft__cell--save"><span class="ph-sqft__label">You Save</span><div class="ph-sqft__rate">$150K&ndash;$400K</div></div>
+    </div>
+  </div>
+  <div class="ph-sqft__row">
+    <div class="ph-sqft__rowhead"><span class="ph-sqft__rowname">Average Luxury Home</span><span class="ph-sqft__rowsqft">&middot; 5,000 sq ft</span></div>
+    <div class="ph-sqft__cols">
+      <div class="ph-sqft__cell ph-sqft__cell--own"><span class="ph-sqft__label">On Your Own</span><div class="ph-sqft__rate">$250&ndash;$280 <span>/ sq ft</span></div><span class="ph-sqft__build">$1.25M&ndash;$1.4M to build</span></div>
+      <div class="ph-sqft__cell ph-sqft__cell--bp"><span class="ph-sqft__label">With Investor's Blueprint</span><div class="ph-sqft__rate">$170&ndash;$200 <span>/ sq ft</span></div><span class="ph-sqft__build">$850K&ndash;$1M to build</span></div>
+      <div class="ph-sqft__cell ph-sqft__cell--save"><span class="ph-sqft__label">You Save</span><div class="ph-sqft__rate">$250K&ndash;$550K</div></div>
+    </div>
+  </div>
+  </div>
+  <p class="ph-sqft__disc"><strong>Disclaimer:</strong> Averages taken from current student deals and market conditions as of September 2026. Build costs move by market, product type and finish level, so your own numbers will differ.</p>
+</div></section>
+
+<!-- WITH vs WITHOUT -->
+<style>
+  .ph-vs{--ph-bg:#f7f5f0;--ph-surface:#ffffff;--ph-text:#1a1a1a;--ph-muted:#6f6f6f;--ph-accent:#a88a35;--ph-border:rgba(30,25,10,0.088);--ph-green:#1f8a4c;--ph-red:#c8372d;
+    all:initial;display:block;box-sizing:border-box;position:relative;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--ph-bg);color:var(--ph-text);
+    padding:clamp(54px,6.8vw,94px) clamp(20px,5vw,48px);-webkit-font-smoothing:antialiased;}
+  .ph-vs *,.ph-vs *::before,.ph-vs *::after{box-sizing:border-box;}
+  .ph-vs::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1000px;height:760px;max-width:130%;
+    background:radial-gradient(ellipse at center,rgba(198,169,82,0.08),transparent 60%);pointer-events:none;z-index:0;}
+  .ph-vs__inner{position:relative;z-index:1;max-width:1000px;margin:0 auto;}
+  .ph-vs__grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch;}
+  .ph-vs__vs{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;width:56px;height:56px;border-radius:50%;
+    background:var(--ph-bg);border:1px solid rgba(198,169,82,0.55);display:flex;align-items:center;justify-content:center;
+    font-family:'DM Sans',sans-serif;font-weight:800;font-size:15px;color:var(--ph-accent);box-shadow:0 12px 34px rgba(30,25,10,0.12);}
+  .ph-vs__card{position:relative;overflow:hidden;background:var(--ph-surface);border:1px solid var(--ph-border);border-radius:18px;padding:clamp(24px,3vw,32px);}
+  .ph-vs__card--bad{border-color:rgba(200,55,45,0.32);background:linear-gradient(180deg,rgba(200,55,45,0.06),transparent 60%),var(--ph-surface);}
+  .ph-vs__card--good{border-color:rgba(31,138,76,0.45);background:linear-gradient(180deg,rgba(31,138,76,0.09),transparent 60%),var(--ph-surface);box-shadow:0 24px 60px rgba(31,138,76,0.08);}
+  .ph-vs__cardhead{display:flex;align-items:center;gap:13px;margin-bottom:22px;padding-bottom:20px;border-bottom:1px solid var(--ph-border);}
+  .ph-vs__badge{flex:0 0 auto;width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;}
+  .ph-vs__badge--bad{background:rgba(200,55,45,0.14);}
+  .ph-vs__badge--good{background:rgba(31,138,76,0.16);}
+  .ph-vs__eyebrow{display:block;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:5px;}
+  .ph-vs__eyebrow--bad{color:var(--ph-red);}
+  .ph-vs__eyebrow--good{color:var(--ph-green);}
+  .ph-vs__cardtitle{font-family:'DM Sans',sans-serif;font-weight:700;font-size:clamp(18px,2.2vw,22px);line-height:1.2;margin:0;}
+  .ph-vs__list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
+  .ph-vs__list li{display:flex;align-items:center;gap:11px;background:var(--ph-bg);border:1px solid var(--ph-border);border-radius:100px;padding:11px 16px;font-size:14.5px;line-height:1.3;}
+  .ph-vs__list--bad li{color:#1a1a1a;}
+  .ph-vs__list--good li{color:#2a2a2a;}
+  .ph-vs__list li svg{flex:0 0 auto;}
+  @media (max-width:720px){ .ph-vs{padding-top:34px;padding-bottom:34px;} .ph-vs__grid{grid-template-columns:1fr;gap:16px;} .ph-vs__vs{display:none;} }
+</style>
+<section class="ph-vs"><div class="ph-vs__inner"><div class="ph-vs__grid">
+  <article class="ph-vs__card ph-vs__card--bad">
+    <div class="ph-vs__cardhead">
+      <span class="ph-vs__badge ph-vs__badge--bad"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8372d" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+      <span><span class="ph-vs__eyebrow ph-vs__eyebrow--bad">Going It Alone</span><h3 class="ph-vs__cardtitle">Without Investor's Blueprint</h3></span>
+    </div>
+    <ul class="ph-vs__list ph-vs__list--bad">
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#c8372d"/><path d="M8.7 8.7l6.6 6.6M15.3 8.7l-6.6 6.6" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/></svg>Overpaying for lots</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#c8372d"/><path d="M8.7 8.7l6.6 6.6M15.3 8.7l-6.6 6.6" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/></svg>Shady contractors</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#c8372d"/><path d="M8.7 8.7l6.6 6.6M15.3 8.7l-6.6 6.6" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/></svg>Industry-standard material costs</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#c8372d"/><path d="M8.7 8.7l6.6 6.6M15.3 8.7l-6.6 6.6" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/></svg>Risky underwriting numbers</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#c8372d"/><path d="M8.7 8.7l6.6 6.6M15.3 8.7l-6.6 6.6" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/></svg>Unexpected costs</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#c8372d"/><path d="M8.7 8.7l6.6 6.6M15.3 8.7l-6.6 6.6" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/></svg>Low margins</li>
+    </ul>
+  </article>
+  <article class="ph-vs__card ph-vs__card--good">
+    <div class="ph-vs__cardhead">
+      <span class="ph-vs__badge ph-vs__badge--good"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f8a4c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4 4L19 7"/></svg></span>
+      <span><span class="ph-vs__eyebrow ph-vs__eyebrow--good">Inside The Program</span><h3 class="ph-vs__cardtitle">With Investor's Blueprint</h3></span>
+    </div>
+    <ul class="ph-vs__list ph-vs__list--good">
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#1f8a4c"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Off-market deal flow</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#1f8a4c"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Vetted contractors</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#1f8a4c"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Cheaper suppliers</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#1f8a4c"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Confident underwriting</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#1f8a4c"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>No unexpected costs</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#1f8a4c"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>High margins</li>
+    </ul>
+  </article>
+  <span class="ph-vs__vs">VS</span>
+</div></div></section>
+
+<!-- 2 TYPES -->
+<style>
+  .ph-types{--ph-bg:#f7f5f0;--ph-surface:#ffffff;--ph-text:#1a1a1a;--ph-muted:#6f6f6f;--ph-accent:#a88a35;--ph-border:rgba(30,25,10,0.088);
+    all:initial;display:block;box-sizing:border-box;position:relative;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--ph-bg);color:var(--ph-text);
+    padding:clamp(54px,6.8vw,94px) clamp(20px,5vw,48px);-webkit-font-smoothing:antialiased;}
+  .ph-types *,.ph-types *::before,.ph-types *::after{box-sizing:border-box;}
+  .ph-types::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1000px;height:760px;max-width:130%;
+    background:radial-gradient(ellipse at center,rgba(198,169,82,0.09),transparent 60%);pointer-events:none;z-index:0;}
+  .ph-types__inner{position:relative;z-index:1;max-width:1000px;margin:0 auto;}
+  .ph-types__title{font-family:'DM Sans',sans-serif;font-weight:800;font-size:clamp(30px,4.8vw,50px);line-height:1.1;letter-spacing:-0.02em;
+    text-align:center;margin:0 auto clamp(38px,5vw,56px);max-width:720px;text-wrap:balance;}
+  .ph-types__title em{font-style:normal;color:var(--ph-accent);}
+  .ph-types__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .ph-type{position:relative;overflow:hidden;background:var(--ph-surface);border:1px solid var(--ph-border);border-radius:18px;
+    padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;}
+  .ph-type::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(198,169,82,0.6),transparent);}
+  .ph-type__name{font-family:'DM Sans',sans-serif;font-size:clamp(21px,2.6vw,26px);font-weight:700;letter-spacing:-0.01em;margin:0 0 14px;}
+  .ph-type__body{font-size:clamp(14.5px,1.7vw,15.5px);line-height:1.62;color:var(--ph-muted);margin:0 0 24px;}
+  .ph-type__list{list-style:none;padding:0;margin:auto 0 0;display:flex;flex-direction:column;gap:10px;}
+  .ph-type__list li{display:flex;align-items:center;gap:11px;background:var(--ph-bg);border:1px solid var(--ph-border);border-radius:100px;padding:10px 16px;font-size:14px;color:#2a2a2a;}
+  .ph-type__list li svg{flex:0 0 auto;}
+  @media (max-width:720px){ .ph-types{padding-top:34px;padding-bottom:34px;} .ph-types__grid{grid-template-columns:1fr;} }
+</style>
+<section class="ph-types"><div class="ph-types__inner">
+  <h2 class="ph-types__title">I Work With <em>2 Types</em> Of Real Estate Developers</h2>
+  <div class="ph-types__grid">
+    <article class="ph-type">
+      <h3 class="ph-type__name">Looking For A Deal</h3>
+      <p class="ph-type__body">You already know real estate development is the best path to build real wealth. But you don't know where to source deals, how to tell if one is even good, hire contractors, or manage a real ground-up build. Let alone how to answer the hundreds of small, yet important decisions that come up along the way. You've got the capital and the drive. You just don't have the path yet.</p>
+      <ul class="ph-type__list">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#c6a952"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Capital ready to deploy</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#c6a952"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Nothing lined up yet</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#c6a952"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Need help sourcing deals</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#c6a952"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Want the full step by step process</li>
+      </ul>
+    </article>
+    <article class="ph-type">
+      <h3 class="ph-type__name">Deal In Hand</h3>
+      <p class="ph-type__body">You've already got a piece of land or a potential deal lined up, so the clock is running. Maybe you've run the numbers but you're not confident they're the right numbers. Maybe you've done a deal before and got burned by contractors or costs you never saw coming. Either way, you don't want to figure it out as you go. You've got the deal and the drive. You just want someone more experienced running it with you.</p>
+      <ul class="ph-type__list">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#c6a952"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Capital ready to deploy</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#c6a952"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Deal or land already lined up</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#c6a952"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Need help catching hidden mistakes</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#c6a952"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Want someone experienced through the whole build</li>
+      </ul>
+    </article>
+  </div>
+</div></section>
+
+<!-- SOUND FAMILIAR -->
+<style>
+  .ph-pain{--ph-bg:#f7f5f0;--ph-surface:#ffffff;--ph-text:#1a1a1a;--ph-muted:#6f6f6f;--ph-accent:#a88a35;--ph-accent-soft:rgba(198,169,82,0.12);--ph-border:rgba(30,25,10,0.088);
+    all:initial;display:block;box-sizing:border-box;position:relative;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--ph-bg);color:var(--ph-text);
+    padding:clamp(54px,6.8vw,94px) clamp(20px,5vw,48px);-webkit-font-smoothing:antialiased;}
+  .ph-pain *,.ph-pain *::before,.ph-pain *::after{box-sizing:border-box;}
+  .ph-pain::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1050px;height:900px;max-width:130%;
+    background:radial-gradient(ellipse at center,rgba(198,169,82,0.07),transparent 60%);pointer-events:none;z-index:0;}
+  .ph-pain__inner{position:relative;z-index:1;max-width:1000px;margin:0 auto;}
+  .ph-pain__head{text-align:center;max-width:720px;margin:0 auto clamp(38px,5vw,54px);}
+  .ph-pain__title{font-family:'DM Sans',sans-serif;font-weight:800;font-size:clamp(30px,4.8vw,50px);line-height:1.1;letter-spacing:-0.02em;margin:0 0 16px;text-wrap:balance;}
+  .ph-pain__title em{font-style:normal;color:var(--ph-accent);}
+  .ph-pain__sub{font-size:clamp(15px,1.9vw,18px);line-height:1.6;color:var(--ph-muted);margin:0;}
+  .ph-pain__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .ph-pain__card{position:relative;overflow:hidden;background:var(--ph-surface);border:1px solid var(--ph-border);border-radius:18px;padding:clamp(24px,3vw,32px);}
+  .ph-pain__card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(198,169,82,0.55),transparent);}
+  .ph-pain__num{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:11px;
+    background:var(--ph-accent-soft);border:1px solid rgba(198,169,82,0.3);color:var(--ph-accent);
+    font-family:'DM Sans',sans-serif;font-size:17px;font-weight:800;margin-bottom:18px;}
+  .ph-pain__name{font-family:'DM Sans',sans-serif;font-size:clamp(18px,2.1vw,21px);font-weight:700;line-height:1.25;letter-spacing:-0.01em;margin:0 0 12px;text-wrap:balance;}
+  .ph-pain__body{font-size:clamp(14px,1.7vw,15px);line-height:1.62;color:var(--ph-muted);margin:0;}
+  @media (max-width:720px){ .ph-pain{padding-top:34px;padding-bottom:34px;} .ph-pain__grid{grid-template-columns:1fr;} }
+</style>
+<section class="ph-pain"><div class="ph-pain__inner">
+  <div class="ph-pain__head">
+    <h2 class="ph-pain__title">Do Any Of These <em>Sound Familiar?</em></h2>
+    <p class="ph-pain__sub">These are the gaps that stop capable investors from ever getting a development done.</p>
+  </div>
+  <div class="ph-pain__grid">
+    <article class="ph-pain__card"><span class="ph-pain__num">1</span>
+      <h3 class="ph-pain__name">You Don't Know How To Deploy Your Capital</h3>
+      <p class="ph-pain__body">You've got it sitting there ready. But nobody's told you the order things happen in. Do you buy the land in cash or finance it? When do you hire the build team? How much stays in the bank versus goes into the deal? Money isn't the problem, knowing how to use it is.</p>
+    </article>
+    <article class="ph-pain__card"><span class="ph-pain__num">2</span>
+      <h3 class="ph-pain__name">You Don't Know How To Vet Good Contractors</h3>
+      <p class="ph-pain__body">You've never hired anyone for a build, so you can't tell the difference between someone reliable and someone telling you what you want to hear to win the contract. You don't know what to ask, or what a fair number looks like for the work. So you'd be picking on gut feel.</p>
+    </article>
+    <article class="ph-pain__card"><span class="ph-pain__num">3</span>
+      <h3 class="ph-pain__name">You Don't Know How To Manage A Construction Project</h3>
+      <p class="ph-pain__body">You've never run a team of tradesmen. So you don't know what should be happening on site each week, who has to finish before who starts, or what it looks like when something's going wrong. And every week it slips, you're paying for it.</p>
+    </article>
+    <article class="ph-pain__card"><span class="ph-pain__num">4</span>
+      <h3 class="ph-pain__name">You Don't Know How To Get Plans And Permits Approved</h3>
+      <p class="ph-pain__body">You've never submitted anything to a city. So you don't know what drawings they want, who stamps them, or how many rounds of back and forth it takes. You don't even know what you're allowed to build on a lot before you buy it.</p>
+    </article>
+    <article class="ph-pain__card"><span class="ph-pain__num">5</span>
+      <h3 class="ph-pain__name">You Don't Know How To Find Deals Worth Buying</h3>
+      <p class="ph-pain__body">Every lot you look at is on the public market, already priced for somebody else's profit. You know the good ones get bought before they ever show up, you just don't know who's getting them or how. And when you do find one, you can't tell if it's real.</p>
+    </article>
+    <article class="ph-pain__card"><span class="ph-pain__num">6</span>
+      <h3 class="ph-pain__name">You Don't Know How To Underwrite A Development Deal</h3>
+      <p class="ph-pain__body">You can put a spreadsheet together. What you can't do is tell whether the numbers in it are the right ones. You don't know a realistic build cost, what soft costs you're missing, or what it actually sells for when it's done. The math will be perfect and still be wrong.</p>
+    </article>
+  </div>
+</div></section>
+
+<!-- 3-PART FRAMEWORK -->
+<style>
+  .ph-fw{--ph-bg:#f7f5f0;--ph-surface:#ffffff;--ph-text:#1a1a1a;--ph-muted:#6f6f6f;--ph-accent:#a88a35;--ph-accent-soft:rgba(198,169,82,0.12);--ph-border:rgba(30,25,10,0.088);
+    all:initial;display:block;box-sizing:border-box;position:relative;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--ph-bg);color:var(--ph-text);
+    padding:clamp(54px,6.8vw,94px) clamp(20px,5vw,48px);-webkit-font-smoothing:antialiased;}
+  .ph-fw *,.ph-fw *::before,.ph-fw *::after{box-sizing:border-box;}
+  .ph-fw::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1000px;height:760px;max-width:130%;
+    background:radial-gradient(ellipse at center,rgba(198,169,82,0.09),transparent 60%);pointer-events:none;z-index:0;}
+  .ph-fw__inner{position:relative;z-index:1;max-width:1040px;margin:0 auto;}
+  .ph-fw__head{text-align:center;max-width:720px;margin:0 auto clamp(40px,5vw,56px);}
+  .ph-fw__title{font-family:'DM Sans',sans-serif;font-weight:800;font-size:clamp(30px,4.8vw,50px);line-height:1.1;letter-spacing:-0.02em;margin:0 0 16px;text-wrap:balance;}
+  .ph-fw__title em{font-style:italic;color:var(--ph-accent);}
+  .ph-fw__sub{font-size:clamp(15px,1.9vw,18px);line-height:1.6;color:var(--ph-muted);margin:0;}
+  .ph-fw__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .ph-fw__card{position:relative;overflow:hidden;background:var(--ph-surface);border:1px solid var(--ph-border);border-radius:18px;
+    padding:clamp(24px,2.6vw,30px);display:flex;flex-direction:column;}
+  .ph-fw__card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(198,169,82,0.55),transparent);}
+  .ph-fw__num{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:13px;
+    background:var(--ph-accent-soft);border:1px solid rgba(198,169,82,0.3);color:var(--ph-accent);margin-bottom:18px;align-self:flex-start;}
+  .ph-fw__name{font-family:'DM Sans',sans-serif;font-size:clamp(19px,2.2vw,23px);font-weight:700;letter-spacing:-0.01em;margin:0 0 13px;}
+  .ph-fw__body{font-size:clamp(14px,1.6vw,15px);line-height:1.62;color:var(--ph-muted);margin:0;}
+  @media (max-width:860px){ .ph-fw__grid{grid-template-columns:1fr;} }
+  @media (max-width:720px){ .ph-fw{padding-top:34px;padding-bottom:34px;} }
+</style>
+<section class="ph-fw"><div class="ph-fw__inner">
+  <div class="ph-fw__head">
+    <h2 class="ph-fw__title">The <em>3-Part Framework</em> Behind Every Student Breakthrough</h2>
+    <p class="ph-fw__sub">Every real estate developer who comes through Investor's Blueprint gets a fully customized roadmap built around these three systems.</p>
+  </div>
+  <div class="ph-fw__grid">
+    <article class="ph-fw__card">
+      <span class="ph-fw__num"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg></span>
+      <h3 class="ph-fw__name">Source System</h3>
+      <p class="ph-fw__body">Two things here. First, I plug you into my network of off-market deals, the good ones that never make it to the public market. But more importantly, I teach you how to find and check deals on your own, so you can spot a good one from a bad one before you ever commit a dollar. So whether it's a deal I point you to or one you find yourself, you'll know how to run the numbers and tell if it's actually worth doing.</p>
+    </article>
+    <article class="ph-fw__card">
+      <span class="ph-fw__num"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M14.8 9.3c-.6-.7-1.6-1.1-2.8-1.1-1.6 0-2.9.8-2.9 2s1.3 1.7 2.9 2 2.9.8 2.9 2c0 1.2-1.3 2-2.9 2-1.2 0-2.2-.4-2.8-1.1"/><line x1="12" y1="5.8" x2="12" y2="7.4"/><line x1="12" y1="16.6" x2="12" y2="18.2"/></svg></span>
+      <h3 class="ph-fw__name">Capital System</h3>
+      <p class="ph-fw__body">I hand you my playbook for raising money from real investors: how to find them, how to present the deal so they say yes, and how to fund projects far bigger than your own savings could. So you stop walking away from good deals just because you don't have all the cash. Once you can raise money, you can take on deals many times bigger than anything you could do alone.</p>
+    </article>
+    <article class="ph-fw__card">
+      <span class="ph-fw__num"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 12l-8.4 8.4a1.4 1.4 0 0 1-2-2L13 10"/><path d="M18 15l3.5-3.5"/><path d="M21.5 11.5l-1.9-1.9A2 2 0 0 1 19 8.2V7l-2.3-2.3a6 6 0 0 0-4.2-1.7L9 3l.9.8A6.2 6.2 0 0 1 12 8.4V10l2 2h1.2a2 2 0 0 1 1.4.6l1.9 1.9"/></svg></span>
+      <h3 class="ph-fw__name">Build System</h3>
+      <p class="ph-fw__body">Two things here as well. First, I give you access to my vetted team, my contractors and lenders, the network it took me a decade to build. And second, whether you use my people or your own, I show you exactly how to run the build the right way, from an empty lot all the way to sold. So you're not just avoiding the mistakes that eat your profit, you're building smart enough to actually make money on the deal, even if it's your first one.</p>
+    </article>
+  </div>
+</div></section>
+
+<!-- COMMUNITY -->
+<style>
+  .ph-com{--ph-bg:#f7f5f0;--ph-surface:#ffffff;--ph-text:#1a1a1a;--ph-muted:#6f6f6f;--ph-accent:#a88a35;--ph-border:rgba(30,25,10,0.088);
+    all:initial;display:block;box-sizing:border-box;font-family:'DM Sans',sans-serif;background:var(--ph-bg);color:var(--ph-text);
+    padding:clamp(54px,6.8vw,94px) clamp(20px,5vw,48px);-webkit-font-smoothing:antialiased;}
+  .ph-com *,.ph-com *::before,.ph-com *::after{box-sizing:border-box;}
+  .ph-com__card{position:relative;overflow:hidden;max-width:900px;margin:0 auto;
+    background:radial-gradient(120% 90% at 50% 0%,rgba(198,169,82,0.1),transparent 55%),var(--ph-surface);
+    border:1px solid var(--ph-border);border-radius:24px;padding:clamp(20px,3vw,32px) clamp(20px,4vw,48px) clamp(36px,5vw,52px);}
+  .ph-com__photo{position:relative;z-index:1;width:100%;border-radius:16px;overflow:hidden;border:1px solid var(--ph-border);margin-bottom:clamp(28px,4vw,40px);}
+  .ph-com__photo img{display:block;width:100%;height:auto;object-fit:cover;}
+  .ph-com__content{position:relative;z-index:1;text-align:center;max-width:660px;margin:0 auto;}
+  .ph-com__title{font-family:'DM Sans',sans-serif;font-weight:800;font-size:clamp(30px,4.8vw,50px);line-height:1.08;letter-spacing:-0.02em;margin:0 0 22px;text-wrap:balance;}
+  .ph-com__title em{font-style:normal;color:var(--ph-accent);}
+  .ph-com__body p{font-size:clamp(15px,1.9vw,17px);line-height:1.65;color:#4a4a4a;margin:0 0 18px;}
+  .ph-com__kicker{font-family:'DM Sans',sans-serif;font-size:clamp(18px,2.4vw,24px) !important;font-weight:700;color:var(--ph-text) !important;margin:26px 0 0 !important;letter-spacing:-0.01em;}
+  @media (max-width:720px){ .ph-com{padding-top:34px;padding-bottom:34px;} }
+</style>
+<section class="ph-com"><div class="ph-com__card">
+  <div class="ph-com__photo"><img src="/assets/img/community.jpg" alt="The community"></div>
+  <div class="ph-com__content">
+    <h2 class="ph-com__title">You Won't Do This <em>Alone</em></h2>
+    <div class="ph-com__body">
+      <p>Most investors grind in isolation. No feedback on their deals, no one to call before they sign, no one to tell them whether the deal in front of them is actually a good one. That's why most people quit right before it compounds.</p>
+      <p>Investor's Blueprint is different. When you join, you step into a room full of serious operators, wholesalers, flippers, developers, and rental owners, all moving in the same direction.</p>
+      <p>These are investors who show up, do the work, and hold each other to a higher standard. JV partners get matched here. Private capital gets raised here. Off-market deals get traded here. Friendships get built. Careers get made.</p>
+      <p class="ph-com__kicker">The room alone is worth it.</p>
+    </div>
+  </div>
+</div></section>
+<!-- ============ END MOVED SECTIONS ============ -->
+
+
+<!-- LIGHT THEME OVERRIDES -->
+<style>
+  /* alternating white / cream sections */
+  .cf-top,.cf-featured,.ph-sqft,.ph-types,.ph-fw{background:#ffffff !important;}
+  .cf-faq,.ph-ds,.ph-vs,.ph-pain,.ph-com,.cf-team,.cf-foot{background:#f7f5f0 !important;}
+  .cf-faq,.cf-featured,.ph-ds,.ph-sqft,.ph-vs,.ph-types,.ph-pain,.ph-fw,.ph-com{border-top:1px solid #e6e3db !important;}
+  /* remove dark-theme glows */
+  .cf-top__glow,.ph-ds::before,.ph-sqft::before,.ph-vs::before,.ph-types::before,.ph-pain::before,.ph-fw::before{display:none !important;}
+  /* cards: light border + soft shadow */
+  .cf-faq__card,.cf-featured__card,.cf-row,.ph-ds__card,.ph-sqft__card,.ph-vs__card,.ph-type,.ph-pain__card,.ph-fw__card,.ph-com__card,.cf-team__container{
+    border-color:#e6e3db;box-shadow:0 14px 40px rgba(30,25,10,0.06);}
+  .ph-vs__card--bad{border-color:rgba(200,55,45,0.3);}
+  .ph-vs__card--good{border-color:rgba(31,138,76,0.35);}
+  .ph-com__card{background:#ffffff !important;}
+  /* headings: tight, bold */
+  .cf-h,.cf-step,.cf-faq__label,.cf-featured__label,.ph-ds__inner h2,.ph-sqft__title,.ph-types__title,.ph-pain__title,.ph-fw__title,.ph-com__title,.cf-team__title{letter-spacing:-0.04em !important;}
+  .cf-faq__hq,.cf-featured__title,.cf-row__title,.ph-type__name,.ph-pain__name,.ph-fw__name,.ph-vs__cardtitle,.ph-sqft__rowname{letter-spacing:-0.02em;}
+  /* icon tiles: cream with gold icon */
+  .cf-faq__ic,.cf-featured__ic,.cf-row__ic{background:#fbf7ea !important;border:1px solid #e9ddb6;color:#a88a35 !important;}
+  /* confirmed badge */
+  .cf-badge{background:#ffffff !important;border-color:#e6e3db !important;box-shadow:0 8px 24px rgba(30,25,10,0.07) !important;}
+  .cf-badge__cal{border-left-color:#e6e3db !important;}
+  /* step images and video frames */
+  .cf-cal__img{border-color:#e6e3db;box-shadow:0 18px 44px rgba(30,25,10,0.10);}
+  .cf-vsl,.cf-row__video,.cf-featured__video-box,.cf-row__portrait-frame{border-color:#e6e3db !important;box-shadow:0 18px 44px rgba(30,25,10,0.12) !important;}
+  .cf-row__video--portrait{box-shadow:none !important;}
+  /* cost breakdown button: cream pill with gold text */
+  .cf-cb__btn{background:#fbf7ea;border-color:#e9ddb6;}
+  .cf-cb__btn:hover{background:#f5eed6;border-color:#c6a952;}
+  .cf-cb__totals{border-color:#e9ddb6;}
+  .cf-row__down{box-shadow:none;}
+  /* VS bubble */
+  .ph-vs__vs{background:#ffffff !important;}
+</style>
+</div>
+</body>
+</html>
