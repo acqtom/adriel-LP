@@ -14,7 +14,7 @@ export default handle(async (req, res) => {
     if (confirm !== 'RESET') return json(res, 400, { error: 'Type RESET to confirm' });
     const sql = await db();
     await sql.query(`truncate visits, leads`);
-    await sql.query(`delete from kv where key like 'meta:%'`);
+    await sql.query(`delete from kv where key like 'meta%'`);
     return json(res, 200, { ok: true });
   }
   json(res, 400, { error: 'Unknown action' });

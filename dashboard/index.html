@@ -57,6 +57,7 @@
 
   /* ---------- cards ---------- */
   .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+  .grid--5{grid-template-columns:repeat(5,minmax(0,1fr))}
   .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 14px 13px;position:relative;min-height:84px}
   .card--span2{grid-column:span 2}
   .card--hi{background:linear-gradient(135deg,#b9993f,#a88a35);border-color:transparent;color:#fff}
@@ -125,7 +126,8 @@
   .ans td.wide{min-width:240px}
   .count{font-size:11.5px;color:var(--muted);margin:10px 2px}
 
-  @media (max-width:1100px){ .grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media (max-width:1300px){ .grid--5{grid-template-columns:repeat(3,minmax(0,1fr))} }
+  @media (max-width:1100px){ .grid,.grid--5{grid-template-columns:repeat(2,minmax(0,1fr))} }
   @media (max-width:760px){
     .app{grid-template-columns:1fr}
     .side{position:static;height:auto;padding:12px 16px}
@@ -134,7 +136,7 @@
     .side__foot{margin-top:12px;display:grid;grid-template-columns:1fr 1fr}
     .side__check{grid-column:1/-1}
     .main{padding:18px 16px 32px}
-    .grid{grid-template-columns:1fr}
+    .grid,.grid--5{grid-template-columns:1fr}
     .card--span2{grid-column:auto}
     .drop{grid-template-columns:1fr 70px}
     .drop__bar{grid-column:1/-1;grid-row:2}
@@ -205,8 +207,17 @@
 
       <div id="dashBody">
         <h2>Ad metrics</h2>
-        <div class="grid" id="adCards"></div>
+        <div class="grid grid--5" id="adCards"></div>
         <p class="note" id="adNote"></p>
+
+        <div class="panel">
+          <h3>By ad (Meta)</h3>
+          <p class="panel__sub">Every device and source. Leads and calls are matched to ads by utm_content = ad name.</p>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Ad</th><th>Campaign</th><th class="num">Spend</th><th class="num">Impressions</th><th class="num">Reach</th><th class="num">Frequency</th><th class="num">CTR</th><th class="num">Hook rate</th><th class="num">Leads</th><th class="num">Calls</th><th class="num">Qualified</th><th class="num">Cost per call</th></tr></thead>
+            <tbody id="metaAdRows"></tbody>
+          </table></div>
+        </div>
 
         <h2>Funnel metrics</h2>
         <div class="grid" id="funnelCards"></div>
@@ -471,6 +482,8 @@
 
     $('#adCards').innerHTML = [
       card({ label: 'Ad spend', value: ok ? money(spend) : '–', sub: ok ? int(m.impressions) + ' impressions' : 'Meta not connected' }),
+      card({ label: 'Reach', value: ok ? int(m.reach) : '–', sub: 'People who saw an ad' }),
+      card({ label: 'Frequency', value: ok && m.frequency != null ? m.frequency.toFixed(2) : '–', sub: 'Impressions ÷ reach, all ads combined' }),
       card({ label: 'Cost per click', value: money(ok ? per(m.linkClicks) : null), sub: int(m.linkClicks) + ' link clicks' }),
       card({ label: 'Ad CTR', value: pct(ok ? ratio(m.linkClicks, m.impressions) : null, 2), sub: 'Link clicks ÷ impressions' }),
       card({ label: 'Ad hook rate', value: pct(ok ? ratio(m.views3s, m.impressions) : null), sub: '3-second views ÷ impressions' }),
@@ -504,6 +517,7 @@
     renderVsl(d.funnel.vsl, s.plays, d.vslStart);
     renderButtons(d.funnel.buttons, s.visits);
     renderSources(d.funnel.bySource);
+    renderMetaAds(d);
   }
 
   function renderDropoff(rows) {
@@ -598,6 +612,19 @@
       return '<tr><td>' + esc(r.channel) + '</td><td class="num">' + int(r.visits) + '</td><td class="num">' + pct(ratio(r.plays, r.visits)) +
         '</td><td class="num">' + pct(r.engagement) + '</td><td class="num">' + pct(ratio(r.clickers, r.visits)) + '</td><td class="num">' + int(r.submitted) +
         '</td><td class="num">' + int(r.booked) + '</td><td class="num">' + pct(ratio(r.booked, r.visits), 2) + '</td></tr>';
+    }).join('');
+  }
+
+  function renderMetaAds(d) {
+    var rows = d.ads || [], m = d.meta || {};
+    var msg = !m.configured ? 'Meta isn\u2019t connected yet.' : d.adsError ? 'Meta error: ' + esc(d.adsError) : 'No ad spend in this period.';
+    if (!rows.length) { $('#metaAdRows').innerHTML = '<tr><td colspan="12" class="empty">' + msg + '</td></tr>'; return; }
+    $('#metaAdRows').innerHTML = rows.map(function (a) {
+      return '<tr><td>' + esc(a.name) + '</td><td>' + esc(a.campaign) + '</td><td class="num">' + money(a.spend) + '</td><td class="num">' + int(a.impressions) +
+        '</td><td class="num">' + int(a.reach) + '</td><td class="num">' + (a.frequency != null ? a.frequency.toFixed(2) : '–') +
+        '</td><td class="num">' + pct(ratio(a.linkClicks, a.impressions), 2) + '</td><td class="num">' + pct(ratio(a.views3s, a.impressions)) +
+        '</td><td class="num">' + int(a.leads) + '</td><td class="num">' + int(a.calls) + '</td><td class="num">' + int(a.qualified) +
+        '</td><td class="num">' + money(ratio(a.spend, a.calls)) + '</td></tr>';
     }).join('');
   }
 
