@@ -86,8 +86,8 @@ fbq('track', 'PageView');
 </style>
 <script src="/assets/track.js" defer></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap">
-<link rel="stylesheet" href="/assets/apply.css">
-<script src="/assets/apply.js" defer></script>
+<link rel="stylesheet" href="/assets/apply.css?v=2">
+<script src="/assets/apply.js?v=2" defer></script>
 </head>
 <body>
 <script>
@@ -147,8 +147,8 @@ fbq('track', 'PageView');
   .ph-hero__guarantee-wrap{display:block;margin-top:22px;}
   .ph-hero__guarantee{margin-bottom:0;gap:8px;}
   .ph-hero__guarantee svg{color:var(--t-gold-text);flex:0 0 auto;}
-  .ph-hero__results{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:900px;margin:0 auto;}
-  .ph-hero__result{margin:0;gap:8px;}
+  .ph-hero__results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:680px;margin:-24px auto 0;}
+  .ph-hero__result{margin:0;gap:7px;border-radius:14px;padding:10px 12px;text-align:center;font-size:13.5px;}
   .ph-hero__result svg{color:var(--t-gold-text);flex:0 0 auto;}
   .ph-hero__call{max-width:520px;margin:40px auto 0;}
   .ph-hero__call-label{margin:0 0 16px;font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--t-muted);text-align:center;}
@@ -174,9 +174,9 @@ fbq('track', 'PageView');
     .ph-hero__guarantee-wrap{margin-top:16px;}
     .ph-hero__guarantee{font-size:11px;padding:8px 12px;gap:6px;letter-spacing:-0.01em;white-space:nowrap;}
     .ph-hero__guarantee svg{width:13px;height:13px;}
-    .ph-hero__results{gap:8px;margin-top:0;}
-    .ph-hero__result{margin:0;font-size:12px;padding:8px 12px;gap:6px;}
-    .ph-hero__result svg{width:13px;height:13px;}
+    .ph-hero__results{gap:6px;margin-top:-18px;}
+    .ph-hero__result{margin:0;font-size:11.5px;line-height:1.25;padding:8px 6px;border-radius:12px;}
+    .ph-hero__result svg{display:none;}
     .ph-hero__call{margin-top:30px;}
     .ph-hero__call-label{font-size:11px;margin-bottom:14px;}
     .ph-hero__call-list li{font-size:14px;gap:10px;}
@@ -191,6 +191,9 @@ fbq('track', 'PageView');
     .ph-hero__guarantee{font-size:10.2px;padding:7px 10px;gap:5px;}
   }
   .ph-hero__gold{color:var(--t-gold-text);}
+  .pa-guarantee{display:flex;justify-content:center;margin-top:20px;}
+  .pa-guarantee__pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--t-font);font-size:clamp(12.5px,1.4vw,14.5px);font-weight:600;line-height:1.3;color:var(--t-text);background:var(--t-gold-soft);border:1px solid var(--t-gold-line);padding:9px 20px;border-radius:100px;}
+  .pa-guarantee__pill svg{color:var(--t-gold-text);flex:0 0 auto;}
 </style>
 <section class="ph-hero">
   <div class="ph-hero__inner">
@@ -211,8 +214,6 @@ fbq('track', 'PageView');
       <div class="ph-hero__pill ph-hero__result"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>$10M+</strong> In Sales</span></div>
       <div class="ph-hero__pill ph-hero__result"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>230+</strong> Real Estate Transactions</span></div>
       <div class="ph-hero__pill ph-hero__result"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>8</strong> Active Developments On Track To Net $3M</span></div>
-      <div class="ph-hero__pill ph-hero__result"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>40+</strong> Flips</span></div>
-      <div class="ph-hero__pill ph-hero__result"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>9</strong> New Construction Homes Completed</span></div>
     </div>
   </div>
 </section>
