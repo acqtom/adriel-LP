@@ -2,6 +2,7 @@
 import { db } from '../lib/db.js';
 import { handle, json, readBody, str } from '../lib/http.js';
 import { onBooked } from '../lib/alerts.js';
+import { sweepDropoffs } from '../lib/sweep.js';
 
 const num = (v, max) => { const x = Number(v); return Number.isFinite(x) ? Math.min(Math.max(x, 0), max) : 0; };
 
@@ -47,6 +48,7 @@ export default handle(async (req, res) => {
     default:
       return json(res, 400, { error: 'Unknown event' });
   }
+  await sweepDropoffs(sql);
   res.statusCode = 204;
   res.end();
 });

@@ -3,6 +3,7 @@
 import { db } from '../lib/db.js';
 import { handle, json, readBody, str } from '../lib/http.js';
 import { onDropoff, onSubmitted } from '../lib/alerts.js';
+import { sweepDropoffs } from '../lib/sweep.js';
 
 // answer key -> max length
 const ANSWERS = { situation: 300, problems: 5000, why_now: 5000, capital: 100, investment: 200 };
@@ -68,5 +69,6 @@ export default handle(async (req, res) => {
      str(utm.src), str(utm.cmp), str(utm.ad), device, seconds]);
 
   if (done && before?.status !== 'submitted') await onSubmitted(sql, lead);
+  await sweepDropoffs(sql);
   json(res, 200, { ok: true });
 });

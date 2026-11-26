@@ -1,4 +1,5 @@
 import { requireAuth } from '../lib/auth.js';
+import { sweepDropoffs } from '../lib/sweep.js';
 import { db } from '../lib/db.js';
 import { handle, json } from '../lib/http.js';
 import { metaInsights, metaAdInsights } from '../lib/meta.js';
@@ -11,6 +12,7 @@ export default handle(async (req, res) => {
   const range = resolvePeriod(q);
   const filters = { ...range, device: q.device || '', channel: q.channel || '' };
   const sql = await db();
+  await sweepDropoffs(sql);
 
   const [funnel, counts, meta, channels, vslStart, metaAds, site] = await Promise.all([
     funnelStats(sql, filters),
