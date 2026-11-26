@@ -296,8 +296,7 @@
     { key: 'problems', label: 'Main problems', wide: true },
     { key: 'why_now', label: 'Why now', wide: true },
     { key: 'capital', label: 'Capital' },
-    { key: 'investment', label: 'Can invest $7K–$12K', wide: true },
-    { key: 'sms_marketing', label: 'Marketing SMS' }
+    { key: 'investment', label: 'Can invest $7K–$12K', wide: true }
   ];
   var BUTTONS = [
     ['video', 'Under the video'],
@@ -605,7 +604,6 @@
   ].concat(ANSWER_COLS.map(function (c) {
     return { label: c.label, wide: c.wide, get: function (l) { return (l.answers || {})[c.key]; } };
   })).concat([
-    { label: 'SMS consent', get: function (l) { return l.sms_consent == null ? '' : (l.sms_consent ? 'Yes' : 'No'); } },
     { label: 'Source', get: function (l) { return l.source; } },
     { label: 'Campaign', get: function (l) { return l.campaign; } },
     { label: 'Ad', get: function (l) { return l.ad; } }

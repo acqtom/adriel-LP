@@ -49,7 +49,7 @@
     if (!v) { v = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2); sset('ph_v', v); }
     return v;
   }
-  var S = { i: 0, answers: {}, country: 'US', sms: false, smsMarketing: false, started: false, end: null };
+  var S = { i: 0, answers: {}, country: 'US', started: false, end: null };
   try { var saved = JSON.parse(sget('ph_apply') || 'null'); if (saved && saved.answers) S = Object.assign(S, saved); } catch (e) {}
   function persist() { sset('ph_apply', JSON.stringify(S)); }
   var N = QUESTIONS.length;
@@ -64,7 +64,6 @@
     var body = { v: visitId(), step: step, done: !!done, noCalendar: !!noCal, answers: answers,
       utm: (window.phTrack && window.phTrack.utm) || {},
       contact: { name: a.name || null, email: a.email || null, phone: fullPhone() || null } };
-    if (a.phone) { body.contact.sms = !!S.sms; body.contact.smsMarketing = !!S.smsMarketing; }
     return post('/api/form', body);
   }
   function markStarted() {
@@ -112,9 +111,7 @@
       h += '<div class="pa-phone"><select class="pa-cc" id="pa-cc" aria-label="Country code">' + COUNTRIES.map(function (c) {
         return '<option value="' + c[0] + '"' + (c[0] === S.country ? ' selected' : '') + '>' + c[2] + ' ' + c[0] + ' ' + c[1] + '</option>';
       }).join('') + '</select>' +
-        '<input class="pa-input" id="pa-input" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="' + (dial() === '+1' ? '(201) 555-0123' : 'Phone number') + '" value="' + esc(val) + '" aria-labelledby="pa-title"></div>' +
-        '<label class="pa-check"><input type="checkbox" id="pa-sms"' + (S.sms ? ' checked' : '') + '> <span>I agree to receive text messages from SETX Properties LLC (Propertyhsu) about my application and booking, such as appointment reminders and follow-ups. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. <a href="/pp" target="_blank" rel="noopener">Privacy Policy</a> · <a href="/tos" target="_blank" rel="noopener">Terms</a></span></label>' +
-        '<label class="pa-check"><input type="checkbox" id="pa-sms2"' + (S.smsMarketing ? ' checked' : '') + '> <span>I agree to receive marketing text messages from SETX Properties LLC (Propertyhsu), such as offers and program announcements. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out. Consent is not a condition of purchase.</span></label>';
+        '<input class="pa-input" id="pa-input" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="' + (dial() === '+1' ? '(201) 555-0123' : 'Phone number') + '" value="' + esc(val) + '" aria-labelledby="pa-title"></div>';
     } else {
       h += '<input class="pa-input" id="pa-input" type="' + (q.type === 'email' ? 'email' : 'text') + '"' +
         (q.type === 'email' ? ' inputmode="email" autocomplete="email" placeholder="name@example.com"' : ' autocomplete="' + (q.autocomplete || 'off') + '" placeholder="Type your answer here..."') +
@@ -239,8 +236,6 @@
   });
   root.addEventListener('change', function (e) {
     if (e.target.id === 'pa-cc') { S.country = e.target.value; persist(); render(true); }
-    if (e.target.id === 'pa-sms') { S.sms = e.target.checked; persist(); }
-    if (e.target.id === 'pa-sms2') { S.smsMarketing = e.target.checked; persist(); }
   });
   root.addEventListener('focusin', function (e) { if (e.target.id === 'pa-input') markStarted(); });
   root.addEventListener('keydown', function (e) {
