@@ -15,7 +15,7 @@
     { key: 'problems', type: 'long', required: true,
       title: "Please describe the main problems you'd need help with?",
       sub: 'The more specific you are, the more useful your Strategy Session will be.' },
-    { key: 'why_now', type: 'long', required: false,
+    { key: 'why_now', type: 'long', required: true,
       title: 'Why are you looking for development guidance right now?' },
     { key: 'name', type: 'text', required: true, contact: true, autocomplete: 'given-name',
       title: 'What is your first name' },
