@@ -1101,57 +1101,40 @@ fbq('track', 'PageView');
   .ph-ds__inner h2 em{font-style:normal;color:var(--accent);}
   .ph-ds__sub{font-size:clamp(15px,1.9vw,18px);line-height:1.6;color:var(--muted);margin:0 auto clamp(30px,4vw,42px);max-width:44rem;}
   .ph-ds__sub b{color:var(--muted);font-weight:600;}
-  .ph-ds__card{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--border);
-    border-radius:20px;padding:clamp(8px,1.6vw,18px) clamp(18px,2.4vw,30px);}
-  .ph-ds__card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
-    background:linear-gradient(90deg,transparent,rgba(198,169,82,0.6),transparent);}
-  .ph-ds__row{display:grid;grid-template-columns:auto 1fr 1fr;align-items:center;gap:clamp(14px,3vw,34px);
-    padding:clamp(20px,2.8vw,28px) 0;border-bottom:1px solid var(--border);text-align:left;}
-  .ph-ds__row:last-child{border-bottom:0;}
-  .ph-ds__cap{display:inline-flex;align-items:baseline;gap:6px;
-    padding:9px 18px;border-radius:100px;border:1px solid rgba(198,169,82,0.45);background:rgba(198,169,82,0.09);
-    white-space:nowrap;}
-  .ph-ds__cap b{font-family:'DM Sans',sans-serif;font-size:clamp(17px,2.1vw,22px);font-weight:800;
-    letter-spacing:-0.02em;color:var(--accent);}
-  .ph-ds__cap span{font-size:clamp(11px,1.3vw,12.5px);font-weight:600;color:rgba(198,169,82,0.75);
-    text-transform:uppercase;letter-spacing:0.05em;}
-  .ph-ds__cell small{display:block;font-size:10.5px;font-weight:700;letter-spacing:0.08em;
-    text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-  .ph-ds__cell b{font-family:'DM Sans',sans-serif;font-size:clamp(17px,2.2vw,24px);font-weight:800;
-    letter-spacing:-0.025em;color:var(--text);white-space:nowrap;}
-  .ph-ds__cell.profit b{color:var(--green);}
-  .ph-ds__fine{margin:clamp(18px,2.4vw,24px) auto 0;max-width:40rem;text-align:center;
-    font-size:12.5px;line-height:1.55;color:var(--muted);}
+  .ph-ds__card{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--border);border-radius:20px;text-align:left;
+    box-shadow:0 14px 40px rgba(30,25,10,0.06);}
+  .ph-ds__table{width:100%;border-collapse:collapse;table-layout:fixed;}
+  .ph-ds__table th,.ph-ds__table td{width:33.333%;padding:18px clamp(14px,2.6vw,28px);text-align:left;vertical-align:middle;}
+  .ph-ds__table thead th{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);
+    background:#faf8f3;border-bottom:1px solid var(--border);padding-top:14px;padding-bottom:14px;}
+  .ph-ds__table tbody td{font-family:'DM Sans',sans-serif;font-size:clamp(17px,2.2vw,23px);font-weight:700;letter-spacing:-0.025em;
+    color:var(--text);border-bottom:1px solid var(--border);font-variant-numeric:tabular-nums;}
+  .ph-ds__table tbody td:first-child{font-weight:800;}
+  .ph-ds__table tbody tr:last-child td{border-bottom:0;}
+  .ph-ds__fine{margin:0;padding:16px clamp(14px,2.6vw,28px) 18px;border-top:1px solid var(--border);background:#faf8f3;
+    font-size:14.5px;line-height:1.55;color:#4a4a4a;text-align:left;}
   .ph-ds__fine b{color:#1a1a1a;font-weight:700;}
-  @media (max-width:760px){
-    .ph-ds__row{grid-template-columns:1fr 1fr;gap:14px 16px;}
-    .ph-ds__cap{grid-column:1 / span 2;justify-self:start;}
-  }
-  @media (max-width:420px){
-    .ph-ds__cell b{font-size:16px;white-space:normal;}
+  @media (max-width:600px){
+    .ph-ds__table th,.ph-ds__table td{padding:14px 10px;}
+    .ph-ds__table thead th{font-size:9.5px;letter-spacing:0.06em;}
+    .ph-ds__table tbody td{font-size:15px;letter-spacing:-0.02em;}
+    .ph-ds__fine{font-size:13.5px;padding:14px 12px 16px;}
   }
 </style>
 <section class="ph-ds"><div class="ph-ds__inner">
   <h2>What <em>Size Deal</em> Can You Actually Get Into With Investor's Blueprint?</h2>
   <p class="ph-ds__sub">Student deals typically require <b>15 to 20% of the all-in cost</b>, and the rest gets financed. I typically hit a <b>20% profit margin</b> on my builds, and with me by your side, you'd be doing exactly what I'd do if this were my own build.</p>
   <div class="ph-ds__card">
-    <div class="ph-ds__row">
-      <span class="ph-ds__cap"><b>$100K</b><span>ready</span></span>
-      <div class="ph-ds__cell"><small>Project You Can Target</small><b>$500K &ndash; $650K</b></div>
-      <div class="ph-ds__cell profit"><small>Target Profit</small><b>$100K &ndash; $130K</b></div>
-    </div>
-    <div class="ph-ds__row">
-      <span class="ph-ds__cap"><b>$200K</b><span>ready</span></span>
-      <div class="ph-ds__cell"><small>Project You Can Target</small><b>$1M &ndash; $1.3M</b></div>
-      <div class="ph-ds__cell profit"><small>Target Profit</small><b>$200K &ndash; $260K</b></div>
-    </div>
-    <div class="ph-ds__row">
-      <span class="ph-ds__cap"><b>$300K+</b><span>ready</span></span>
-      <div class="ph-ds__cell"><small>Project You Can Target</small><b>$1.5M &ndash; $2M</b></div>
-      <div class="ph-ds__cell profit"><small>Target Profit</small><b>$300K+</b></div>
-    </div>
+    <table class="ph-ds__table">
+      <thead><tr><th scope="col">Your capital</th><th scope="col">Project size</th><th scope="col">Target profit</th></tr></thead>
+      <tbody>
+        <tr><td>$100K</td><td>$500K&ndash;$650K</td><td>$100K&ndash;$130K</td></tr>
+        <tr><td>$200K</td><td>$1M&ndash;$1.3M</td><td>$200K&ndash;$260K</td></tr>
+        <tr><td>$300K+</td><td>$1.5M&ndash;$2M</td><td>$300K+</td></tr>
+      </tbody>
+    </table>
+    <p class="ph-ds__fine"><b>Disclaimer:</b> I haven't gotten to know you yet, or how well you can stick to a step by step system, and that influences the numbers more than anything else. Please treat this as a projection rather than a promise.</p>
   </div>
-  <p class="ph-ds__fine"><b>Disclaimer:</b> I haven't gotten to know you yet, or how well you can stick to a step by step system, and that influences the numbers more than anything else. Please treat this as a projection rather than a promise.</p>
 </div></section>
 
 <!-- ADRIEL'S SOCIALS (bottom of the page) -->
