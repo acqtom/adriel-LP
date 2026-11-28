@@ -963,18 +963,11 @@ fbq('track', 'PageView');
   .wc__side h3{font-size:19px;font-weight:800;letter-spacing:-0.02em;line-height:1.25;margin-bottom:6px !important;}
   .wc__side p:not(.wc__tag){font-size:14.5px;line-height:1.55;color:#4a4a4a;}
   .wc__ex{border-top:1px solid #ece8de;background:#fbf9f4;}
-  .wc__ex summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px;cursor:pointer;padding:14px 24px;}
-  .wc__ex summary::-webkit-details-marker{display:none;}
-  .wc__ex summary:focus-visible{outline:2px solid #a88a35;outline-offset:-2px;}
+  .wc__ex-head{padding:14px 24px;border-bottom:1px solid #ece8de;}
   .wc__ex-text{font-size:14.5px;line-height:1.45;color:#4a4a4a;}
   .wc__ex-label{font-weight:700;color:#a88a35;}
   .wc__ex-text b{color:#1a1a1a;font-weight:800;}
   .wc__ex-text .wc__ex-num{color:#1f8a4c;}
-  .wc__ex-btn{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
-    color:#a88a35;background:#ffffff;border:1px solid #e9ddb6;border-radius:99px;padding:7px 13px;}
-  .wc__chev{transition:transform .2s ease;}
-  .wc__ex[open] .wc__chev{transform:rotate(180deg);}
-  .wc__ex[open] summary{border-bottom:1px solid #ece8de;}
   .wc__steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;padding:20px 24px 24px;}
   .wc__num{width:30px;height:30px;border-radius:50%;background:#c6a952;color:#1a1a1a;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
   .wc__steps h4{font-size:16px;font-weight:800;letter-spacing:-0.02em;line-height:1.25;margin-bottom:5px !important;}
@@ -993,7 +986,7 @@ fbq('track', 'PageView');
     .wc__side--good{border-left:4px solid #1f8a4c;border-top:1px solid #e3efe7;}
     .wc__to{width:auto;height:0;position:relative;}
     .wc__to svg{position:absolute;top:-11px;background:#ffffff;border:1px solid #e6e3db;border-radius:50%;padding:4px;width:26px;height:26px;transform:rotate(90deg);}
-    .wc__ex summary{flex-direction:column;align-items:flex-start;padding:14px 18px;}
+    .wc__ex-head{padding:14px 18px;}
     .wc__steps{grid-template-columns:1fr;gap:16px;padding:18px;}
     .wc__table{padding:4px 18px 18px;}
   }
@@ -1020,14 +1013,14 @@ fbq('track', 'PageView');
           <p>We check the deal before you commit, so hidden costs like utilities are found before a dollar is spent.</p>
         </div>
       </div>
-      <details class="wc__ex">
-        <summary><span class="wc__ex-text"><span class="wc__ex-label">Real example:</span> <b>The Sewer Line</b>, <b class="wc__ex-num">$30K to $40K</b> saved before closing.</span><span class="wc__ex-btn">See how <svg class="wc__chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="wc__ex">
+        <p class="wc__ex-head"><span class="wc__ex-text"><span class="wc__ex-label">Real example:</span> <b>The Sewer Line</b>, <b class="wc__ex-num">$30K to $40K</b> saved before closing.</span></p>
         <div class="wc__steps">
           <div><div class="wc__num">1</div><h4>Looked Good On Paper</h4><p>Student was under contract on a duplex lot with an old house already standing on it.</p></div>
           <div><div class="wc__num">2</div><h4>Adriel Found A Hidden Issue</h4><p>The city sewer map showed no line to the house, which is impossible if a house is there. His plumber found an old concrete line Houston no longer accepts.</p></div>
           <div><div class="wc__num">3</div><h4>Avoided An Expensive Mistake</h4><p>Closing meant running a new line from the nearest manhole. Enough to wipe out the profit, caught before a dollar was spent.</p></div>
         </div>
-      </details>
+      </div>
     </div>
     <div class="wc__pair">
       <div class="wc__split">
@@ -1058,8 +1051,8 @@ fbq('track', 'PageView');
           <p>You build as the owner with vetted contractors and cheaper materials, instead of paying a builder&rsquo;s markup.</p>
         </div>
       </div>
-      <details class="wc__ex">
-        <summary><span class="wc__ex-text"><span class="wc__ex-label">Real example:</span> <b>Building as the owner</b>, <b class="wc__ex-num">$144,000</b> saved on one project.</span><span class="wc__ex-btn">See how <svg class="wc__chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="wc__ex">
+        <p class="wc__ex-head"><span class="wc__ex-text"><span class="wc__ex-label">Real example:</span> <b>Building as the owner</b>, <b class="wc__ex-num">$144,000</b> saved on one project.</span></p>
         <div class="wc__table">
           <div class="wc__row"><span>Builder Quote</span><b><s>$150 / sq ft</s></b></div>
           <div class="wc__row"><span>As Owner Builder</span><b>~$130 / sq ft</b></div>
@@ -1067,7 +1060,7 @@ fbq('track', 'PageView');
           <div class="wc__row"><span>Savings Per sq ft</span><b>$20</b></div>
           <div class="wc__total"><span>Saved On One Project</span><b>$144,000</b></div>
         </div>
-      </details>
+      </div>
     </div>
     </div>
   </div>
